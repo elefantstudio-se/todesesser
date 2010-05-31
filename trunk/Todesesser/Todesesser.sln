@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodesesserGame", "TodesesserGame\TodesesserGame\TodesesserGame.csproj", "{0F969BC1-61E6-4E45-9405-A3303AF98786}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TodesesserGameContent", "TodesesserGame\TodesesserGameContent\TodesesserGameContent.contentproj", "{AA50D029-190E-47F4-AD6F-9B8C6FAB2AF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodesesserGameContent", "TodesesserGame\TodesesserGameContent\TodesesserGameContent.contentproj", "{AA50D029-190E-47F4-AD6F-9B8C6FAB2AF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Graphics", "Graphics", "{7169B63C-CA5E-41B2-8D55-418F5ACD8D68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighting", "Lighting\Lighting.csproj", "{1C6F1225-16E3-4418-9708-74DE502F83EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentPooling", "ContentPooling\ContentPooling.csproj", "{68D043AF-EDD7-4D8C-992B-DDEECF54EAD3}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -27,8 +33,24 @@ Global
 		{AA50D029-190E-47F4-AD6F-9B8C6FAB2AF2}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{AA50D029-190E-47F4-AD6F-9B8C6FAB2AF2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA50D029-190E-47F4-AD6F-9B8C6FAB2AF2}.Release|x86.ActiveCfg = Debug|Any CPU
+		{1C6F1225-16E3-4418-9708-74DE502F83EB}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{1C6F1225-16E3-4418-9708-74DE502F83EB}.Debug|x86.ActiveCfg = Debug|x86
+		{1C6F1225-16E3-4418-9708-74DE502F83EB}.Debug|x86.Build.0 = Debug|x86
+		{1C6F1225-16E3-4418-9708-74DE502F83EB}.Release|Any CPU.ActiveCfg = Release|x86
+		{1C6F1225-16E3-4418-9708-74DE502F83EB}.Release|x86.ActiveCfg = Release|x86
+		{1C6F1225-16E3-4418-9708-74DE502F83EB}.Release|x86.Build.0 = Release|x86
+		{68D043AF-EDD7-4D8C-992B-DDEECF54EAD3}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{68D043AF-EDD7-4D8C-992B-DDEECF54EAD3}.Debug|x86.ActiveCfg = Debug|x86
+		{68D043AF-EDD7-4D8C-992B-DDEECF54EAD3}.Debug|x86.Build.0 = Debug|x86
+		{68D043AF-EDD7-4D8C-992B-DDEECF54EAD3}.Release|Any CPU.ActiveCfg = Release|x86
+		{68D043AF-EDD7-4D8C-992B-DDEECF54EAD3}.Release|x86.ActiveCfg = Release|x86
+		{68D043AF-EDD7-4D8C-992B-DDEECF54EAD3}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1C6F1225-16E3-4418-9708-74DE502F83EB} = {7169B63C-CA5E-41B2-8D55-418F5ACD8D68}
+		{68D043AF-EDD7-4D8C-992B-DDEECF54EAD3} = {7169B63C-CA5E-41B2-8D55-418F5ACD8D68}
 	EndGlobalSection
 EndGlobal
