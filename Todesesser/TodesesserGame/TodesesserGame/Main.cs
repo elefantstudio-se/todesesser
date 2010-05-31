@@ -10,32 +10,36 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
 using ContentPooling;
+using Todesesser;
+using Todesesser.ObjectPooling;
 
 namespace TodesesserGame
 {
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         ContentPool contentPool;
+        ObjectPool objectPool;
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        GameCore gameCore;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             contentPool = new ContentPool(Content);
+            objectPool = new ObjectPool(contentPool);
+            gameCore = new GameCore(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, contentPool, graphics);
         }
 
         protected override void Initialize()
         {
             base.Initialize();
+            gameCore.Initialize();
         }
 
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            //Load Texture's into ContentPool
-            contentPool.AddTexture2D("Player\\player", "Player");
+            gameCore.LoadContent();
         }
 
         protected override void UnloadContent()
@@ -45,20 +49,13 @@ namespace TodesesserGame
 
         protected override void Update(GameTime gameTime)
         {
+            gameCore.Update(gameTime);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            spriteBatch.Begin();
-
-
-            contentPool.GetTexture2D("Player").Draw(spriteBatch, 0, 0, Color.White);
-            
-            
-            spriteBatch.End();
+            gameCore.Draw(gameTime);
 
             base.Draw(gameTime);
         }
