@@ -92,6 +92,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\GameData.cs" />
     <Compile Include="GameCore.cs" />
     <Compile Include="ObjectPooling\ObjectBase.cs" />
     <Compile Include="ObjectPooling\ObjectPool.cs" />

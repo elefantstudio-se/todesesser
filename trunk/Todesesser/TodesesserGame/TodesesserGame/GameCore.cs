@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Todesesser.ObjectPooling.ObjectTypes;
 using Todesesser.ObjectPooling;
 using Microsoft.Xna.Framework.Input;
+using Todesesser.Core;
 
 namespace Todesesser
 {
@@ -40,7 +41,10 @@ namespace Todesesser
         public void LoadContent()
         {
             Content.AddTexture2D("Player\\player", "Player");
+            Content.AddSpriteFont("Fonts\\Main", "MainFont");
             player = (ObjectPlayer)Objects.AddObject(ObjectPool.ObjectTypes.Player, "Player", "Player");
+            //GameData.GameState = GameData.GameStates.Menu;
+            GameData.GameState = GameData.GameStates.Playing;
         }
 
         public void Update(GameTime gameTime)
@@ -65,9 +69,11 @@ namespace Todesesser
 
         public void Draw(GameTime gameTime)
         {
-            Graphics.GraphicsDevice.Clear(Color.Black);
+            Graphics.GraphicsDevice.Clear(Color.White);
             batch.Begin();
 
+            Content.GetSpriteFont("MainFont").Draw(batch, 5, 0, Color.Black, "GameState = " + GameData.GameState);
+            
             player.Draw(gameTime, batch);
 
             batch.End();
