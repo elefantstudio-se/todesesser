@@ -5,6 +5,9 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using ContentPooling;
 using Microsoft.Xna.Framework.Graphics;
+using Todesesser.ObjectPooling.ObjectTypes;
+using Todesesser.ObjectPooling;
+using Microsoft.Xna.Framework.Input;
 
 namespace Todesesser
 {
@@ -13,15 +16,20 @@ namespace Todesesser
         private int Width;
         private int Height;
         private ContentPool Content;
+        private ObjectPool Objects;
         private GraphicsDeviceManager Graphics;
         private SpriteBatch batch;
 
-        public GameCore(int width, int height, ContentPool content, GraphicsDeviceManager graphics)
+
+        private ObjectPlayer player;
+
+        public GameCore(int width, int height, ContentPool content, ObjectPool objects, GraphicsDeviceManager graphics)
         {
             Graphics = graphics;
             Width = width;
             Height = height;
             Content = content;
+            Objects = objects;
         }
 
         public void Initialize()
@@ -29,21 +37,40 @@ namespace Todesesser
             batch = new SpriteBatch(Graphics.GraphicsDevice);
         }
 
-        public void Draw(GameTime gameTime)
+        public void LoadContent()
         {
-            batch.Begin();
-            Content.GetTexture2D("Player").Draw(batch, 0, 0, Color.White);
-            batch.End();
+            Content.AddTexture2D("Player\\player", "Player");
+            player = (ObjectPlayer)Objects.AddObject(ObjectPool.ObjectTypes.Player, "Player", "Player");
         }
 
         public void Update(GameTime gameTime)
         {
-            
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
+                player.Position.Y += 1;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                player.Position.Y -= 1;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                player.Position.X += 1;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
+                player.Position.X -= 1;
+            }
         }
 
-        public void LoadContent()
+        public void Draw(GameTime gameTime)
         {
-            Content.AddTexture2D("Player\\player", "Player");
+            Graphics.GraphicsDevice.Clear(Color.Black);
+            batch.Begin();
+
+            player.Draw(gameTime, batch);
+
+            batch.End();
         }
     }
 }
