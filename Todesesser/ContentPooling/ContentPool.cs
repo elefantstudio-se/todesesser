@@ -59,6 +59,38 @@ namespace ContentPooling
             return AddTexture2D(t, Key);
         }
 
+        /// <summary>
+        /// Add's new Texture2D to ContentPool.
+        /// </summary>
+        /// <param name="Texture">Texture2D to Pool</param>
+        /// <param name="Key">Unique Key of Content</param>
+        /// <returns>True = Sucessfully Added, False = Key Already Exists</returns>
+        public bool AddSpriteFont(SpriteFont Font, string Key)
+        {
+            if (contentTable.ContainsKey(Key) == false)
+            {
+                contentTable.Add(Key, new ContentSpriteFont(Font, Key));
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool AddSpriteFont(string AssetName, string Key)
+        {
+            SpriteFont t = null;
+            try
+            {
+                t = Content.Load<SpriteFont>(AssetName);
+            }
+            catch (ContentLoadException cle)
+            {
+                throw ContentTexture2DLoadException.FromContentLoadException(cle);
+            }
+            return AddSpriteFont(t, Key);
+        }
+
         #endregion
 
         #region Get
@@ -73,6 +105,18 @@ namespace ContentPooling
             if (contentTable.ContainsKey(Key) == true)
             {
                 return (ContentTexture2D)contentTable[Key];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public ContentSpriteFont GetSpriteFont(string Key)
+        {
+            if (contentTable.ContainsKey(Key) == true)
+            {
+                return (ContentSpriteFont)contentTable[Key];
             }
             else
             {

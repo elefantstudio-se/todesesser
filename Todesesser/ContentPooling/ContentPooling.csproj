@@ -95,6 +95,7 @@
     <Compile Include="ContentBase.cs" />
     <Compile Include="ContentPool.cs" />
     <Compile Include="ContentTexture2DLoadException.cs" />
+    <Compile Include="ContentTypes\ContentSpriteFont.cs" />
     <Compile Include="ContentTypes\ContentTexture2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
