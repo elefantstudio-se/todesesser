@@ -2,22 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework.Graphics;
 using ContentPooling;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Todesesser.ObjectPooling.ObjectTypes
 {
-    public class ObjectPlayer : ObjectBase
+    class ObjectCursor : ObjectBase
     {
         private string contentKey;
         private ContentPool Content;
-        private int speed = 2;
 
-        public ObjectPlayer(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
+        public ObjectCursor(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
         {
-            this.Position = new Vector2(0, 0);
+            this.Position = new Vector2(50, 50);
             this.contentKey = ContentKey;
             this.Key = Key;
             this.Type = Type;
@@ -26,15 +24,6 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         public override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
-            {
-                Speed = 3;
-            }
-            else
-            {
-                Speed = 2;
-            }
-
             base.Update(gameTime);
         }
 
@@ -44,15 +33,15 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             base.Draw(gameTime, sb);
         }
 
+        public override void Draw(GameTime gameTime, SpriteBatch sb, Vector2 offset)
+        {
+            sb.Draw(Texture, new Rectangle(int.Parse(this.Position.X.ToString()) - int.Parse(offset.X.ToString()), int.Parse(this.Position.Y.ToString()) - int.Parse(offset.Y.ToString()), Texture.Width, Texture.Height), null, Color.White);
+            base.Draw(gameTime, sb, offset);
+        }
+
         public Texture2D Texture
         {
             get { return this.Content.GetTexture2D(contentKey).Texture; }
-        }
-
-        public int Speed
-        {
-            get { return this.speed; }
-            set { this.speed = value; }
         }
     }
 }

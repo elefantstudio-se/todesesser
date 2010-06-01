@@ -19,6 +19,11 @@ namespace Todesesser.Screens
             
         }
 
+        public virtual void Initialize()
+        {
+
+        }
+
         public virtual void Update(GameTime gameTime)
         {
             
