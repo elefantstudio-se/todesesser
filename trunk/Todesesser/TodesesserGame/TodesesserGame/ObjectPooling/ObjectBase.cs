@@ -11,6 +11,7 @@ namespace Todesesser.ObjectPooling
     {
         private string key;
         private ObjectPool.ObjectTypes type;
+        private Vector2 position;
 
         public virtual void Update(GameTime gameTime)
         {
@@ -18,6 +19,11 @@ namespace Todesesser.ObjectPooling
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch sb)
+        {
+
+        }
+
+        public virtual void Draw(GameTime gameTime, SpriteBatch sb, Vector2 offset)
         {
 
         }
@@ -32,6 +38,12 @@ namespace Todesesser.ObjectPooling
         {
             get { return this.type; }
             set { this.type = value; }
+        }
+
+        public Vector2 Position
+        {
+            get { return this.position; }
+            set { this.position = value; }
         }
     }
 }
