@@ -9,6 +9,7 @@ using Todesesser.ObjectPooling.ObjectTypes;
 using Todesesser.ObjectPooling;
 using Microsoft.Xna.Framework.Input;
 using Todesesser.Core;
+using Todesesser.Screens;
 
 namespace Todesesser
 {
@@ -19,10 +20,9 @@ namespace Todesesser
         private ContentPool Content;
         private ObjectPool Objects;
         private GraphicsDeviceManager Graphics;
-        private SpriteBatch batch;
 
-
-        private ObjectPlayer player;
+        //Screens:
+        GameScreen screenGame;
 
         public GameCore(int width, int height, ContentPool content, ObjectPool objects, GraphicsDeviceManager graphics)
         {
@@ -35,48 +35,41 @@ namespace Todesesser
 
         public void Initialize()
         {
-            batch = new SpriteBatch(Graphics.GraphicsDevice);
+            
         }
 
         public void LoadContent()
         {
-            Content.AddTexture2D("Player\\player", "Player");
-            Content.AddSpriteFont("Fonts\\Main", "MainFont");
-            player = (ObjectPlayer)Objects.AddObject(ObjectPool.ObjectTypes.Player, "Player", "Player");
             //GameData.GameState = GameData.GameStates.Menu;
             GameData.GameState = GameData.GameStates.Playing;
+
+            //Create Screens:
+            screenGame = new GameScreen(Graphics.GraphicsDevice, Objects, Content);
+            
+            //Load Screens:
+            screenGame.LoadContent();
         }
 
         public void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            //Update Screen:
+            switch (GameData.GameState)
             {
-                player.Position.Y += 1;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                player.Position.Y -= 1;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Right))
-            {
-                player.Position.X += 1;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Left))
-            {
-                player.Position.X -= 1;
+                case GameData.GameStates.Playing:
+                    screenGame.Update(gameTime);
+                    break;
             }
         }
 
         public void Draw(GameTime gameTime)
         {
-            Graphics.GraphicsDevice.Clear(Color.White);
-            batch.Begin();
-
-            Content.GetSpriteFont("MainFont").Draw(batch, 5, 0, Color.Black, "GameState = " + GameData.GameState);
-            
-            player.Draw(gameTime, batch);
-
-            batch.End();
+            //Draw Screen:
+            switch (GameData.GameState)
+            {
+                case GameData.GameStates.Playing:
+                    screenGame.Draw(gameTime);
+                    break;
+            }
         }
     }
 }
