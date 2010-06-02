@@ -48,7 +48,7 @@ namespace Todesesser.Screens
             player.Position = new Vector2((GraphicsDevice.Viewport.Width / 2) - (player.Texture.Width / 2), (GraphicsDevice.Viewport.Height / 2) - (player.Texture.Height / 2));
 
             //Cursor:
-            Content.AddTexture2D("Cursors\\Test", "Cursor");
+            Content.AddTexture2D("Cursors\\Scope", "Cursor");
             cursor = (ObjectCursor)Objects.AddObject(ObjectPool.ObjectTypes.Cursor, "Cursor", "Cursor");
             cursor.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
 
