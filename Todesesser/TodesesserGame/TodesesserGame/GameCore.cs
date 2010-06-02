@@ -20,13 +20,15 @@ namespace Todesesser
         private ContentPool Content;
         private ObjectPool Objects;
         private GraphicsDeviceManager Graphics;
+        private Game Game;
 
         //Screens:
         GameScreen screenGame;
         MenuScreen screenMenu;
 
-        public GameCore(int width, int height, ContentPool content, ObjectPool objects, GraphicsDeviceManager graphics)
+        public GameCore(int width, int height, ContentPool content, ObjectPool objects, GraphicsDeviceManager graphics, Game game)
         {
+            Game = game;
             Graphics = graphics;
             Width = width;
             Height = height;
@@ -64,6 +66,9 @@ namespace Todesesser
                     break;
                 case GameData.GameStates.Menu:
                     screenMenu.Update(gameTime);
+                    break;
+                case GameData.GameStates.Exiting:
+                    Game.Exit();
                     break;
             }
         }

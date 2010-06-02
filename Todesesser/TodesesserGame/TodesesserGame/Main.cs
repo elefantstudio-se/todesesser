@@ -28,7 +28,7 @@ namespace TodesesserGame
             Content.RootDirectory = "Content";
             contentPool = new ContentPool(Content);
             objectPool = new ObjectPool(contentPool);
-            gameCore = new GameCore(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, contentPool, objectPool, graphics);
+            gameCore = new GameCore(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, contentPool, objectPool, graphics, this);
         }
 
         protected override void Initialize()

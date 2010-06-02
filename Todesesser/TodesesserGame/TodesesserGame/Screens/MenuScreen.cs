@@ -17,6 +17,7 @@ namespace Todesesser.Screens
         private ObjectPool Objects;
         private ContentPool Content;
         private ObjectButton buttonNewGame;
+        private ObjectButton buttonExit;
         private ObjectCursor cursor;
 
         public MenuScreen(GraphicsDevice graphicsDevice, ObjectPool Objects, ContentPool Content)
@@ -42,6 +43,13 @@ namespace Todesesser.Screens
             buttonNewGame.X = 50;
             buttonNewGame.Y = 20;
             buttonNewGame.OnClick += new ObjectButton.OnClickDelegate(button_OnClick);
+
+            Content.AddTexture2D("Buttons\\Menu\\Exit", "Buttons-Menu-Exit");
+            Content.AddTexture2D("Buttons\\Menu\\ExitSelected", "Buttons-Menu-Exit_Selected");
+            buttonExit = (ObjectButton)Objects.AddObject(ObjectPool.ObjectTypes.Button, "Buttons-Menu-Exit", "Buttons-Menu-Exit");
+            buttonExit.X = 50;
+            buttonExit.Y = 90;
+            buttonExit.OnClick += new ObjectButton.OnClickDelegate(button_OnClick);
             //Load Cursor
             Content.AddTexture2D("Cursors\\Basic", "MenuCursor");
             cursor = (ObjectCursor)Objects.AddObject(ObjectPool.ObjectTypes.Cursor, "MenuCursor", "MenuCursor");
@@ -56,6 +64,9 @@ namespace Todesesser.Screens
                 case "Buttons-Menu-NewGame":
                     GameData.GameState = GameData.GameStates.Playing;
                     break;
+                case "Buttons-Menu-Exit":
+                    GameData.GameState = GameData.GameStates.Exiting;
+                    break;
             }
         }
 
@@ -64,6 +75,7 @@ namespace Todesesser.Screens
             cursor.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
             GameData.MouseRectangle = new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, cursor.Texture.Width, cursor.Texture.Height);
             buttonNewGame.Update(gameTime);
+            buttonExit.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -74,6 +86,7 @@ namespace Todesesser.Screens
             Batch.Begin();
 
             buttonNewGame.Draw(gameTime, Batch);
+            buttonExit.Draw(gameTime, Batch);
             cursor.Draw(gameTime, Batch);
 
             Batch.End();
