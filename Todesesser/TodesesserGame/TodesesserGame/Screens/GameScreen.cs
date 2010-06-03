@@ -10,6 +10,9 @@ using Todesesser.ObjectPooling;
 using Todesesser.Map.Maps;
 using Microsoft.Xna.Framework.Input;
 using Todesesser.Core;
+using Todesesser.WeaponEngine;
+using Todesesser.WeaponEngine.Weapons;
+using Todesesser.Map;
 
 namespace Todesesser.Screens
 {
@@ -19,6 +22,7 @@ namespace Todesesser.Screens
         private ContentPool Content;
         private KeyboardState keyboardState;
         private bool prevReleased = false;
+        private WeaponEngine.WeaponEngine weaponEngine;
 
         //Objects:
         ObjectPlayer player;
@@ -35,6 +39,7 @@ namespace Todesesser.Screens
             this.GraphicsDevice = graphicsDevice;
             this.Batch = new SpriteBatch(GraphicsDevice);
             testmap = new MapTest(Batch, Content, Objects);
+            weaponEngine = new WeaponEngine.WeaponEngine(Content, Objects);
         }
 
         public override void Initialize()
@@ -45,7 +50,7 @@ namespace Todesesser.Screens
         public override void LoadContent()
         {
             //Player:
-            Content.AddTexture2D("Player\\player", "Player");
+            Content.AddTexture2D("Player\\debug", "Player");
             player = (ObjectPlayer)Objects.AddObject(ObjectPool.ObjectTypes.Player, "Player", "Player");
             player.Position = new Vector2((GraphicsDevice.Viewport.Width / 2) - (player.Texture.Width / 2), (GraphicsDevice.Viewport.Height / 2) - (player.Texture.Height / 2));
 
@@ -58,13 +63,21 @@ namespace Todesesser.Screens
             testmap.LoadContent();
             testmap.Initialize();
 
+            //Weapons:
+            weaponEngine.LoadContent();
+            weaponEngine.AddAvailableWeapon(new Glock());
+            weaponEngine.AddAvailableWeapon(new USP());
+
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
+            //Weapons:
+            weaponEngine.Update(gameTime, int.Parse(player.Position.X.ToString()), int.Parse(player.Position.Y.ToString()), testmap);
+
             player.Update(gameTime);
-            cursor.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+            cursor.Position = new Vector2(Mouse.GetState().X - (cursor.Texture.Width / 2), Mouse.GetState().Y - (cursor.Texture.Height / 2));
 
             keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.S))
@@ -113,14 +126,23 @@ namespace Todesesser.Screens
 
             testmap.Draw(gameTime);
 
-            //Get Angle from Player to Mouse
-            double dx = (player.Position.X + (player.Texture.Width / 2)) - Mouse.GetState().X;
-            double dy = (player.Position.Y + (player.Texture.Height / 2)) - Mouse.GetState().Y;
-            double rot = Math.Atan2(dy, dx);
+            player.Draw(gameTime, Batch);
 
-            player.Draw(gameTime, Batch, rot);
+            //Weapons:
+            weaponEngine.Draw(gameTime, Batch);
 
             cursor.Draw(gameTime, Batch);
+
+            if (weaponEngine.CurrentWeapon != null)
+            {
+                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Current Weapon = " + weaponEngine.CurrentWeapon.Name, new Vector2(0, 0), Color.Black);
+            }
+            else
+            {
+                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Current Weapon = null", new Vector2(0, 0), Color.Black);
+            }
+            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Loaded Content = " + Content.Count, new Vector2(0, 20), Color.Black);
+            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Loaded Objects = " + (Objects.Count + testmap.Objects.Count), new Vector2(0, 40), Color.Black);
 
             Batch.End();
 

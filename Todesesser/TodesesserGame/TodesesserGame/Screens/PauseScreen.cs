@@ -17,6 +17,7 @@ namespace Todesesser.Screens
         private ObjectPool Objects;
         private ContentPool Content;
         private ObjectButton buttonExit;
+        private ObjectButton buttonResume;
         private ObjectCursor cursor;
         private bool prevReleased = false;
 
@@ -43,6 +44,14 @@ namespace Todesesser.Screens
             buttonExit.X = 50;
             buttonExit.Y = 90;
             buttonExit.OnClick += new ObjectButton.OnClickDelegate(button_OnClick);
+
+            Content.AddTexture2D("Buttons\\Pause\\Resume", "Buttons-Pause-Resume");
+            Content.AddTexture2D("Buttons\\Pause\\ResumeSelected", "Buttons-Pause-Resume_Selected");
+            buttonResume = (ObjectButton)Objects.AddObject(ObjectPool.ObjectTypes.Button, "Buttons-Pause-Resume", "Buttons-Pause-Resume");
+            buttonResume.X = 50;
+            buttonResume.Y = 20;
+            buttonResume.OnClick += new ObjectButton.OnClickDelegate(button_OnClick);
+
             //Load Cursor
             Content.AddTexture2D("Cursors\\Basic", "PauseCursor");
             cursor = (ObjectCursor)Objects.AddObject(ObjectPool.ObjectTypes.Cursor, "PauseCursor", "PauseCursor");
@@ -57,6 +66,9 @@ namespace Todesesser.Screens
                 case "Buttons-Pause-Exit":
                     GameData.GameState = GameData.GameStates.Exiting;
                     break;
+                case "Buttons-Pause-Resume":
+                    GameData.GameState = GameData.GameStates.Playing;
+                    break;
             }
         }
 
@@ -65,6 +77,7 @@ namespace Todesesser.Screens
             cursor.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
             GameData.MouseRectangle = new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, cursor.Texture.Width, cursor.Texture.Height);
             buttonExit.Update(gameTime);
+            buttonResume.Update(gameTime);
 
             KeyboardState keyboardState = Keyboard.GetState();
             if (prevReleased == false)
@@ -90,6 +103,9 @@ namespace Todesesser.Screens
         {
             Batch.Begin();
 
+            Batch.Draw(Content.GetTexture2D("CG50").Texture, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+
+            buttonResume.Draw(gameTime, Batch);
             buttonExit.Draw(gameTime, Batch);
             cursor.Draw(gameTime, Batch);
 
