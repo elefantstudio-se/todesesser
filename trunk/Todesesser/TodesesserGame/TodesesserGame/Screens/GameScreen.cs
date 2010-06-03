@@ -9,6 +9,7 @@ using Todesesser.ObjectPooling.ObjectTypes;
 using Todesesser.ObjectPooling;
 using Todesesser.Map.Maps;
 using Microsoft.Xna.Framework.Input;
+using Todesesser.Core;
 
 namespace Todesesser.Screens
 {
@@ -17,6 +18,7 @@ namespace Todesesser.Screens
         private ObjectPool Objects;
         private ContentPool Content;
         private KeyboardState keyboardState;
+        private bool prevReleased = false;
 
         //Objects:
         ObjectPlayer player;
@@ -81,6 +83,22 @@ namespace Todesesser.Screens
             {
                 testmap.Offset.X += player.Speed;
             }
+            if (prevReleased == false)
+            {
+                if (keyboardState.IsKeyUp(Keys.Escape))
+                {
+                    prevReleased = true;
+                }
+            }
+            else
+            {
+                if (keyboardState.IsKeyDown(Keys.Escape))
+                {
+                    GameData.GameState = GameData.GameStates.Paused;
+                    prevReleased = false;
+                }
+            }
+
 
 
             testmap.Update(gameTime);

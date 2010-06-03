@@ -25,6 +25,7 @@ namespace Todesesser
         //Screens:
         GameScreen screenGame;
         MenuScreen screenMenu;
+        PauseScreen screenPause;
 
         public GameCore(int width, int height, ContentPool content, ObjectPool objects, GraphicsDeviceManager graphics, Game game)
         {
@@ -40,6 +41,7 @@ namespace Todesesser
         {
             screenGame.Initialize();
             screenMenu.Initialize();
+            screenPause.Initialize();
         }
 
         public void LoadContent()
@@ -50,10 +52,12 @@ namespace Todesesser
             //Create Screens:
             screenGame = new GameScreen(Graphics.GraphicsDevice, Objects, Content);
             screenMenu = new MenuScreen(Graphics.GraphicsDevice, Objects, Content);
+            screenPause = new PauseScreen(Graphics.GraphicsDevice, Objects, Content);
             
             //Load Screens:
             screenGame.LoadContent();
             screenMenu.LoadContent();
+            screenPause.LoadContent();
         }
 
         public void Update(GameTime gameTime)
@@ -70,6 +74,9 @@ namespace Todesesser
                 case GameData.GameStates.Exiting:
                     Game.Exit();
                     break;
+                case GameData.GameStates.Paused:
+                    screenPause.Update(gameTime);
+                    break;
             }
         }
 
@@ -83,6 +90,10 @@ namespace Todesesser
                     break;
                 case GameData.GameStates.Menu:
                     screenMenu.Draw(gameTime);
+                    break;
+                case GameData.GameStates.Paused:
+                    screenGame.Draw(gameTime);
+                    screenPause.Draw(gameTime);
                     break;
             }
         }
