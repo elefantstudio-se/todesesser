@@ -23,6 +23,11 @@ namespace Todesesser.ObjectPooling
 
         }
 
+        public virtual void Draw(GameTime gameTime, SpriteBatch sb, double rotation)
+        {
+
+        }
+
         public virtual void Draw(GameTime gameTime, SpriteBatch sb, Vector2 offset)
         {
 

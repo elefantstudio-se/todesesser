@@ -95,7 +95,13 @@ namespace Todesesser.Screens
 
             testmap.Draw(gameTime);
 
-            player.Draw(gameTime, Batch);
+            //Get Angle from Player to Mouse
+            double dx = (player.Position.X + (player.Texture.Width / 2)) - Mouse.GetState().X;
+            double dy = (player.Position.Y + (player.Texture.Height / 2)) - Mouse.GetState().Y;
+            double rot = Math.Atan2(dy, dx);
+
+            player.Draw(gameTime, Batch, rot);
+
             cursor.Draw(gameTime, Batch);
 
             Batch.End();

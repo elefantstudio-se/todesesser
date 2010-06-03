@@ -44,6 +44,14 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             base.Draw(gameTime, sb);
         }
 
+        public override void Draw(GameTime gameTime, SpriteBatch sb, double rotation)
+        {
+            Rectangle dest = new Rectangle(int.Parse(this.Position.X.ToString()), int.Parse(this.Position.Y.ToString()), Texture.Width, Texture.Height);
+
+            sb.Draw(Texture, dest, new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, float.Parse(rotation.ToString()), new Vector2(Texture.Width / 2, Texture.Height / 2), SpriteEffects.None, 1);
+            base.Draw(gameTime, sb);
+        }
+
         public Texture2D Texture
         {
             get { return this.Content.GetTexture2D(contentKey).Texture; }
