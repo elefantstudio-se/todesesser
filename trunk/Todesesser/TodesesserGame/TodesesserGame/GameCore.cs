@@ -53,6 +53,12 @@ namespace Todesesser
             screenGame = new GameScreen(Graphics.GraphicsDevice, Objects, Content);
             screenMenu = new MenuScreen(Graphics.GraphicsDevice, Objects, Content);
             screenPause = new PauseScreen(Graphics.GraphicsDevice, Objects, Content);
+
+            //Load Fonts:
+            Content.AddSpriteFont("Fonts\\Main", "MainFont");
+
+            //Load Screen Clears:
+            Content.AddTexture2D("Misc\\Clear\\Grey_Alpha50", "CG50");
             
             //Load Screens:
             screenGame.LoadContent();

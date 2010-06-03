@@ -143,5 +143,10 @@ namespace ContentPooling
         }
 
         #endregion
+
+        public int Count
+        {
+            get { return this.contentTable.Count; }
+        }
     }
 }
