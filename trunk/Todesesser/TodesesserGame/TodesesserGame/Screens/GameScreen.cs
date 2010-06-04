@@ -126,7 +126,8 @@ namespace Todesesser.Screens
 
             testmap.Draw(gameTime);
 
-            player.Draw(gameTime, Batch);
+            //Draw Player:
+            player.Draw(gameTime, Batch, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position));
 
             //Weapons:
             weaponEngine.Draw(gameTime, Batch);
