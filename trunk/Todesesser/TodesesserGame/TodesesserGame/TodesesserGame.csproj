@@ -112,6 +112,7 @@
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\MenuScreen.cs" />
     <Compile Include="Screens\PauseScreen.cs" />
+    <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="WeaponEngine\AmmoBase.cs" />
     <Compile Include="WeaponEngine\Ammo\9MM.cs" />
     <Compile Include="WeaponEngine\Bullet.cs" />

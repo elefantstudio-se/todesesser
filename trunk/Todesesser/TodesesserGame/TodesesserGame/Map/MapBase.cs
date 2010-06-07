@@ -6,6 +6,7 @@ using System.Collections;
 using Todesesser.ObjectPooling;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Todesesser.ObjectPooling.ObjectTypes;
 
 namespace Todesesser.Map
 {
@@ -42,7 +43,15 @@ namespace Todesesser.Map
             foreach (string Key in this.objects.Keys)
             {
                 ObjectBase objbase = (ObjectBase)this.objects[Key];
-                objbase.Draw(gameTime, batch, Offset);
+                if (objbase.Type != ObjectPooling.ObjectPool.ObjectTypes.Bullet)
+                {
+                    objbase.Draw(gameTime, batch, Offset);
+                }
+                else
+                {
+                    ObjectBullet b = (ObjectBullet)objbase;
+                    objbase.Draw(gameTime, batch, Offset, b.Rotation);
+                }
             }
         }
 

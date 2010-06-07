@@ -30,7 +30,7 @@ namespace Todesesser.WeaponEngine.Weapons
             this.Bullets = new List<ObjectBullet>();
         }
 
-        public override void Shoot(float rotation, int fromX, int fromY, MapBase map)
+        public override void Shoot(double rotation, int fromX, int fromY, MapBase map)
         {
             ObjectBullet b = new ObjectBullet("USP_bullet_" + this.Bullets.Count, ObjectPool.ObjectTypes.Bullet, "USP_bullet", this.Content);
             b.Rotation = rotation;
@@ -64,10 +64,10 @@ namespace Todesesser.WeaponEngine.Weapons
             base.Update(gameTime, attachX, attachY);
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch sb)
+        public override void Draw(GameTime gameTime, SpriteBatch sb, double rotation)
         {
-            this.ObjWeapon.Draw(gameTime, sb);
-            base.Draw(gameTime, sb);
+            this.ObjWeapon.Draw(gameTime, sb, rotation);
+            base.Draw(gameTime, sb, rotation);
         }
     }
 }

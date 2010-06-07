@@ -26,6 +26,7 @@ namespace Todesesser
         GameScreen screenGame;
         MenuScreen screenMenu;
         PauseScreen screenPause;
+        SplashScreen screenSplash;
 
         public GameCore(int width, int height, ContentPool content, ObjectPool objects, GraphicsDeviceManager graphics, Game game)
         {
@@ -42,17 +43,19 @@ namespace Todesesser
             screenGame.Initialize();
             screenMenu.Initialize();
             screenPause.Initialize();
+            screenSplash.Initialize();
         }
 
         public void LoadContent()
         {
             //GameData.GameState = GameData.GameStates.Menu;
-            GameData.GameState = GameData.GameStates.Menu;
+            GameData.GameState = GameData.GameStates.Splash;
 
             //Create Screens:
             screenGame = new GameScreen(Graphics.GraphicsDevice, Objects, Content);
             screenMenu = new MenuScreen(Graphics.GraphicsDevice, Objects, Content);
             screenPause = new PauseScreen(Graphics.GraphicsDevice, Objects, Content);
+            screenSplash = new SplashScreen(Graphics.GraphicsDevice, Objects, Content);
 
             //Load Fonts:
             Content.AddSpriteFont("Fonts\\Main", "MainFont");
@@ -64,6 +67,7 @@ namespace Todesesser
             screenGame.LoadContent();
             screenMenu.LoadContent();
             screenPause.LoadContent();
+            screenSplash.LoadContent();
         }
 
         public void Update(GameTime gameTime)
@@ -83,6 +87,9 @@ namespace Todesesser
                 case GameData.GameStates.Paused:
                     screenPause.Update(gameTime);
                     break;
+                case GameData.GameStates.Splash:
+                    screenSplash.Update(gameTime);
+                    break;
             }
         }
 
@@ -100,6 +107,9 @@ namespace Todesesser
                 case GameData.GameStates.Paused:
                     screenGame.Draw(gameTime);
                     screenPause.Draw(gameTime);
+                    break;
+                case GameData.GameStates.Splash:
+                    screenSplash.Draw(gameTime);
                     break;
             }
         }

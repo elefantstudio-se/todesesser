@@ -34,7 +34,7 @@ namespace Todesesser.WeaponEngine
             
         }
 
-        public void Update(GameTime gameTime, int playerX, int playerY, MapBase map)
+        public void Update(GameTime gameTime, int playerX, int playerY, MapBase map, double rotation)
         {
             KeyboardState kybd = Keyboard.GetState();
             if (kybd.IsKeyDown(Keys.Tab) && tabActivated == false)
@@ -68,14 +68,14 @@ namespace Todesesser.WeaponEngine
             }
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                currentWeapon.Shoot(0, playerX + int.Parse(map.Offset.X.ToString()), playerY + int.Parse(map.Offset.Y.ToString()), map);
+                currentWeapon.Shoot(rotation, playerX + int.Parse(map.Offset.X.ToString()), playerY + int.Parse(map.Offset.Y.ToString()), map);
             }
             currentWeapon.Update(gameTime, playerX, playerY);
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch sb)
+        public void Draw(GameTime gameTime, SpriteBatch sb, double rotation)
         {
-            currentWeapon.Draw(gameTime, sb);
+            currentWeapon.Draw(gameTime, sb, rotation);
         }
 
         public void AddAvailableWeapon(WeaponBase weapon)
