@@ -32,22 +32,43 @@ namespace Todesesser.WeaponEngine
 
         public virtual void LoadContent(ContentPool Content, ObjectPool Objects)
         {
-
+            this.Content = Content;
+            Content.AddTexture2D("Bullets\\bullet", this.name + "_bullet");
+            Content.AddTexture2D("Weapons\\debug", this.name + "_gun");
+            this.ObjWeapon = (ObjectWeapon)Objects.AddObject(ObjectPool.ObjectTypes.Weapon, "Player" + this.name, this.name + "_gun");
         }
 
         public virtual void Update(GameTime gameTime, int attachX, int attachY)
         {
-
+            if (this.Bullets != null)
+            {
+                foreach (ObjectBullet b in this.Bullets)
+                {
+                    b.Update(gameTime);
+                }
+                this.ObjWeapon.Update(gameTime);
+                this.ObjWeapon.Position = new Vector2(attachX + 30, attachY);
+            }
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch sb, double rotation)
         {
-
+            this.ObjWeapon.Draw(gameTime, sb, rotation);
         }
         
         public virtual void Shoot(double rotation, int fromX, int fromY, MapBase map)
         {
-
+            if (Content != null && this.Bullets != null)
+            {
+                ObjectBullet b = new ObjectBullet(this.name + "_bullet_" + this.Bullets.Count, ObjectPool.ObjectTypes.Bullet, this.name + "_bullet", this.Content);
+                b.Rotation = rotation;
+                b.FromX = fromX + 32;
+                b.FromY = fromY;
+                b.Position = new Vector2(fromX + 32, fromY);
+                b.Weapon = this;
+                this.Bullets.Add(b);
+                map.AddObject(this.name + "_bullet_" + this.Bullets.Count, b);
+            }
         }
 
         #region Properties
