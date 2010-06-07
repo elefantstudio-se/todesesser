@@ -74,7 +74,7 @@ namespace Todesesser.Screens
         public override void Update(GameTime gameTime)
         {
             //Weapons:
-            weaponEngine.Update(gameTime, int.Parse(player.Position.X.ToString()), int.Parse(player.Position.Y.ToString()), testmap);
+            weaponEngine.Update(gameTime, int.Parse(player.Position.X.ToString()), int.Parse(player.Position.Y.ToString()), testmap, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position));
 
             player.Update(gameTime);
             cursor.Position = new Vector2(Mouse.GetState().X - (cursor.Texture.Width / 2), Mouse.GetState().Y - (cursor.Texture.Height / 2));
@@ -130,7 +130,7 @@ namespace Todesesser.Screens
             player.Draw(gameTime, Batch, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position));
 
             //Weapons:
-            weaponEngine.Draw(gameTime, Batch);
+            weaponEngine.Draw(gameTime, Batch, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position));
 
             cursor.Draw(gameTime, Batch);
 

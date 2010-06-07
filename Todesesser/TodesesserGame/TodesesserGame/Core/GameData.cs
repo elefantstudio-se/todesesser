@@ -8,7 +8,7 @@ namespace Todesesser.Core
 {
     static class GameData
     {
-        public enum GameStates { Invalid, Menu, Playing, Paused, Exiting };
+        public enum GameStates { Invalid, Menu, Playing, Paused, Exiting, Splash };
         private static GameStates gameState = GameStates.Invalid;
 
         private static Rectangle mouseRect = new Rectangle();

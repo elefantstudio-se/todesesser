@@ -33,6 +33,11 @@ namespace Todesesser.ObjectPooling
 
         }
 
+        public virtual void Draw(GameTime gameTime, SpriteBatch sb, Vector2 offset, double rotation)
+        {
+
+        }
+
         public string Key
         {
             get { return this.key; }

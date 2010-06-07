@@ -40,12 +40,12 @@ namespace Todesesser.WeaponEngine
 
         }
 
-        public virtual void Draw(GameTime gameTime, SpriteBatch sb)
+        public virtual void Draw(GameTime gameTime, SpriteBatch sb, double rotation)
         {
 
         }
         
-        public virtual void Shoot(float rotation, int fromX, int fromY, MapBase map)
+        public virtual void Shoot(double rotation, int fromX, int fromY, MapBase map)
         {
 
         }

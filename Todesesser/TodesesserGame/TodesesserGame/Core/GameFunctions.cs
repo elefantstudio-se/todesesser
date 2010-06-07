@@ -15,7 +15,18 @@ namespace Todesesser.Core
             {
                 feta += MathHelper.ToRadians(180);
             }
-            return feta + MathHelper.ToRadians(90);
+            feta += MathHelper.ToRadians(90);
+            float feta_float = float.Parse(feta.ToString());
+            float feta_deg = MathHelper.ToDegrees(feta_float);
+            if (feta_deg >= 90 && feta_deg <= 180)
+            {
+                feta += MathHelper.ToRadians(180);
+            }
+            if (feta_deg >= 270 && feta_deg <= 360)
+            {
+                feta += MathHelper.ToRadians(180);
+            }
+            return feta;
         }
     }
 }
