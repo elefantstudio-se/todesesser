@@ -7,6 +7,8 @@ using ContentPooling;
 using Todesesser.ObjectPooling;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Todesesser.Map;
+using Todesesser.ObjectPooling.ObjectTypes;
 
 namespace Todesesser.WeaponEngine.Weapons
 {
@@ -23,6 +25,12 @@ namespace Todesesser.WeaponEngine.Weapons
             this.Type = GunTypes.Pistol;
             this.Name = "Glock";
             this.BulletSpeed = 15;
+            this.Bullets = new List<ObjectBullet>();
+        }
+
+        public override void Shoot(double rotation, int fromX, int fromY, MapBase map)
+        {
+            base.Shoot(rotation, fromX, fromY, map);
         }
 
         public override void LoadContent(ContentPool Content, ObjectPool Objects)
