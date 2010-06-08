@@ -17,6 +17,8 @@ namespace Todesesser.Map
         private ObjectPool objectPool;
         public Vector2 Offset;
         private List<ObjectBullet> playerBullets;
+        private int width;
+        private int height;
 
         public MapBase()
         {
@@ -35,7 +37,7 @@ namespace Todesesser.Map
 
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, MapBase map)
         {
             foreach (ObjectBullet bullet in this.playerBullets)
             {
@@ -94,6 +96,18 @@ namespace Todesesser.Map
         {
             get { return this.playerBullets; }
             set { this.playerBullets = value; }
+        }
+
+        public int Width
+        {
+            get { return this.width; }
+            set { this.width = value; }
+        }
+
+        public int Height
+        {
+            get { return this.width; }
+            set { this.width = value; }
         }
 
         #endregion

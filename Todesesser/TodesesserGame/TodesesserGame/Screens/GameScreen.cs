@@ -114,7 +114,7 @@ namespace Todesesser.Screens
 
 
 
-            testmap.Update(gameTime);
+            testmap.Update(gameTime, testmap);
             base.Update(gameTime);
         }
 

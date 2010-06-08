@@ -6,6 +6,7 @@ using ContentPooling;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Todesesser.WeaponEngine;
+using Todesesser.Map;
 
 namespace Todesesser.ObjectPooling.ObjectTypes
 {
