@@ -17,6 +17,8 @@ namespace Todesesser.Map.Maps
             this.ObjectPool = Objects;
             this.Content = Content;
             this.Batch = batch;
+            this.Width = 1000;
+            this.Height = 1000;
         }
 
         public override void LoadContent()
