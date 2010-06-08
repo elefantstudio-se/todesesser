@@ -42,10 +42,6 @@ namespace Todesesser.WeaponEngine
         {
             if (this.Bullets != null)
             {
-                foreach (ObjectBullet b in this.Bullets)
-                {
-                    b.Update(gameTime);
-                }
                 this.ObjWeapon.Update(gameTime);
                 this.ObjWeapon.Position = new Vector2(attachX + 30, attachY);
             }
@@ -66,8 +62,8 @@ namespace Todesesser.WeaponEngine
                 b.FromY = fromY;
                 b.Position = new Vector2(fromX + 32, fromY);
                 b.Weapon = this;
-                this.Bullets.Add(b);
-                map.AddObject(this.name + "_bullet_" + this.Bullets.Count, b);
+                map.PlayerBullets.Add(b);
+                map.AddObject("bullet_" + map.PlayerBullets.Count, b);
             }
         }
 

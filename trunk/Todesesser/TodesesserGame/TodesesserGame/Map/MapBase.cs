@@ -16,11 +16,13 @@ namespace Todesesser.Map
         private SpriteBatch batch;
         private ObjectPool objectPool;
         public Vector2 Offset;
+        private List<ObjectBullet> playerBullets;
 
         public MapBase()
         {
             this.objects = new Hashtable();
             this.Offset = new Vector2(0, 0);
+            this.playerBullets = new List<ObjectBullet>();
         }
 
         public virtual void LoadContent()
@@ -35,7 +37,10 @@ namespace Todesesser.Map
 
         public virtual void Update(GameTime gameTime)
         {
-
+            foreach (ObjectBullet bullet in this.playerBullets)
+            {
+                bullet.Update(gameTime);
+            }
         }
 
         public virtual void Draw(GameTime gameTime)
@@ -83,6 +88,12 @@ namespace Todesesser.Map
         {
             get { return this.objectPool; }
             set { this.objectPool = value; }
+        }
+
+        public List<ObjectBullet> PlayerBullets
+        {
+            get { return this.playerBullets; }
+            set { this.playerBullets = value; }
         }
 
         #endregion
