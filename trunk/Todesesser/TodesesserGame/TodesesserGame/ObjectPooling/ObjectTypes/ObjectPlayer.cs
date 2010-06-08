@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ContentPooling;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace Todesesser.ObjectPooling.ObjectTypes
 {
@@ -14,6 +15,11 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         private string contentKey;
         private ContentPool Content;
         private int speed = 2;
+        private int stamina = 1000;
+        private const int RUN = 5;
+        private const int WALK = 3;
+        //TODO FIX THE DAM NAME
+        private const int STAMINATHRESHOLD = 150;
 
         public ObjectPlayer(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
         {
@@ -26,16 +32,35 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         public override void Update(GameTime gameTime)
         {
+            movement();
+            base.Update(gameTime);
+        }
+
+        private bool run = false;
+        private bool usedRun = false;
+        private void movement()
+        {
+            //Debug.WriteLine(stamina);
             if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
+                run = true;
+            else
+                run = false;
+
+            if (run == true && stamina > 5 && usedRun == false)
             {
-                Speed = 3;
+                speed = RUN;
+                stamina -= 5;
+                if (stamina == 0)
+                    usedRun = true;
             }
             else
             {
-                Speed = 2;
+                speed = WALK;
+                if (stamina < 998)
+                    stamina += 2;
+                if (stamina >= STAMINATHRESHOLD)
+                    usedRun = false;
             }
-
-            base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch sb)
