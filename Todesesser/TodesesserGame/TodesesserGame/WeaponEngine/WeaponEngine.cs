@@ -70,7 +70,7 @@ namespace Todesesser.WeaponEngine
             {
                 currentWeapon.Shoot(rotation, playerX + int.Parse(map.Offset.X.ToString()), playerY + int.Parse(map.Offset.Y.ToString()), map);
             }
-            currentWeapon.Update(gameTime, playerX, playerY);
+            currentWeapon.Update(gameTime, playerX, playerY, rotation);
         }
 
         public void Draw(GameTime gameTime, SpriteBatch sb, double rotation)

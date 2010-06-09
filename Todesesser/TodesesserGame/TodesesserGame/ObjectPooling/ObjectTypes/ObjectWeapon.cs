@@ -15,6 +15,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         public ObjectWeapon(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
         {
+            this.FixedOffset = new Vector2(25, 0);
             this.Position = new Vector2(0, 0);
             this.contentKey = ContentKey;
             this.Key = Key;
@@ -39,11 +40,11 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             base.Draw(gameTime, sb, offset);
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch sb, double rotation)
+        public override void Draw(GameTime gameTime, SpriteBatch sb, double rotation, Vector2 originOffset, Vector2 offset)
         {
-            Rectangle dest = new Rectangle(int.Parse(this.Position.X.ToString()), int.Parse(this.Position.Y.ToString()), Texture.Width, Texture.Height);
+            Rectangle dest = new Rectangle(Convert.ToInt32(this.Position.X), Convert.ToInt32(this.Position.Y), Texture.Width, Texture.Height);
 
-            sb.Draw(Texture, dest, new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, float.Parse(rotation.ToString()), new Vector2(Texture.Width / 2, Texture.Height / 2), SpriteEffects.None, 1);
+            sb.Draw(Texture, dest, new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, float.Parse(rotation.ToString()), new Vector2((Texture.Width / 2) + originOffset.X, (Texture.Height / 2) + originOffset.Y), SpriteEffects.None, 1);
             base.Draw(gameTime, sb, rotation);
         }
 

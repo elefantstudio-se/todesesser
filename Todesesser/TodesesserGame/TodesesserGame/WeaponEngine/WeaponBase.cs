@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework;
 using Todesesser.ObjectPooling.ObjectTypes;
 using Microsoft.Xna.Framework.Graphics;
 using Todesesser.Map;
+using Microsoft.Xna.Framework.Input;
+using Todesesser.Core;
 
 namespace Todesesser.WeaponEngine
 {
@@ -38,32 +40,27 @@ namespace Todesesser.WeaponEngine
             this.ObjWeapon = (ObjectWeapon)Objects.AddObject(ObjectPool.ObjectTypes.Weapon, "Player" + this.name, this.name + "_gun");
         }
 
-        public virtual void Update(GameTime gameTime, int attachX, int attachY)
+        public virtual void Update(GameTime gameTime, int attachX, int attachY, double rotation)
         {
             if (this.Bullets != null)
             {
                 this.ObjWeapon.Update(gameTime);
-                this.ObjWeapon.Position = new Vector2(attachX + 30, attachY);
+                this.ObjWeapon.Position = new Vector2(attachX, attachY);
             }
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch sb, double rotation)
         {
-            this.ObjWeapon.Draw(gameTime, sb, rotation);
+            this.ObjWeapon.Draw(gameTime, sb, 0, new Vector2(0, 0), new Vector2(0, 0));
         }
         
         public virtual void Shoot(double rotation, int fromX, int fromY, MapBase map)
         {
             if (Content != null && this.Bullets != null)
             {
-                ObjectBullet b = new ObjectBullet(this.name + "_bullet_" + this.Bullets.Count, ObjectPool.ObjectTypes.Bullet, this.name + "_bullet", this.Content);
-                b.Rotation = rotation;
-                b.FromX = fromX + 32;
-                b.FromY = fromY;
-                b.Position = new Vector2(fromX + 32, fromY);
-                b.Weapon = this;
-                map.PlayerBullets.Add(b);
-                map.AddObject("bullet_" + map.PlayerBullets.Count, b);
+                //TODO: Ray Trace & Muzzle Flash Goes Here
+                Ray2D ray = new Ray2D(new Vector2(fromX, fromY), new Vector2(fromX, fromY) * 2);
+                
             }
         }
 
