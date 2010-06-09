@@ -31,6 +31,10 @@ namespace Todesesser.Screens
         //Map:
         MapTest testmap;
 
+        //FPS:
+        private float deltaFPSTime = 0;
+        private double currentFPS = -1;
+
         public GameScreen(GraphicsDevice graphicsDevice, ObjectPool Objects, ContentPool Content)
         {
             this.Objects = Objects;
@@ -115,6 +119,7 @@ namespace Todesesser.Screens
 
 
             testmap.Update(gameTime, testmap);
+            
             base.Update(gameTime);
         }
 
@@ -124,15 +129,43 @@ namespace Todesesser.Screens
 
             Batch.Begin();
 
-            testmap.Draw(gameTime);
-
+            //Setup RenderTarget for Player
+            RenderTarget2D ptarget = new RenderTarget2D(GraphicsDevice, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, false, SurfaceFormat.Color, DepthFormat.None);
+            GraphicsDevice.SetRenderTarget(ptarget);
+            
             //Draw Player:
             player.Draw(gameTime, Batch, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position));
 
             //Weapons:
             weaponEngine.Draw(gameTime, Batch, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position));
 
+            Batch.End();
+
+            //Set back to main Render Target.
+            GraphicsDevice.SetRenderTarget(null);
+
+            GraphicsDevice.Clear(Color.White);
+
+            Batch.Begin();
+
+            testmap.Draw(gameTime);
+
+            Rectangle dest = new Rectangle(int.Parse(player.Position.X.ToString()), int.Parse(player.Position.Y.ToString()), ptarget.Width, ptarget.Height);
+            Batch.Draw(ptarget, dest, new Rectangle(0, 0, ptarget.Width, ptarget.Height), Color.White, float.Parse(GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position).ToString()), player.Position, SpriteEffects.None, 1);
+
             cursor.Draw(gameTime, Batch);
+
+            //FPS:
+            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            float fps2 = 1 / elapsed;
+            deltaFPSTime += elapsed;
+
+            if (deltaFPSTime > 1)
+            {
+                currentFPS = Math.Round(float.Parse(fps2.ToString()));
+                deltaFPSTime -= 1;
+            }
 
             if (weaponEngine.CurrentWeapon != null)
             {
@@ -144,8 +177,29 @@ namespace Todesesser.Screens
             }
             Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Loaded Content = " + Content.Count, new Vector2(0, 20), Color.Black);
             Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Loaded Objects = " + (Objects.Count + testmap.Objects.Count), new Vector2(0, 40), Color.Black);
-
+            if (currentFPS >= 60)
+            {
+                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, currentFPS.ToString(), new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(currentFPS.ToString()).X - 5, 0), Color.Green);
+            }
+            else if (currentFPS <= 30 && currentFPS >= 0)
+            {
+                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, currentFPS.ToString(), new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(currentFPS.ToString()).X - 5, 0), Color.Red);
+            }
+            else
+            {
+                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, currentFPS.ToString(), new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(currentFPS.ToString()).X - 5, 0), Color.Orange);
+            }
+            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Mouse X: " + Mouse.GetState().X, new Vector2(0, 60), Color.Black);
+            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Mouse Y: " + Mouse.GetState().Y, new Vector2(0, 80), Color.Black);
+            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Rotation: " + player.Rotation, new Vector2(0, 100), Color.Black);
+            int rot = Convert.ToInt32(MathHelper.ToDegrees(float.Parse(player.Rotation.ToString()))) - 90;
+            double xs = Math.Cos((rot * Math.PI) / 180);
+            double xy = Math.Sin((rot * Math.PI) / 180);
+            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "XS: " + (xs).ToString(), new Vector2(0, 120), Color.Black);
+            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "XY: " + (xy).ToString(), new Vector2(0, 140), Color.Black);
             Batch.End();
+
+            ptarget.Dispose();
 
             base.Draw(gameTime);
         }

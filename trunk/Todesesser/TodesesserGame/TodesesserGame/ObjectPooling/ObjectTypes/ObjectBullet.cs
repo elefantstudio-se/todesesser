@@ -16,7 +16,6 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         private ContentPool Content;
         private int fromX;
         private int fromY;
-        private double rotation;
         private WeaponBase weapon;
 
         public ObjectBullet(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
@@ -30,7 +29,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         public override void Update(GameTime gameTime)
         {
-            int rot = Convert.ToInt32(MathHelper.ToDegrees(float.Parse(rotation.ToString()))) - 90;
+            int rot = Convert.ToInt32(MathHelper.ToDegrees(float.Parse(Rotation.ToString()))) - 90;
             double xs = 10 * Math.Cos((rot * Math.PI) / 180);
             double xy = 10 * Math.Sin((rot * Math.PI) / 180);
             this.Position = new Vector2(this.Position.X + float.Parse(xs.ToString()), this.Position.Y + float.Parse(xy.ToString()));
@@ -80,12 +79,6 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         {
             get { return this.fromY; }
             set { this.fromY = value; }
-        }
-
-        public double Rotation
-        {
-            get { return this.rotation; }
-            set { this.rotation = value; }
         }
 
         public WeaponBase Weapon

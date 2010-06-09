@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Todesesser.Core
 {
@@ -27,6 +28,20 @@ namespace Todesesser.Core
                 feta += MathHelper.ToRadians(180);
             }
             return feta;
+        }
+
+        public static Texture2D CreateBlankTexture(GraphicsDevice device)
+        {
+            Texture2D blank = new Texture2D(device, 1, 1, true, SurfaceFormat.Color);
+            blank.SetData(new[] { Color.White });
+            return blank;
+        }
+
+        public static void DrawLine(SpriteBatch batch, Texture2D blank,
+                                    float width, Color color, Vector2 point1,
+                                    Vector2 point2)
+        {
+
         }
     }
 }

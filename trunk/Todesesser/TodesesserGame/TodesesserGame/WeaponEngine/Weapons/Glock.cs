@@ -38,9 +38,9 @@ namespace Todesesser.WeaponEngine.Weapons
             base.LoadContent(Content, Objects);
         }
 
-        public override void Update(GameTime gameTime, int attachX, int attachY)
+        public override void Update(GameTime gameTime, int attachX, int attachY, double rotation)
         {
-            base.Update(gameTime, attachX, attachY);
+            base.Update(gameTime, attachX, attachY, rotation);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch sb, double rotation)

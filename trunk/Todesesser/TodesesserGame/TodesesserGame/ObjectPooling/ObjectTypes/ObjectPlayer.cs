@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ContentPooling;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Todesesser.Core;
 using System.Diagnostics;
 
 namespace Todesesser.ObjectPooling.ObjectTypes
@@ -33,6 +34,9 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         public override void Update(GameTime gameTime)
         {
             movement();
+
+            this.Rotation = double.Parse(GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), Position).ToString());
+
             base.Update(gameTime);
         }
 
@@ -73,8 +77,8 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         {
             Rectangle dest = new Rectangle(int.Parse(this.Position.X.ToString()), int.Parse(this.Position.Y.ToString()), Texture.Width, Texture.Height);
 
-            sb.Draw(Texture, dest, new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, float.Parse(rotation.ToString()), new Vector2(Texture.Width / 2, Texture.Height / 2), SpriteEffects.None, 1);
-            base.Draw(gameTime, sb, rotation);
+            sb.Draw(Texture, dest, new Rectangle(0, 0, Texture.Width, Texture.Height), Color.White, 0, new Vector2(Texture.Width / 2, Texture.Height / 2), SpriteEffects.None, 1);
+            base.Draw(gameTime, sb, 0);
         }
 
         public Texture2D Texture
