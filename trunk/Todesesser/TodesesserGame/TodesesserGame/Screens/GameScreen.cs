@@ -13,6 +13,7 @@ using Todesesser.Core;
 using Todesesser.WeaponEngine;
 using Todesesser.WeaponEngine.Weapons;
 using Todesesser.Map;
+using System.Diagnostics;
 
 namespace Todesesser.Screens
 {
@@ -62,6 +63,8 @@ namespace Todesesser.Screens
             Content.AddTexture2D("Cursors\\Scope", "Cursor");
             cursor = (ObjectCursor)Objects.AddObject(ObjectPool.ObjectTypes.Cursor, "Cursor", "Cursor");
             cursor.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+
+            Content.AddTexture2D("Misc\\Clear\\1x1white", "1x1white");
 
             //Map:
             testmap.LoadContent();
@@ -197,6 +200,23 @@ namespace Todesesser.Screens
             double xy = Math.Sin((rot * Math.PI) / 180);
             Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "XS: " + (xs).ToString(), new Vector2(0, 120), Color.Black);
             Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "XY: " + (xy).ToString(), new Vector2(0, 140), Color.Black);
+
+            //Calculate Ray Vectors (length 100)
+            double xe = Convert.ToInt32(player.Position.X);
+            double ye = Convert.ToInt32(player.Position.Y);
+            
+            while (Vector2.Distance(player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString()))) <= 300)
+            {
+                xe += xs;
+                ye += xy;
+            }
+
+            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Player: " + player.Position.ToString(), new Vector2(0, 160), Color.Black);
+            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "End = " + new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString())).ToString(), new Vector2(0, 180), Color.Black);
+            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "DISTANCE = " + Vector2.Distance(player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString()))).ToString(), new Vector2(0, 200), Color.Black);
+
+            GameFunctions.DrawLine(Batch, Content.GetTexture2D("1x1white").Texture, player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString())), Color.Red);
+
             Batch.End();
 
             ptarget.Dispose();
