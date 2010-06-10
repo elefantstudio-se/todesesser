@@ -48,5 +48,17 @@ namespace Todesesser.Core
 
             batch.Draw(spr, a, null, col, angle, Origin, Scale, SpriteEffects.None, 1.0f);
         }
+
+        public static void DrawLine(SpriteBatch batch, Texture2D spr, Vector2 a, Vector2 b, Color col, Vector2 offset)
+        {
+            Vector2 Origin = new Vector2(0.5f, 0.0f);
+            Vector2 diff = b - a;
+            float angle;
+            Vector2 Scale = new Vector2(1.0f, diff.Length() / spr.Height);
+
+            angle = (float)(Math.Atan2(diff.Y, diff.X)) - MathHelper.PiOver2;
+
+            batch.Draw(spr, new Vector2(a.X - offset.X, a.Y - offset.Y), null, col, angle, Origin, Scale, SpriteEffects.None, 1.0f);
+        }
     }
 }

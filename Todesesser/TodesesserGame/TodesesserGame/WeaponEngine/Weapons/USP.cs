@@ -29,9 +29,9 @@ namespace Todesesser.WeaponEngine.Weapons
             this.Bullets = new List<ObjectBullet>();
         }
 
-        public override void Shoot(double rotation, int fromX, int fromY, MapBase map)
+        public override void Shoot(double rotation, int fromX, int fromY, MapBase map, double aimX, double aimY)
         {
-            base.Shoot(rotation, fromX, fromY, map);
+            base.Shoot(rotation, fromX, fromY, map, aimX, aimY);
         }
 
         public override void LoadContent(ContentPool Content, ObjectPool Objects)

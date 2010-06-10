@@ -14,6 +14,7 @@ namespace Todesesser.ObjectPooling
         private Vector2 position;
         private Vector2 fixedOffset;
         private double rotation;
+        private Rectangle boundingRectangle;
 
         public virtual void Update(GameTime gameTime)
         {
@@ -73,6 +74,12 @@ namespace Todesesser.ObjectPooling
         {
             get { return this.rotation; }
             set { this.rotation = value; }
+        }
+
+        public Rectangle BoundingRectangle
+        {
+            get { return this.boundingRectangle; }
+            set { this.boundingRectangle = value; }
         }
     }
 }
