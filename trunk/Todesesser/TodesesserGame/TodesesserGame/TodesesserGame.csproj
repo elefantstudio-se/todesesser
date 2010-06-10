@@ -95,6 +95,7 @@
     <Compile Include="Core\GameData.cs" />
     <Compile Include="Core\GameFunctions.cs" />
     <Compile Include="Core\Ray2D.cs" />
+    <Compile Include="Debug\DebugVar.cs" />
     <Compile Include="GameCore.cs" />
     <Compile Include="Map\MapBase.cs" />
     <Compile Include="Map\Maps\MapTest.cs" />

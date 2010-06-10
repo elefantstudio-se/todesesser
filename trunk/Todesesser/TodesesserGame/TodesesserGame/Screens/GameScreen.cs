@@ -14,6 +14,7 @@ using Todesesser.WeaponEngine;
 using Todesesser.WeaponEngine.Weapons;
 using Todesesser.Map;
 using System.Diagnostics;
+using Todesesser.Debug;
 
 namespace Todesesser.Screens
 {
@@ -35,6 +36,13 @@ namespace Todesesser.Screens
         //FPS:
         private float deltaFPSTime = 0;
         private double currentFPS = -1;
+
+        private double xe;
+        private double ye;
+
+        private Vector2 rMouse;
+
+        private DebugVar dbvar;
 
         public GameScreen(GraphicsDevice graphicsDevice, ObjectPool Objects, ContentPool Content)
         {
@@ -65,6 +73,7 @@ namespace Todesesser.Screens
             cursor.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
 
             Content.AddTexture2D("Misc\\Clear\\1x1white", "1x1white");
+            Content.AddTexture2D("Misc\\dialog", "debugdialog");
 
             //Map:
             testmap.LoadContent();
@@ -75,16 +84,36 @@ namespace Todesesser.Screens
             weaponEngine.AddAvailableWeapon(new Glock());
             weaponEngine.AddAvailableWeapon(new USP());
 
+            //Debugging:
+            dbvar = new DebugVar("MainFont", Content);
+            dbvar.Add(weaponEngine.CurrentWeapon.Name, "Current Weapon");
+            dbvar.Add(Content.Count, "Total Content");
+            dbvar.Add((Objects.Count + testmap.Objects.Count), "Total Objects");
+            dbvar.Add(Mouse.GetState().X, "Mouse X");
+            dbvar.Add(Mouse.GetState().Y, "Mouse Y");
+            dbvar.Add(player.Rotation, "Player Rotation");
+            dbvar.Add("", "XS");
+            dbvar.Add("", "XY");
+            dbvar.Add(player.Position.ToString(), "Player Position");
+            dbvar.Add("", "Aim Position");
+            dbvar.Add("", "Aim Distance");
+            dbvar.Add("", "Map Objects");
+            dbvar.Add("", "Map Offset");
+            dbvar.Add("", "Map Mouse X");
+            dbvar.Add("", "Map Mouse Y");
+
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             //Weapons:
-            weaponEngine.Update(gameTime, int.Parse(player.Position.X.ToString()), int.Parse(player.Position.Y.ToString()), testmap, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position));
+            weaponEngine.Update(gameTime, int.Parse(player.Position.X.ToString()), int.Parse(player.Position.Y.ToString()), testmap, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position), xe, ye);
 
             player.Update(gameTime);
             cursor.Position = new Vector2(Mouse.GetState().X - (cursor.Texture.Width / 2), Mouse.GetState().Y - (cursor.Texture.Height / 2));
+
+            #region CheckKeys
 
             keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.S))
@@ -119,7 +148,43 @@ namespace Todesesser.Screens
                 }
             }
 
+            #endregion
 
+            //Calculate Mouse reletive to the map.
+            rMouse = new Vector2(Mouse.GetState().X + testmap.Offset.X, Mouse.GetState().Y + testmap.Offset.Y);
+
+            //Calculate XS, XY
+
+            int rot = Convert.ToInt32(MathHelper.ToDegrees(float.Parse(player.Rotation.ToString()))) - 90;
+            double xs = Math.Cos((rot * Math.PI) / 180);
+            double xy = Math.Sin((rot * Math.PI) / 180);
+
+            //Calculate Ray Vectors (length 100)
+            xe = Convert.ToInt32(player.Position.X);
+            ye = Convert.ToInt32(player.Position.Y);
+
+            while (Vector2.Distance(player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString()))) <= 100)
+            {
+                xe += xs;
+                ye += xy;
+            }
+
+            //Debugging:
+            dbvar.Update(weaponEngine.CurrentWeapon.Name, "Current Weapon");
+            dbvar.Update(Content.Count, "Loaded Content");
+            dbvar.Update((Objects.Count + testmap.Objects.Count), "Loaded Objects");
+            dbvar.Update(Mouse.GetState().X, "Mouse X");
+            dbvar.Update(Mouse.GetState().Y, "Mouse Y");
+            dbvar.Update(player.Rotation, "Player Rotation");
+            dbvar.Update(xs.ToString(), "XS");
+            dbvar.Update(xy.ToString(), "XY");
+            dbvar.Update(player.Position.ToString(), "Player Position");
+            dbvar.Update(new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString())).ToString(), "Aim Position");
+            dbvar.Update(Vector2.Distance(player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString()))).ToString(), "Aim Distance");
+            dbvar.Update(testmap.Objects.Count, "Map Objects");
+            dbvar.Update(testmap.Offset.ToString(), "Map Offset");
+            dbvar.Update(rMouse.X, "Map Mouse X");
+            dbvar.Update(rMouse.Y, "Map Mouse Y");
 
             testmap.Update(gameTime, testmap);
             
@@ -170,16 +235,10 @@ namespace Todesesser.Screens
                 deltaFPSTime -= 1;
             }
 
-            if (weaponEngine.CurrentWeapon != null)
-            {
-                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Current Weapon = " + weaponEngine.CurrentWeapon.Name, new Vector2(0, 0), Color.Black);
-            }
-            else
-            {
-                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Current Weapon = null", new Vector2(0, 0), Color.Black);
-            }
-            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Loaded Content = " + Content.Count, new Vector2(0, 20), Color.Black);
-            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Loaded Objects = " + (Objects.Count + testmap.Objects.Count), new Vector2(0, 40), Color.Black);
+            dbvar.Draw(Batch);
+
+            #region FPS
+
             if (currentFPS >= 60)
             {
                 Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, currentFPS.ToString(), new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(currentFPS.ToString()).X - 5, 0), Color.Green);
@@ -192,30 +251,12 @@ namespace Todesesser.Screens
             {
                 Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, currentFPS.ToString(), new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(currentFPS.ToString()).X - 5, 0), Color.Orange);
             }
-            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Mouse X: " + Mouse.GetState().X, new Vector2(0, 60), Color.Black);
-            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Mouse Y: " + Mouse.GetState().Y, new Vector2(0, 80), Color.Black);
-            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Rotation: " + player.Rotation, new Vector2(0, 100), Color.Black);
-            int rot = Convert.ToInt32(MathHelper.ToDegrees(float.Parse(player.Rotation.ToString()))) - 90;
-            double xs = Math.Cos((rot * Math.PI) / 180);
-            double xy = Math.Sin((rot * Math.PI) / 180);
-            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "XS: " + (xs).ToString(), new Vector2(0, 120), Color.Black);
-            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "XY: " + (xy).ToString(), new Vector2(0, 140), Color.Black);
 
-            //Calculate Ray Vectors (length 100)
-            double xe = Convert.ToInt32(player.Position.X);
-            double ye = Convert.ToInt32(player.Position.Y);
-            
-            while (Vector2.Distance(player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString()))) <= 300)
-            {
-                xe += xs;
-                ye += xy;
-            }
-
-            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "Player: " + player.Position.ToString(), new Vector2(0, 160), Color.Black);
-            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "End = " + new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString())).ToString(), new Vector2(0, 180), Color.Black);
-            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, "DISTANCE = " + Vector2.Distance(player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString()))).ToString(), new Vector2(0, 200), Color.Black);
+            #endregion
 
             GameFunctions.DrawLine(Batch, Content.GetTexture2D("1x1white").Texture, player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString())), Color.Red);
+
+            GameFunctions.DrawLine(Batch, Content.GetTexture2D("1x1white").Texture, new Vector2(0, 0), new Vector2(50, 50), Color.Black, testmap.Offset);
 
             Batch.End();
 

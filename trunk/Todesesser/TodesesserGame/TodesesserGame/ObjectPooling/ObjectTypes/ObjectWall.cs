@@ -20,6 +20,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             this.Key = Key;
             this.Type = Type;
             this.Content = contentPool;
+            this.BoundingRectangle = new Rectangle(Convert.ToInt32(this.Position.X), Convert.ToInt32(this.Position.Y), Texture.Width, Texture.Height);
         }
 
         public override void Update(GameTime gameTime)

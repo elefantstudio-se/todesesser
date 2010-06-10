@@ -30,7 +30,10 @@ namespace Todesesser.Core
             foreach (Point testPoint in BresenhamLine(p0, p1))
             {
                 if (rectangle.Contains(testPoint))
+                {
+                    System.Diagnostics.Debug.WriteLine("Hit");
                     return new Vector2((float)testPoint.X, (float)testPoint.Y);
+                }
             }
 
             return Vector2.Zero;

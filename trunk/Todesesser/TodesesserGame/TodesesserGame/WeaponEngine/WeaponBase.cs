@@ -53,14 +53,22 @@ namespace Todesesser.WeaponEngine
         {
             this.ObjWeapon.Draw(gameTime, sb, 0, new Vector2(0, 0), new Vector2(0, 0));
         }
-        
-        public virtual void Shoot(double rotation, int fromX, int fromY, MapBase map)
+
+        public virtual void Shoot(double rotation, int fromX, int fromY, MapBase map, double aimX, double aimY)
         {
             if (Content != null && this.Bullets != null)
             {
                 //TODO: Ray Trace & Muzzle Flash Goes Here
-                Ray2D ray = new Ray2D(new Vector2(fromX, fromY), new Vector2(fromX, fromY) * 2);
-                
+                Ray2D ray = new Ray2D(new Vector2(fromX, fromY), new Vector2(float.Parse(aimX.ToString()), float.Parse(aimY.ToString())));
+                foreach(string okey in map.Objects.Keys)
+                {
+                    ObjectBase o = (ObjectBase)map.Objects[okey];
+                    Vector2 intersect = ray.Intersects(o.BoundingRectangle);
+                    if (o.BoundingRectangle != null && intersect != Vector2.Zero)
+                    {
+                        System.Diagnostics.Debug.WriteLine(intersect);
+                    }
+                }
             }
         }
 

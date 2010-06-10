@@ -7,6 +7,7 @@ using Todesesser.ObjectPooling;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Todesesser.ObjectPooling.ObjectTypes;
+using Todesesser.Core;
 
 namespace Todesesser.Map
 {
@@ -106,8 +107,8 @@ namespace Todesesser.Map
 
         public int Height
         {
-            get { return this.width; }
-            set { this.width = value; }
+            get { return this.height; }
+            set { this.height = value; }
         }
 
         #endregion
