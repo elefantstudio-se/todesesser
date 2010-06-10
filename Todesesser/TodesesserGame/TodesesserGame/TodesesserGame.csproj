@@ -101,6 +101,7 @@
     <Compile Include="Map\Maps\MapTest.cs" />
     <Compile Include="ObjectPooling\ObjectBase.cs" />
     <Compile Include="ObjectPooling\ObjectPool.cs" />
+    <Compile Include="ObjectPooling\ObjectTypes\ObjectDebugPoint.cs" />
     <Compile Include="ObjectPooling\ObjectTypes\ObjectBullet.cs" />
     <Compile Include="ObjectPooling\ObjectTypes\ObjectButton.cs" />
     <Compile Include="ObjectPooling\ObjectTypes\ObjectCursor.cs" />
