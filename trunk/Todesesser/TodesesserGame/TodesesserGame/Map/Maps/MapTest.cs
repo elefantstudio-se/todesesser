@@ -25,6 +25,7 @@ namespace Todesesser.Map.Maps
         {
             //Load Objects
             Content.AddTexture2D("Objects\\Walls\\Test", "Objects-Walls-Test");
+            Content.AddTexture2D("Misc\\debugPoint", "Objects-DebugPoint");
 
             base.LoadContent();
         }
@@ -33,6 +34,11 @@ namespace Todesesser.Map.Maps
         {
             //Add Objects to Map
             AddObject("tw1", ObjectPool.AddObject(ObjectPool.ObjectTypes.Wall, "tw1", "Objects-Walls-Test"));
+            AddObject("tdp1", ObjectPool.AddObject(ObjectPooling.ObjectPool.ObjectTypes.DebugPoint, "tdp1", "Objects-DebugPoint"));
+            //Setup Objects
+            ObjectBase b = (ObjectBase)this.Objects["tdp1"];
+            b.Position = new Vector2(25, 25);
+            UpdateObject("tdp1", b);
 
             base.Initialize();
         }

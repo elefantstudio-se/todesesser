@@ -73,6 +73,16 @@ namespace Todesesser.Map
             this.objects.Add(Key, Object);
         }
 
+        public virtual ObjectBase GetObject(string Key)
+        {
+            return (ObjectBase)this.objects[Key];
+        }
+
+        public virtual void UpdateObject(string Key, ObjectBase Object)
+        {
+            this.objects[Key] = Object;
+        }
+
         #region Properties
 
         public Hashtable Objects
