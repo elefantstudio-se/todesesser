@@ -46,7 +46,9 @@ namespace Todesesser.Screens
 
         private DebugVar dbvar;
 
-        public GameScreen(GraphicsDevice graphicsDevice, ObjectPool Objects, ContentPool Content)
+        private GameCore gameCore;
+
+        public GameScreen(GraphicsDevice graphicsDevice, ObjectPool Objects, ContentPool Content, GameCore gameCore)
         {
             this.Objects = Objects;
             this.Content = Content;
@@ -55,6 +57,7 @@ namespace Todesesser.Screens
             this.Batch = new SpriteBatch(GraphicsDevice);
             testmap = new MapTest(Batch, Content, Objects);
             weaponEngine = new WeaponEngine.WeaponEngine(Content, Objects);
+            this.gameCore = gameCore;
         }
 
         public override void Initialize()
@@ -67,7 +70,7 @@ namespace Todesesser.Screens
             //Player:
             Content.AddTexture2D("Player\\debug", "Player");
             player = (ObjectPlayer)Objects.AddObject(ObjectPool.ObjectTypes.Player, "Player", "Player");
-            player.Position = new Vector2((GraphicsDevice.Viewport.Width / 2) - (player.Texture.Width / 2), (GraphicsDevice.Viewport.Height / 2) - (player.Texture.Height / 2));
+            player.Position = new Vector2((GraphicsDevice.Viewport.Width / 2) - Convert.ToInt32((player.Texture.Width * player.Scale) / 2), (GraphicsDevice.Viewport.Height / 2) - Convert.ToInt32((player.Texture.Height * player.Scale) / 2));
 
             //Cursor:
             Content.AddTexture2D("Cursors\\Scope", "Cursor");
@@ -109,6 +112,22 @@ namespace Todesesser.Screens
 
         public override void Update(GameTime gameTime)
         {
+            //Calculate XS, XY
+            int rot = Convert.ToInt32(MathHelper.ToDegrees(float.Parse(player.Rotation.ToString()))) - 90;
+            double xs = Math.Cos((rot * Math.PI) / 180);
+            double xy = Math.Sin((rot * Math.PI) / 180);
+
+            //Calculate Ray Vectors (length 100)
+            xe = Convert.ToInt32(player.Position.X) + Convert.ToInt32(testmap.Offset.X);
+            ye = Convert.ToInt32(player.Position.Y) + Convert.ToInt32(testmap.Offset.Y);
+            while (Vector2.Distance(new Vector2(player.Position.X + Convert.ToInt32(testmap.Offset.X), player.Position.Y + Convert.ToInt32(testmap.Offset.Y)), new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString()))) <= 100)
+            {
+                xe += xs;
+                ye += xy;
+            }
+
+            aimPoints = GameFunctions.BresenhamLine(Convert.ToInt32(player.Position.X) + Convert.ToInt32(testmap.Offset.X), Convert.ToInt32(player.Position.Y) + Convert.ToInt32(testmap.Offset.Y), Convert.ToInt32(xe), Convert.ToInt32(ye));
+
             //Weapons:
             weaponEngine.Update(gameTime, int.Parse(player.Position.X.ToString()), int.Parse(player.Position.Y.ToString()), testmap, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position), xe, ye);
 
@@ -155,24 +174,6 @@ namespace Todesesser.Screens
             //Calculate Mouse reletive to the map.
             rMouse = new Vector2(Mouse.GetState().X + testmap.Offset.X, Mouse.GetState().Y + testmap.Offset.Y);
 
-            //Calculate XS, XY
-
-            int rot = Convert.ToInt32(MathHelper.ToDegrees(float.Parse(player.Rotation.ToString()))) - 90;
-            double xs = Math.Cos((rot * Math.PI) / 180);
-            double xy = Math.Sin((rot * Math.PI) / 180);
-
-            //Calculate Ray Vectors (length 100)
-            xe = Convert.ToInt32(player.Position.X);
-            ye = Convert.ToInt32(player.Position.Y);
-
-            while (Vector2.Distance(player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString()))) <= 100)
-            {
-                xe += xs;
-                ye += xy;
-            }
-
-            aimPoints = GameFunctions.BresenhamLine(Convert.ToInt32(player.Position.X), Convert.ToInt32(player.Position.Y), Convert.ToInt32(xe), Convert.ToInt32(ye));
-
             //Debugging:
             dbvar.Update(weaponEngine.CurrentWeapon.Name, "Current Weapon");
             dbvar.Update(Content.Count, "Loaded Content");
@@ -182,7 +183,7 @@ namespace Todesesser.Screens
             dbvar.Update(player.Rotation, "Player Rotation");
             dbvar.Update(xs.ToString(), "XS");
             dbvar.Update(xy.ToString(), "XY");
-            dbvar.Update(player.Position.ToString(), "Player Position");
+            dbvar.Update(new Vector2(player.Position.X + Convert.ToInt32(testmap.Offset.X), player.Position.Y + Convert.ToInt32(testmap.Offset.Y)).ToString(), "Player Position");
             dbvar.Update(new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString())).ToString(), "Aim Position");
             dbvar.Update(Vector2.Distance(player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString()))).ToString(), "Aim Distance");
             dbvar.Update(testmap.Objects.Count, "Map Objects");
@@ -258,9 +259,41 @@ namespace Todesesser.Screens
 
             #endregion
 
-            //GameFunctions.DrawLine(Batch, Content.GetTexture2D("1x1white").Texture, player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString())), Color.Red);
+            #region Lagg
 
-            //GameFunctions.DrawLine(Batch, Content.GetTexture2D("1x1white").Texture, new Vector2(0, 0), new Vector2(50, 50), Color.Black, testmap.Offset);
+            string dlagg = Math.Round(gameCore.drawHighestProcessTime.TotalMilliseconds).ToString() + "ms/frame highest draw";
+            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, dlagg, new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(dlagg).X - 5, 20), Color.Black);
+
+            string ulagg = Math.Round(gameCore.updateHighestProcessTime.TotalMilliseconds).ToString() + "ms/frame highest update";
+            Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, ulagg, new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(ulagg).X - 5, 40), Color.Black);
+
+            string dclagg = Math.Round(gameCore.drawCurrentProcessTime.TotalMilliseconds).ToString() + "ms/frame current draw";
+            string dcslagg = Math.Round(gameCore.drawCurrentProcessTime.TotalMilliseconds * currentFPS).ToString() + "ms/second current draw";
+            if (currentFPS >= 60)
+            {
+                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, dclagg, new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(dclagg).X - 5, 80), Color.Green);
+                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, dcslagg, new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(dcslagg).X - 5, 100), Color.Green);
+            }
+            else
+            {
+                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, dclagg, new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(dclagg).X - 5, 80), Color.Red);
+                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, dcslagg, new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(dcslagg).X - 5, 100), Color.Red);
+            }
+
+            string uclagg = Math.Round(gameCore.updateCurrentProcessTime.TotalMilliseconds).ToString() + "ms/frame current update";
+            string ucslagg = Math.Round(gameCore.updateCurrentProcessTime.TotalMilliseconds * currentFPS).ToString() + "ms/second current update";
+            if (currentFPS >= 60)
+            {
+                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, uclagg, new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(uclagg).X - 5, 120), Color.Green);
+                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, ucslagg, new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(ucslagg).X - 5, 140), Color.Green);
+            }
+            else
+            {
+                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, uclagg, new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(uclagg).X - 5, 120), Color.Red);
+                Batch.DrawString(Content.GetSpriteFont("MainFont").SpriteFont, ucslagg, new Vector2(GraphicsDevice.Viewport.Width - Content.GetSpriteFont("MainFont").SpriteFont.MeasureString(ucslagg).X - 5, 140), Color.Red);
+            }
+
+            #endregion
 
             if (aimPoints != null)
             {

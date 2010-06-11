@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Todesesser.Core.GameData" Collapsed="true">
+    <Position X="17" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBAAEIAA=</HashCode>
+      <FileName>Core\GameData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.Core.GameFunctions" Collapsed="true">
+    <Position X="18.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAIAAAgAAAAAAAAABAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Core\GameFunctions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.Core.Ray2D" Collapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAABABAAAAAAAAAAAAAII=</HashCode>
+      <FileName>Core\Ray2D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.Debug.DebugVar" Collapsed="true">
+    <Position X="18.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAgAAAgAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Debug\DebugVar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.GameCore" Collapsed="true">
+    <Position X="22.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAABgAAAwAAAAAAAEBACAggAgEAAgAIAAAgAgQ=</HashCode>
+      <FileName>GameCore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TodesesserGame.Game1" Collapsed="true">
+    <Position X="20.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAAAAAAwAAAABAgAAAAAEAAAgAAAAAAAAAAAQ=</HashCode>
+      <FileName>Main.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TodesesserGame.Program" Collapsed="true">
+    <Position X="22.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.Map.MapBase" Collapsed="true">
+    <Position X="8.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAACAABAAIIwQAYABAAEAIBQAAAAEAAABAAAkAgAQ=</HashCode>
+      <FileName>Map\MapBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.Map.Maps.MapTest" Collapsed="true">
+    <Position X="8.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Map\Maps\MapTest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.ObjectPooling.ObjectBase" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQQAIAAAAAAAoQgAACEIAAAAAABAABAAQAAAAAAEAA=</HashCode>
+      <FileName>ObjectPooling\ObjectBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.ObjectPooling.ObjectPool" Collapsed="true">
+    <Position X="20.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAgAAIAAAAAAAAAQIBAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>ObjectPooling\ObjectPool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.ObjectPooling.ObjectTypes.ObjectBullet" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAAAgAAAAAAAgAACAIAAAgAABIAAAAwAAA=</HashCode>
+      <FileName>ObjectPooling\ObjectTypes\ObjectBullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.ObjectPooling.ObjectTypes.ObjectButton" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQgAAAgAAAAAAAAACAAAAAAAAAAIAAgAgYAQ=</HashCode>
+      <FileName>ObjectPooling\ObjectTypes\ObjectButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.ObjectPooling.ObjectTypes.ObjectCursor" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAIAAAAgAAA=</HashCode>
+      <FileName>ObjectPooling\ObjectTypes\ObjectCursor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.ObjectPooling.ObjectTypes.ObjectDebugPoint" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAIAAAAgAAA=</HashCode>
+      <FileName>ObjectPooling\ObjectTypes\ObjectDebugPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.ObjectPooling.ObjectTypes.ObjectPlayer" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAABgAEAgQAAAIAQAADCACAAQAAAAIAAAAgAAA=</HashCode>
+      <FileName>ObjectPooling\ObjectTypes\ObjectPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.ObjectPooling.ObjectTypes.ObjectWall" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAgAAAgAAAgAAAgAAAAAAAAAAAABAEAIAAAAgAAg=</HashCode>
+      <FileName>ObjectPooling\ObjectTypes\ObjectWall.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.ObjectPooling.ObjectTypes.ObjectWeapon" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAAAgAAAAAAAAAAAAAAAAAAAAIAAAAgAAA=</HashCode>
+      <FileName>ObjectPooling\ObjectTypes\ObjectWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.Screens.BaseScreen" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQBQAAAAAAAAwAAAAAAAAAAAAAAAARAAAAEAAAAAAQ=</HashCode>
+      <FileName>Screens\BaseScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.Screens.GameScreen" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAJAAgAAAwEAGAAAggACSAAAAAEBgAAAAAACAAQ=</HashCode>
+      <FileName>Screens\GameScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.Screens.MenuScreen" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAAoAAAwEAIAAAAAAAAAAAAAEAAAAAAAAAAAQ=</HashCode>
+      <FileName>Screens\MenuScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.Screens.PauseScreen" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAAAAoAAAwEAIAAAAAAAAAAAAAECAAAAAAAAAAQ=</HashCode>
+      <FileName>Screens\PauseScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.Screens.SplashScreen" Collapsed="true">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAAAwAAAAAAAAAAAAAgAAEAAAAAgAAAAAQ=</HashCode>
+      <FileName>Screens\SplashScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.WeaponEngine.Ammo._9MM" Collapsed="true">
+    <Position X="5.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WeaponEngine\Ammo\9MM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.WeaponEngine.AmmoBase" Collapsed="true">
+    <Position X="5.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>WeaponEngine\AmmoBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.WeaponEngine.Bullet" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WeaponEngine\Bullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.WeaponEngine.WeaponBase" Collapsed="true">
+    <Position X="1.75" Y="6.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Todesesser.WeaponEngine.WeaponBase.GunShootTypes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>WeaponEngine\WeaponBase.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Todesesser.WeaponEngine.WeaponBase.GunTypes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>WeaponEngine\WeaponBase.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACQQgACAAsIIhgJCCEAAAARAAAEEIAoAAQAAAAEgEAQ=</HashCode>
+      <FileName>WeaponEngine\WeaponBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.WeaponEngine.WeaponEngine" Collapsed="true">
+    <Position X="18.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAggAAAoAAQAAAAAAAAAAAAAEAAAACAAABAAQ=</HashCode>
+      <FileName>WeaponEngine\WeaponEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.WeaponEngine.Weapons.Glock" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>WeaponEngine\Weapons\Glock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Todesesser.WeaponEngine.Weapons.USP" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>WeaponEngine\Weapons\USP.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

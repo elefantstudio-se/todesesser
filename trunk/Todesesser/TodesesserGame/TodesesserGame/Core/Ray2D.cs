@@ -31,7 +31,6 @@ namespace Todesesser.Core
             {
                 if (rectangle.Contains(testPoint))
                 {
-                    System.Diagnostics.Debug.WriteLine("Hit");
                     return new Vector2((float)testPoint.X, (float)testPoint.Y);
                 }
             }

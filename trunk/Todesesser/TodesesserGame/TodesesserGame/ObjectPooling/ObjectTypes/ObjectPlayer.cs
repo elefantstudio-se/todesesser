@@ -92,5 +92,10 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             get { return this.speed; }
             set { this.speed = value; }
         }
+
+        public double Scale
+        {
+            get { return this.scale; }
+        }
     }
 }

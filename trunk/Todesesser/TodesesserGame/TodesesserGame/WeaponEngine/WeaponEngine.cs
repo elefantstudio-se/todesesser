@@ -68,7 +68,7 @@ namespace Todesesser.WeaponEngine
             }
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                currentWeapon.Shoot(rotation, int.Parse(map.Offset.X.ToString()), int.Parse(map.Offset.Y.ToString()), map, aimX, aimY);
+                currentWeapon.Shoot(rotation, playerX + int.Parse(map.Offset.X.ToString()), playerY + int.Parse(map.Offset.Y.ToString()), map, aimX, aimY);
             }
             currentWeapon.Update(gameTime, playerX, playerY, rotation);
         }
