@@ -40,6 +40,8 @@ namespace Todesesser.Screens
         private double xe;
         private double ye;
 
+        private List<Point> aimPoints;
+
         private Vector2 rMouse;
 
         private DebugVar dbvar;
@@ -169,6 +171,8 @@ namespace Todesesser.Screens
                 ye += xy;
             }
 
+            aimPoints = GameFunctions.BresenhamLine(Convert.ToInt32(player.Position.X), Convert.ToInt32(player.Position.Y), Convert.ToInt32(xe), Convert.ToInt32(ye));
+
             //Debugging:
             dbvar.Update(weaponEngine.CurrentWeapon.Name, "Current Weapon");
             dbvar.Update(Content.Count, "Loaded Content");
@@ -254,9 +258,23 @@ namespace Todesesser.Screens
 
             #endregion
 
-            GameFunctions.DrawLine(Batch, Content.GetTexture2D("1x1white").Texture, player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString())), Color.Red);
+            //GameFunctions.DrawLine(Batch, Content.GetTexture2D("1x1white").Texture, player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString())), Color.Red);
 
-            GameFunctions.DrawLine(Batch, Content.GetTexture2D("1x1white").Texture, new Vector2(0, 0), new Vector2(50, 50), Color.Black, testmap.Offset);
+            //GameFunctions.DrawLine(Batch, Content.GetTexture2D("1x1white").Texture, new Vector2(0, 0), new Vector2(50, 50), Color.Black, testmap.Offset);
+
+            if (aimPoints != null)
+            {
+                testmap.RemoveObjectsStartingWith("ap");
+                for (int i = 0; i < aimPoints.Count; i++)
+                {
+                    Point p = aimPoints[i];
+                    testmap.AddObject("ap" + i, testmap.ObjectPool.AddObject(ObjectPooling.ObjectPool.ObjectTypes.DebugPoint, "ap" + i, "Objects-DebugPoint"));
+                    //Setup Objects
+                    ObjectBase b = (ObjectBase)testmap.Objects["ap" + i];
+                    b.Position = new Vector2(p.X, p.Y);
+                    testmap.UpdateObject("ap" + i, b);
+                }
+            }
 
             Batch.End();
 

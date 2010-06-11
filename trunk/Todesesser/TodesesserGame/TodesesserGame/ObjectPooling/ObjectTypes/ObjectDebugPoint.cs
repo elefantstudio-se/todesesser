@@ -29,13 +29,13 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         public override void Draw(GameTime gameTime, SpriteBatch sb)
         {
-            sb.Draw(Texture, new Rectangle(int.Parse(this.Position.X.ToString()), int.Parse(this.Position.Y.ToString()), Texture.Width, Texture.Height), Color.White);
+            sb.Draw(Texture, new Rectangle(int.Parse(this.Position.X.ToString()), int.Parse(this.Position.Y.ToString()), Convert.ToInt32(Convert.ToDouble(Texture.Width) * 0.2), Convert.ToInt32(Convert.ToDouble(Texture.Height) * 0.2)), Color.White);
             base.Draw(gameTime, sb);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch sb, Vector2 offset)
         {
-            sb.Draw(Texture, new Rectangle(int.Parse(this.Position.X.ToString()) - int.Parse(offset.X.ToString()), int.Parse(this.Position.Y.ToString()) - int.Parse(offset.Y.ToString()), Texture.Width, Texture.Height), null, Color.White);
+            sb.Draw(Texture, new Rectangle(int.Parse(this.Position.X.ToString()) - int.Parse(offset.X.ToString()), int.Parse(this.Position.Y.ToString()) - int.Parse(offset.Y.ToString()), Convert.ToInt32(Convert.ToDouble(Texture.Width) * 0.2), Convert.ToInt32(Convert.ToDouble(Texture.Height) * 0.2)), null, Color.White);
             base.Draw(gameTime, sb, offset);
         }
 

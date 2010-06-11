@@ -68,6 +68,24 @@ namespace Todesesser.Map
             this.objects.Remove(Key);
         }
 
+        public virtual void RemoveObjectsStartingWith(string startingwith)
+        {
+            List<string> pendingremove = new List<string>();
+            foreach (string key in this.objects.Keys)
+            {
+                if (key.StartsWith(startingwith) == true)
+                {
+                    pendingremove.Add(key);
+                }
+            }
+
+            foreach (string key in pendingremove)
+            {
+                this.objects.Remove(key);
+                this.ObjectPool.RemoveObject(key);
+            }
+        }
+
         public virtual void AddObject(string Key, ObjectBase Object)
         {
             this.objects.Add(Key, Object);

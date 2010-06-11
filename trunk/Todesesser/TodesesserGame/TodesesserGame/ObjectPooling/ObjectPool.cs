@@ -20,6 +20,16 @@ namespace Todesesser.ObjectPooling
             objectTable = new Hashtable();
         }
 
+        public void RemoveObjectsStartingWith(string startingwith)
+        {
+
+        }
+
+        public void RemoveObject(string Key)
+        {
+            objectTable.Remove(Key);
+        }
+
         public ObjectBase AddObject(ObjectTypes Type, string Key, string ContentKey)
         {
             if (objectTable.ContainsKey(Key) == false)
