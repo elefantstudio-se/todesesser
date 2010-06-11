@@ -66,7 +66,7 @@ namespace Todesesser.WeaponEngine
                     Vector2 intersect = ray.Intersects(o.BoundingRectangle);
                     if (o.BoundingRectangle != null && intersect != Vector2.Zero)
                     {
-                        System.Diagnostics.Debug.WriteLine(intersect);
+                        o.OnHit(this, new Vector2(fromX, fromY));
                     }
                 }
             }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Todesesser.WeaponEngine;
 
 namespace Todesesser.ObjectPooling
 {
@@ -42,6 +43,11 @@ namespace Todesesser.ObjectPooling
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch sb, Vector2 offset, double rotation)
+        {
+
+        }
+
+        public virtual void OnHit(WeaponBase weapon, Vector2 from)
         {
 
         }

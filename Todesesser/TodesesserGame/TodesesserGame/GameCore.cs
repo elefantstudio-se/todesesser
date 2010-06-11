@@ -28,6 +28,12 @@ namespace Todesesser
         PauseScreen screenPause;
         SplashScreen screenSplash;
 
+        //Performance:
+        public TimeSpan updateHighestProcessTime = new TimeSpan(0);
+        public TimeSpan drawHighestProcessTime = new TimeSpan(0);
+        public TimeSpan updateCurrentProcessTime = new TimeSpan(0);
+        public TimeSpan drawCurrentProcessTime = new TimeSpan(0);
+
         public GameCore(int width, int height, ContentPool content, ObjectPool objects, GraphicsDeviceManager graphics, Game game)
         {
             Game = game;
@@ -52,7 +58,7 @@ namespace Todesesser
             GameData.GameState = GameData.GameStates.Splash;
 
             //Create Screens:
-            screenGame = new GameScreen(Graphics.GraphicsDevice, Objects, Content);
+            screenGame = new GameScreen(Graphics.GraphicsDevice, Objects, Content, this);
             screenMenu = new MenuScreen(Graphics.GraphicsDevice, Objects, Content);
             screenPause = new PauseScreen(Graphics.GraphicsDevice, Objects, Content);
             screenSplash = new SplashScreen(Graphics.GraphicsDevice, Objects, Content);
@@ -72,6 +78,8 @@ namespace Todesesser
 
         public void Update(GameTime gameTime)
         {
+            //Get Start Time:
+            DateTime start = DateTime.Now;
             //Update Screen:
             switch (GameData.GameState)
             {
@@ -91,10 +99,19 @@ namespace Todesesser
                     screenSplash.Update(gameTime);
                     break;
             }
+            //Calculate Elapsed Time:
+            TimeSpan elapsed = DateTime.Now - start;
+            updateCurrentProcessTime = elapsed;
+            if (elapsed > updateHighestProcessTime)
+            {
+                updateHighestProcessTime = elapsed;
+            }
         }
 
         public void Draw(GameTime gameTime)
         {
+            //Get Start Time:
+            DateTime start = DateTime.Now;
             //Draw Screen:
             switch (GameData.GameState)
             {
@@ -111,6 +128,13 @@ namespace Todesesser
                 case GameData.GameStates.Splash:
                     screenSplash.Draw(gameTime);
                     break;
+            }
+            //Calculate Elapsed Time:
+            TimeSpan elapsed = DateTime.Now - start;
+            drawCurrentProcessTime = elapsed;
+            if (elapsed > drawHighestProcessTime)
+            {
+                drawHighestProcessTime = elapsed;
             }
         }
     }
