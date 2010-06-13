@@ -23,7 +23,6 @@ namespace Todesesser.Screens
         private ObjectPool Objects;
         private ContentPool Content;
         private KeyboardState keyboardState;
-        private bool prevReleased = false;
         private WeaponEngine.WeaponEngine weaponEngine;
 
         //Objects:
@@ -131,45 +130,8 @@ namespace Todesesser.Screens
             //Weapons:
             weaponEngine.Update(gameTime, int.Parse(player.Position.X.ToString()), int.Parse(player.Position.Y.ToString()), testmap, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position), xe, ye);
 
-            player.Update(gameTime);
+            player.Update(gameTime, testmap);
             cursor.Position = new Vector2(Mouse.GetState().X - (cursor.Texture.Width / 2), Mouse.GetState().Y - (cursor.Texture.Height / 2));
-
-            #region CheckKeys
-
-            keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.S))
-            {
-                testmap.Offset.Y += player.Speed;
-            }
-            if (keyboardState.IsKeyDown(Keys.W))
-            {
-                testmap.Offset.Y -= player.Speed;
-            }
-            if (keyboardState.IsKeyDown(Keys.A))
-            {
-                testmap.Offset.X -= player.Speed;
-            }
-            if (keyboardState.IsKeyDown(Keys.D))
-            {
-                testmap.Offset.X += player.Speed;
-            }
-            if (prevReleased == false)
-            {
-                if (keyboardState.IsKeyUp(Keys.Escape))
-                {
-                    prevReleased = true;
-                }
-            }
-            else
-            {
-                if (keyboardState.IsKeyDown(Keys.Escape))
-                {
-                    GameData.GameState = GameData.GameStates.Paused;
-                    prevReleased = false;
-                }
-            }
-
-            #endregion
 
             //Calculate Mouse reletive to the map.
             rMouse = new Vector2(Mouse.GetState().X + testmap.Offset.X, Mouse.GetState().Y + testmap.Offset.Y);

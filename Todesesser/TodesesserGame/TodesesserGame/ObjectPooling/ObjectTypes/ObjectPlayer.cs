@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Todesesser.Core;
 using System.Diagnostics;
+using Todesesser.Map;
 
 namespace Todesesser.ObjectPooling.ObjectTypes
 {
@@ -23,6 +24,9 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         //TODO FIX THE DAM NAME
         private const int STAMINATHRESHOLD = 150;
 
+        private KeyboardState keyboardState;
+        private bool prevReleased = false;
+
         public ObjectPlayer(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
         {
             this.Position = new Vector2(0, 0);
@@ -32,9 +36,9 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             this.Content = contentPool;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, MapBase map)
         {
-            movement();
+            movement(map);
 
             this.Rotation = double.Parse(GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), Position).ToString());
 
@@ -43,12 +47,41 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         private bool run = false;
         private bool usedRun = false;
-        private void movement()
+        private void movement(MapBase map)
         {
-            if(speed == RUN)
-                System.Diagnostics.Debug.WriteLine("RUNNING!");
+            keyboardState = Keyboard.GetState();
+            if (keyboardState.IsKeyDown(Keys.S))
+            {
+                map.Offset.Y += Speed;
+            }
+            if (keyboardState.IsKeyDown(Keys.W))
+            {
+                map.Offset.Y -= Speed;
+            }
+            if (keyboardState.IsKeyDown(Keys.A))
+            {
+                map.Offset.X -= Speed;
+            }
+            if (keyboardState.IsKeyDown(Keys.D))
+            {
+                map.Offset.X += Speed;
+            }
+            if (prevReleased == false)
+            {
+                if (keyboardState.IsKeyUp(Keys.Escape))
+                {
+                    prevReleased = true;
+                }
+            }
             else
-                System.Diagnostics.Debug.WriteLine("WALKING ):");
+            {
+                if (keyboardState.IsKeyDown(Keys.Escape))
+                {
+                    GameData.GameState = GameData.GameStates.Paused;
+                    prevReleased = false;
+                }
+            }
+
             if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
                 run = true;
             else
