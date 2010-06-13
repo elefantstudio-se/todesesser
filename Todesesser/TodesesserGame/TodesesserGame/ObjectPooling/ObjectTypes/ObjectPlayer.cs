@@ -45,7 +45,10 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         private bool usedRun = false;
         private void movement()
         {
-            //Debug.WriteLine(stamina);
+            if(speed == RUN)
+                System.Diagnostics.Debug.WriteLine("RUNNING!");
+            else
+                System.Diagnostics.Debug.WriteLine("WALKING ):");
             if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
                 run = true;
             else
@@ -60,6 +63,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             }
             else
             {
+                usedRun = true;
                 speed = WALK;
                 if (stamina < 998)
                     stamina += 2;
