@@ -9,14 +9,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Todesesser.Map;
 using Todesesser.ObjectPooling.ObjectTypes;
+using Todesesser.WeaponEngine.WeaponTypes;
 
 namespace Todesesser.WeaponEngine.Weapons
 {
-    public class Glock : WeaponBase
+    public class Glock : Automatic
     {
         public Glock()
         {
             this.Ammo = (AmmoBase)new _9MM();
+            this.FireRate = 0.9;
             this.MaxClip = 20;
             this.Damage = 40;
             this.DefaultDamage = 40;
@@ -26,26 +28,6 @@ namespace Todesesser.WeaponEngine.Weapons
             this.Name = "Glock";
             this.BulletSpeed = 15;
             this.Bullets = new List<ObjectBullet>();
-        }
-
-        public override void Shoot(double rotation, int fromX, int fromY, MapBase map, double aimX, double aimY)
-        {
-            base.Shoot(rotation, fromX, fromY, map, aimX, aimY);
-        }
-
-        public override void LoadContent(ContentPool Content, ObjectPool Objects)
-        {
-            base.LoadContent(Content, Objects);
-        }
-
-        public override void Update(GameTime gameTime, int attachX, int attachY, double rotation)
-        {
-            base.Update(gameTime, attachX, attachY, rotation);
-        }
-
-        public override void Draw(GameTime gameTime, SpriteBatch sb, double rotation)
-        {
-            base.Draw(gameTime, sb, rotation);
         }
     }
 }
