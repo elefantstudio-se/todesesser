@@ -38,7 +38,7 @@ namespace Todesesser.Map
 
         }
 
-        public virtual void Update(GameTime gameTime, MapBase map)
+        public virtual void Update(GameTime gameTime, MapBase map, ObjectPlayer player)
         {
             foreach (ObjectBullet bullet in this.playerBullets)
             {

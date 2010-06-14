@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 using ContentPooling;
 using Microsoft.Xna.Framework.Graphics;
 using Todesesser.WeaponEngine;
+using Todesesser.Map;
+using Todesesser.Core;
 
 namespace Todesesser.ObjectPooling.ObjectTypes
 {
@@ -29,8 +31,18 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             this.BoundingRectangle = new Rectangle(Convert.ToInt32(this.Position.X), Convert.ToInt32(this.Position.Y), Texture.Width, Texture.Height);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, ObjectPlayer player, MapBase map)
         {
+            Vector2 releventPlayerPosition = new Vector2(player.Position.X + Convert.ToInt32(map.Offset.X), player.Position.Y + Convert.ToInt32(map.Offset.Y));
+
+            this.Rotation = double.Parse(GameFunctions.GetAngle(this.Position, releventPlayerPosition).ToString());
+
+            int rot = Convert.ToInt32(MathHelper.ToDegrees(float.Parse(this.Rotation.ToString()))) - 90;
+            double xs = Math.Cos((rot * Math.PI) / 180);
+            double xy = Math.Sin((rot * Math.PI) / 180);
+
+            this.Position = new Vector2(this.Position.X - float.Parse(xs.ToString()), this.Position.Y - float.Parse(xy.ToString()));
+            this.BoundingRectangle = new Rectangle(Convert.ToInt32(this.Position.X), Convert.ToInt32(this.Position.Y), Texture.Width, Texture.Height);
             base.Update(gameTime);
         }
 
@@ -65,7 +77,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         public override void Draw(GameTime gameTime, SpriteBatch sb, Vector2 offset)
         {
-            sb.Draw(Texture, new Rectangle(int.Parse(this.Position.X.ToString()) - int.Parse(offset.X.ToString()), int.Parse(this.Position.Y.ToString()) - int.Parse(offset.Y.ToString()), Texture.Width, Texture.Height), null, colour);
+            sb.Draw(Texture, new Rectangle(Convert.ToInt32(this.Position.X) - Convert.ToInt32(offset.X), Convert.ToInt32(this.Position.Y) - Convert.ToInt32(offset.Y), Texture.Width, Texture.Height), null, colour, float.Parse(this.Rotation.ToString()), new Vector2(0,0), SpriteEffects.None, 1);
             base.Draw(gameTime, sb, offset);
         }
 

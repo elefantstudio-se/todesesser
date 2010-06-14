@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Todesesser.WeaponEngine;
 using Todesesser.Map;
+using Todesesser.ObjectPooling.ObjectTypes;
 
 namespace Todesesser.ObjectPooling
 {
@@ -17,6 +18,16 @@ namespace Todesesser.ObjectPooling
         private Vector2 fixedOffset;
         private double rotation;
         private Rectangle boundingRectangle;
+
+        public virtual void Update(GameTime gameTime, ObjectPlayer player)
+        {
+
+        }
+
+        public virtual void Update(GameTime gameTime, ObjectPlayer player, MapBase map)
+        {
+
+        }
 
         public virtual void Update(GameTime gameTime, MapBase map)
         {

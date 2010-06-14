@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ContentPooling;
 using Todesesser.ObjectPooling;
 using Microsoft.Xna.Framework;
+using Todesesser.ObjectPooling.ObjectTypes;
 
 namespace Todesesser.Map.Maps
 {
@@ -19,6 +20,12 @@ namespace Todesesser.Map.Maps
             this.Batch = batch;
             this.Width = 1000;
             this.Height = 1000;
+        }
+
+        public override void Update(GameTime gameTime, MapBase map, ObjectPlayer player)
+        {
+            GetObject("tw1").Update(gameTime, player, map);
+            base.Update(gameTime, map, player);
         }
 
         public override void LoadContent()

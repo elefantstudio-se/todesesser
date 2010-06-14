@@ -153,7 +153,7 @@ namespace Todesesser.Screens
             dbvar.Update(rMouse.X, "Map Mouse X");
             dbvar.Update(rMouse.Y, "Map Mouse Y");
 
-            testmap.Update(gameTime, testmap);
+            testmap.Update(gameTime, testmap, player);
             
             base.Update(gameTime);
         }
