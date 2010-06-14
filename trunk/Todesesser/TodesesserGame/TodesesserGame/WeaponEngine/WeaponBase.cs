@@ -19,7 +19,7 @@ namespace Todesesser.WeaponEngine
         public enum GunTypes { SniperRifle, MachineGun, SubMachineGun, Pistol, Shotgun, Melee };
         private AmmoBase ammo;
         private int maxClip;
-        private int fireRate;
+        private double fireRate;
         private int damage;
         private int defaultDamage;
         private double reloadTime;
@@ -27,6 +27,7 @@ namespace Todesesser.WeaponEngine
         private GunTypes gunType;
         private string name;
         private int bulletSpeed;
+        
 
         private ObjectWeapon objWeapon;
         private List<ObjectBullet> bullets;
@@ -86,7 +87,7 @@ namespace Todesesser.WeaponEngine
             set { this.maxClip = value; }
         }
 
-        public int FireRate
+        public double FireRate
         {
             get { return this.fireRate; }
             set { this.fireRate = value; }
