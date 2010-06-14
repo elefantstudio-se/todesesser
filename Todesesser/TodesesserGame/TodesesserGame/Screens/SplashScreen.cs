@@ -44,7 +44,7 @@ namespace Todesesser.Screens
             if (EndTime.Year == 0001)
             {
                 EndTime = DateTime.Now;
-                EndTime = EndTime.AddSeconds(5);
+                EndTime = EndTime.AddSeconds(1);
             }
             else
             {

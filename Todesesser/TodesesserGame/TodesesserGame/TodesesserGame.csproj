@@ -138,6 +138,7 @@
     <Compile Include="WeaponEngine\WeaponEngine.cs" />
     <Compile Include="WeaponEngine\Weapons\Glock.cs" />
     <Compile Include="WeaponEngine\Weapons\USP.cs" />
+    <Compile Include="WeaponEngine\WeaponTypes\SemiAuto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

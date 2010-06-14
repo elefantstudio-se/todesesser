@@ -18,7 +18,7 @@ namespace Todesesser.WeaponEngine
         private ObjectPool Objects;
         private List<WeaponBase> availableWeapons;
         private WeaponBase currentWeapon;
-
+        public bool canFire = true;
         private bool tabActivated = false;
 
         public WeaponEngine(ContentPool Content, ObjectPool Objects)
