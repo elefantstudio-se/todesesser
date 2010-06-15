@@ -23,7 +23,6 @@ namespace Todesesser.WeaponEngine.WeaponTypes
             {
                 elapsedSinceShot = DateTime.Now;
                 base.Shoot(rotation, fromX, fromY, map, aimX, aimY);
-                System.Diagnostics.Debug.WriteLine("FIRED!");
             }
             canFire = false;
         }
