@@ -25,6 +25,8 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         private const int STAMINATHRESHOLD = 150;
         private KeyboardState keyboardState;
         private bool prevReleased = false;
+        private int level = 1;
+        private int xp = 0;
 
         public ObjectPlayer(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
         {
@@ -128,6 +130,18 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         {
             get { return this.speed; }
             set { this.speed = value; }
+        }
+
+        public int XP
+        {
+            get { return this.xp; }
+            set { this.xp = value; }
+        }
+
+        public int Level
+        {
+            get { return this.level; }
+            set { this.level = value; }
         }
 
         public double Scale
