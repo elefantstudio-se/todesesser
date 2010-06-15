@@ -11,17 +11,17 @@ using Todesesser.Core;
 
 namespace Todesesser.ObjectPooling.ObjectTypes
 {
-    public class ObjectWall : ObjectBase
+    public class ObjectEnemy : ObjectBase
     {
         private string contentKey;
         private ContentPool Content;
-        private Color colour = Color.Green;
-        private int health = 500;
-        private const int H_OK = 500;
-        private const int H_DMGD = 250;
-        private const int H_CRIT = 75;
+        private Color colour = Color.Red;
+        private int health = 10000;
+        private int ht_ok = 10000;
+        private int ht_damaged = 5000;
+        private int ht_critical = 2500;
 
-        public ObjectWall(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
+        public ObjectEnemy(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
         {
             this.Position = new Vector2(50, 50);
             this.contentKey = ContentKey;
@@ -54,15 +54,15 @@ namespace Todesesser.ObjectPooling.ObjectTypes
                 //TODO: Probably shouldn't just hide the wall if its dead ;)
                 colour = Color.White;
             }
-            else if (health < H_CRIT)
+            else if (health < ht_critical)
             {
                 colour = Color.Red;
             }
-            else if (health < H_DMGD)
+            else if (health < ht_damaged)
             {
                 colour = Color.Orange;
             }
-            else if (health <= H_OK)
+            else if (health <= ht_ok)
             {
                 colour = Color.Green;
             }

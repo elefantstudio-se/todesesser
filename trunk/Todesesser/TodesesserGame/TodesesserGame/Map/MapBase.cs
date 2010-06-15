@@ -51,6 +51,10 @@ namespace Todesesser.Map
             foreach (string Key in this.objects.Keys)
             {
                 ObjectBase objbase = (ObjectBase)this.objects[Key];
+                if (objbase.Type == ObjectPooling.ObjectPool.ObjectTypes.Enemy)
+                {
+                    System.Diagnostics.Debug.WriteLine("Drawing " + objbase.Type.ToString());
+                }
                 if (objbase.Type != ObjectPooling.ObjectPool.ObjectTypes.Bullet)
                 {
                     objbase.Draw(gameTime, batch, Offset);

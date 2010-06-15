@@ -24,7 +24,7 @@ namespace Todesesser.Map.Maps
 
         public override void Update(GameTime gameTime, MapBase map, ObjectPlayer player)
         {
-            GetObject("tw1").Update(gameTime, player, map);
+            GetObject("w1").Update(gameTime, player, map);
             base.Update(gameTime, map, player);
         }
 
@@ -40,7 +40,7 @@ namespace Todesesser.Map.Maps
         public override void Initialize()
         {
             //Add Objects to Map
-            AddObject("tw1", ObjectPool.AddObject(ObjectPool.ObjectTypes.Wall, "tw1", "Objects-Walls-Test"));
+            AddObject("w1", ObjectPool.AddObject(ObjectPool.ObjectTypes.Wall, "w1", "Objects-Walls-Test"));
 
             base.Initialize();
         }
