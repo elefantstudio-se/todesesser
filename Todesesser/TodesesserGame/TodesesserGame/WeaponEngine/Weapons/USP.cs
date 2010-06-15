@@ -17,8 +17,8 @@ namespace Todesesser.WeaponEngine.Weapons
     {
         public USP()
         {
-            this.Ammo = (AmmoBase)new _9MM();
-            this.MaxClip = 15;
+            this.Ammo = 12;
+            this.MaxClip = 12;
             this.FireRate = 0;
             this.Damage = 50;
             this.DefaultDamage = 50;

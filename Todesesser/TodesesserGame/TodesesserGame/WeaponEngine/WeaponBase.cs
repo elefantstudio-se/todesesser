@@ -17,7 +17,7 @@ namespace Todesesser.WeaponEngine
     {
         public enum GunShootTypes { SemiAutomatic, Automatic };
         public enum GunTypes { SniperRifle, MachineGun, SubMachineGun, Pistol, Shotgun, Melee };
-        private AmmoBase ammo;
+        private int ammo;
         private int maxClip;
         private double fireRate;
         private int damage;
@@ -27,6 +27,7 @@ namespace Todesesser.WeaponEngine
         private GunTypes gunType;
         private string name;
         private int bulletSpeed;
+        private int remaining;
         
 
         private ObjectWeapon objWeapon;
@@ -48,6 +49,7 @@ namespace Todesesser.WeaponEngine
                 this.ObjWeapon.Update(gameTime);
                 this.ObjWeapon.Position = new Vector2(attachX, attachY);
             }
+            System.Diagnostics.Debug.WriteLine(ammo);
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch sb, double rotation)
@@ -57,7 +59,7 @@ namespace Todesesser.WeaponEngine
 
         public virtual void Shoot(double rotation, int fromX, int fromY, MapBase map, double aimX, double aimY)
         {
-            if (Content != null && this.Bullets != null)
+            if (Content != null && this.Bullets != null && ammo > 0)
             {
                 //TODO: Ray Trace & Muzzle Flash Goes Here
                 Ray2D ray = new Ray2D(new Vector2(fromX, fromY), new Vector2(float.Parse(aimX.ToString()), float.Parse(aimY.ToString())));
@@ -70,12 +72,13 @@ namespace Todesesser.WeaponEngine
                         o.OnHit(this, new Vector2(fromX, fromY));
                     }
                 }
+                ammo--;
             }
         }
 
         #region Properties
 
-        public AmmoBase Ammo
+        public int Ammo
         {
             get { return this.ammo; }
             set { this.ammo = value; }
@@ -85,6 +88,12 @@ namespace Todesesser.WeaponEngine
         {
             get { return this.maxClip; }
             set { this.maxClip = value; }
+        }
+
+        public int Remaining
+        {
+            get { return this.remaining; }
+            set { this.remaining = value; }
         }
 
         public double FireRate

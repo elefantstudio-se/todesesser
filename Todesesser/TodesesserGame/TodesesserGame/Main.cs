@@ -15,14 +15,14 @@ using Todesesser.ObjectPooling;
 
 namespace TodesesserGame
 {
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class Main : Microsoft.Xna.Framework.Game
     {
         ContentPool contentPool;
         ObjectPool objectPool;
         GraphicsDeviceManager graphics;
         GameCore gameCore;
 
-        public Game1()
+        public Main()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
