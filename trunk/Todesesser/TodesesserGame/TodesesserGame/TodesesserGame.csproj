@@ -133,6 +133,7 @@
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="WeaponEngine\AmmoBase.cs" />
     <Compile Include="WeaponEngine\Ammo\9MM.cs" />
+    <Compile Include="WeaponEngine\Ammo\Clip.cs" />
     <Compile Include="WeaponEngine\Bullet.cs" />
     <Compile Include="WeaponEngine\WeaponBase.cs" />
     <Compile Include="WeaponEngine\WeaponEngine.cs" />
