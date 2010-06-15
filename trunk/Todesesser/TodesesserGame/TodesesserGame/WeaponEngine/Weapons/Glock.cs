@@ -17,7 +17,7 @@ namespace Todesesser.WeaponEngine.Weapons
     {
         public Glock()
         {
-            this.Ammo = (AmmoBase)new _9MM();
+            this.Ammo = 20;
             this.FireRate = 0.9;
             this.MaxClip = 20;
             this.Damage = 40;

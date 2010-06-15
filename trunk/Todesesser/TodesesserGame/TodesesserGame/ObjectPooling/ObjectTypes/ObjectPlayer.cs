@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Todesesser.Core;
 using System.Diagnostics;
 using Todesesser.Map;
+using Todesesser.WeaponEngine.Ammo;
 
 namespace Todesesser.ObjectPooling.ObjectTypes
 {
@@ -21,9 +22,8 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         private const int RUN = 5;
         private const int WALK = 3;
         private double scale = 0.5;
-        //TODO FIX THE DAM NAME
         private const int STAMINATHRESHOLD = 150;
-
+        private _9MM ammo9MM = new _9MM(200);
         private KeyboardState keyboardState;
         private bool prevReleased = false;
 
@@ -41,6 +41,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             movement(map);
 
             this.Rotation = double.Parse(GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), Position).ToString());
+            //Rotation = (float)Math.Atan2(Mouse.GetState().X, Mouse.GetState().Y)+MathHelper.Pi;
 
             base.Update(gameTime);
         }
@@ -65,6 +66,10 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             if (keyboardState.IsKeyDown(Keys.D))
             {
                 map.Offset.X += Speed;
+            }
+            if (keyboardState.IsKeyDown(Keys.R))
+            {
+                
             }
             if (prevReleased == false)
             {
