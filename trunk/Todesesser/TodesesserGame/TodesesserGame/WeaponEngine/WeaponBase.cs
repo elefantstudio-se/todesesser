@@ -27,7 +27,6 @@ namespace Todesesser.WeaponEngine
         private GunTypes gunType;
         private string name;
         private int bulletSpeed;
-        private int remaining;
         
 
         private ObjectWeapon objWeapon;
@@ -88,12 +87,6 @@ namespace Todesesser.WeaponEngine
         {
             get { return this.maxClip; }
             set { this.maxClip = value; }
-        }
-
-        public int Remaining
-        {
-            get { return this.remaining; }
-            set { this.remaining = value; }
         }
 
         public double FireRate

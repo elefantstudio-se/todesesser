@@ -23,7 +23,6 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         private const int WALK = 3;
         private double scale = 0.5;
         private const int STAMINATHRESHOLD = 150;
-        private _9MM ammo9MM = new _9MM(200);
         private KeyboardState keyboardState;
         private bool prevReleased = false;
 
@@ -66,10 +65,6 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             if (keyboardState.IsKeyDown(Keys.D))
             {
                 map.Offset.X += Speed;
-            }
-            if (keyboardState.IsKeyDown(Keys.R))
-            {
-                
             }
             if (prevReleased == false)
             {

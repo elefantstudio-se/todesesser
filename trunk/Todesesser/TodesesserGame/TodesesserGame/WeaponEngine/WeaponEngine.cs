@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Todesesser.WeaponEngine.Weapons;
 using Microsoft.Xna.Framework.Graphics;
 using Todesesser.Map;
+using Todesesser.WeaponEngine.Ammo;
 
 namespace Todesesser.WeaponEngine
 {
@@ -20,6 +21,7 @@ namespace Todesesser.WeaponEngine
         private WeaponBase currentWeapon;
         public bool canFire = true;
         private bool tabActivated = false;
+        private _9MM ammo9MM = new _9MM(200);
 
         public WeaponEngine(ContentPool Content, ObjectPool Objects)
         {
@@ -65,6 +67,18 @@ namespace Todesesser.WeaponEngine
             if (kybd.IsKeyUp(Keys.Tab) && tabActivated == true)
             {
                 tabActivated = false;
+            }
+            if (kybd.IsKeyDown(Keys.R))
+            {
+                if (currentWeapon.Ammo == currentWeapon.MaxClip) { }
+                else
+                {
+                    int ammoToReload = currentWeapon.MaxClip - currentWeapon.Ammo;
+                    currentWeapon.Ammo += ammoToReload;
+                    ammo9MM.Remaining -= ammoToReload;
+                }
+
+
             }
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
