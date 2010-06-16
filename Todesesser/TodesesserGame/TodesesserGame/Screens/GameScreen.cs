@@ -15,6 +15,7 @@ using Todesesser.WeaponEngine.Weapons;
 using Todesesser.Map;
 using System.Diagnostics;
 using Todesesser.Debug;
+using Todesesser.Achivements;
 
 namespace Todesesser.Screens
 {
@@ -22,7 +23,6 @@ namespace Todesesser.Screens
     {
         private ObjectPool Objects;
         private ContentPool Content;
-        private KeyboardState keyboardState;
         private WeaponEngine.WeaponEngine weaponEngine;
 
         //Objects:
@@ -46,6 +46,7 @@ namespace Todesesser.Screens
         private DebugVar dbvar;
 
         private GameCore gameCore;
+        private AchivementEngine Achivement;
 
         public GameScreen(GraphicsDevice graphicsDevice, ObjectPool Objects, ContentPool Content, GameCore gameCore)
         {
@@ -57,6 +58,7 @@ namespace Todesesser.Screens
             testmap = new MapTest(Batch, Content, Objects);
             weaponEngine = new WeaponEngine.WeaponEngine(Content, Objects);
             this.gameCore = gameCore;
+            GameStats.CreateStat<Int32>("KilledEnemies", 0);
         }
 
         public override void Initialize()
@@ -106,6 +108,9 @@ namespace Todesesser.Screens
             dbvar.Add("", "Map Mouse X");
             dbvar.Add("", "Map Mouse Y");
 
+            Achivement = new AchivementEngine();
+            Achivement.LoadContent(Objects, Content);
+
             base.LoadContent();
         }
 
@@ -153,6 +158,7 @@ namespace Todesesser.Screens
             dbvar.Update(rMouse.X, "Map Mouse X");
             dbvar.Update(rMouse.Y, "Map Mouse Y");
 
+            Achivement.Update(gameTime);
             testmap.Update(gameTime, testmap, player);
             
             base.Update(gameTime);
@@ -270,6 +276,8 @@ namespace Todesesser.Screens
                     testmap.UpdateObject("ap" + i, b);
                 }
             }
+
+            Achivement.Draw(gameTime, Batch);
 
             Batch.End();
 
