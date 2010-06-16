@@ -107,8 +107,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Achivements\AchivementBase.cs" />
+    <Compile Include="Achivements\AchivementData\Achivement_StartGame.cs" />
+    <Compile Include="Achivements\AchivementData\Achivement_KillZombie.cs" />
+    <Compile Include="Achivements\AchivementData\Achivement_ShootGun.cs" />
+    <Compile Include="Achivements\AchivementEngine.cs" />
+    <Compile Include="Achivements\AchivementQueuedMessage.cs" />
     <Compile Include="Core\GameData.cs" />
     <Compile Include="Core\GameFunctions.cs" />
+    <Compile Include="Core\GameStats.cs" />
     <Compile Include="Core\Ray2D.cs" />
     <Compile Include="Debug\DebugVar.cs" />
     <Compile Include="GameCore.cs" />
@@ -116,6 +123,7 @@
     <Compile Include="Map\Maps\MapTest.cs" />
     <Compile Include="ObjectPooling\ObjectBase.cs" />
     <Compile Include="ObjectPooling\ObjectPool.cs" />
+    <Compile Include="ObjectPooling\ObjectTypes\ObjectAchivementShelf.cs" />
     <Compile Include="ObjectPooling\ObjectTypes\ObjectDebugPoint.cs" />
     <Compile Include="ObjectPooling\ObjectTypes\ObjectBullet.cs" />
     <Compile Include="ObjectPooling\ObjectTypes\ObjectButton.cs" />
@@ -148,6 +156,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ConPlug\ConPlug.csproj">
+      <Project>{0910D94B-00CB-4119-8C40-92CB2B41C2B3}</Project>
+      <Name>ConPlug</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ContentPooling\ContentPooling.csproj">
       <Project>{68D043AF-EDD7-4D8C-992B-DDEECF54EAD3}</Project>
       <Name>ContentPooling</Name>
@@ -165,6 +177,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram.cd" />
+    <None Include="Profiles\default.profile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="settings.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
