@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Todesesser.WeaponEngine.Weapons;
 using Microsoft.Xna.Framework.Graphics;
 using Todesesser.Map;
-using Todesesser.WeaponEngine.Ammo;
+using Todesesser.Core;
 
 namespace Todesesser.WeaponEngine
 {
@@ -21,7 +21,6 @@ namespace Todesesser.WeaponEngine
         private WeaponBase currentWeapon;
         public bool canFire = true;
         private bool tabActivated = false;
-        private _9MM ammo9MM = new _9MM(200);
 
         public WeaponEngine(ContentPool Content, ObjectPool Objects)
         {
@@ -29,6 +28,7 @@ namespace Todesesser.WeaponEngine
             this.Objects = Objects;
             this.availableWeapons = new List<WeaponBase>();
             this.currentWeapon = null;
+            GameStats.CreateStat<int>("FiredBullets", 0);
         }
 
         public void LoadContent()
@@ -68,21 +68,10 @@ namespace Todesesser.WeaponEngine
             {
                 tabActivated = false;
             }
-            if (kybd.IsKeyDown(Keys.R))
-            {
-                if (currentWeapon.Ammo == currentWeapon.MaxClip) { }
-                else
-                {
-                    int ammoToReload = currentWeapon.MaxClip - currentWeapon.Ammo;
-                    currentWeapon.Ammo += ammoToReload;
-                    ammo9MM.Remaining -= ammoToReload;
-                }
-
-
-            }
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 currentWeapon.Shoot(rotation, playerX + int.Parse(map.Offset.X.ToString()), playerY + int.Parse(map.Offset.Y.ToString()), map, aimX, aimY);
+                GameStats.AppendStat<Int32>("FiredBullets", 1);
             }
             currentWeapon.Update(gameTime, playerX, playerY, rotation);
         }
