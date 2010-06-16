@@ -31,7 +31,7 @@ namespace Todesesser.Map.Maps
         public override void LoadContent()
         {
             //Load Objects
-            Content.AddTexture2D("Objects\\Walls\\Test", "Objects-Walls-Test");
+            Content.AddTexture2D("Enemies\\Zombie", "Enemies-Zombie");
             Content.AddTexture2D("Misc\\debugPoint", "Objects-DebugPoint");
 
             base.LoadContent();
@@ -40,7 +40,7 @@ namespace Todesesser.Map.Maps
         public override void Initialize()
         {
             //Add Objects to Map
-            AddObject("w1", ObjectPool.AddObject(ObjectPool.ObjectTypes.Wall, "w1", "Objects-Walls-Test"));
+            AddObject("w1", ObjectPool.AddObject(ObjectPool.ObjectTypes.Wall, "w1", "Enemies-Zombie"));
 
             base.Initialize();
         }
