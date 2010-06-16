@@ -21,9 +21,11 @@ namespace TodesesserGame
         ObjectPool objectPool;
         GraphicsDeviceManager graphics;
         GameCore gameCore;
+        GamerServicesComponent gamerServices;
 
         public Main()
         {
+            gamerServices = new GamerServicesComponent(this);
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             contentPool = new ContentPool(Content);
@@ -33,6 +35,14 @@ namespace TodesesserGame
 
         protected override void Initialize()
         {
+            try
+            {
+                gamerServices.Initialize();
+            }
+            catch (GamerServicesNotAvailableException ex)
+            {
+                System.Diagnostics.Debug.WriteLine("GamerServices not Available!");
+            }
             base.Initialize();
             gameCore.Initialize();
         }
@@ -49,6 +59,17 @@ namespace TodesesserGame
 
         protected override void Update(GameTime gameTime)
         {
+            if (gamerServices != null)
+            {
+                try
+                {
+                    gamerServices.Update(gameTime);
+                }
+                catch (NullReferenceException ex)
+                {
+                    gamerServices = null;
+                }
+            }
             gameCore.Update(gameTime);
             base.Update(gameTime);
         }
