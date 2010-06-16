@@ -15,11 +15,8 @@ namespace Todesesser.ObjectPooling.ObjectTypes
     {
         private string contentKey;
         private ContentPool Content;
-        private Color colour = Color.Red;
+        private Color colour = Color.White;
         private int health = 500;
-        private const int H_OK = 500;
-        private const int H_DMGD = 250;
-        private const int H_CRIT = 75;
 
         public ObjectEnemy(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
         {
@@ -52,21 +49,9 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             if (health <= 0)
             {
                 //TODO: Probably shouldn't just hide the wall if its dead ;)
-                colour = Color.White;
+                colour = Color.Purple;
                 //Update Stats
                 GameStats.AppendStat<Int32>("KilledEnemies", 1);
-            }
-            else if (health < H_CRIT)
-            {
-                colour = Color.Red;
-            }
-            else if (health < H_DMGD)
-            {
-                colour = Color.Orange;
-            }
-            else if (health <= H_OK)
-            {
-                colour = Color.Green;
             }
             base.OnHit(weapon, from);
         }

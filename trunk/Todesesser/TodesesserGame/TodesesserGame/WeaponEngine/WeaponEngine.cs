@@ -10,6 +10,7 @@ using Todesesser.WeaponEngine.Weapons;
 using Microsoft.Xna.Framework.Graphics;
 using Todesesser.Map;
 using Todesesser.Core;
+using Todesesser.WeaponEngine.Ammo;
 
 namespace Todesesser.WeaponEngine
 {
@@ -21,6 +22,7 @@ namespace Todesesser.WeaponEngine
         private WeaponBase currentWeapon;
         public bool canFire = true;
         private bool tabActivated = false;
+        private _9MM ammo9MM = new _9MM(200);
 
         public WeaponEngine(ContentPool Content, ObjectPool Objects)
         {
@@ -72,6 +74,14 @@ namespace Todesesser.WeaponEngine
             {
                 currentWeapon.Shoot(rotation, playerX + int.Parse(map.Offset.X.ToString()), playerY + int.Parse(map.Offset.Y.ToString()), map, aimX, aimY);
                 GameStats.AppendStat<Int32>("FiredBullets", 1);
+            }
+            if (kybd.IsKeyDown(Keys.R))
+            {
+                if (currentWeapon.Ammo == currentWeapon.MaxClip) { }
+                int ammoToAdd = currentWeapon.MaxClip - currentWeapon.Ammo;
+                currentWeapon.Ammo += ammoToAdd;
+                ammo9MM.Remaining -= ammoToAdd;
+                
             }
             currentWeapon.Update(gameTime, playerX, playerY, rotation);
         }
