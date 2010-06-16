@@ -56,14 +56,14 @@ namespace Todesesser.Achivements
         void shelf_OnMessageFinished()
         {
             waitingForFinish = false;
-        }
+        } 
 
         public void Update(GameTime gameTime)
         {
             //Display Next Message in Queue
             if (messages.Count >= 1 && waitingForFinish == false)
             {
-                shelf.Show(messages[0].Message, messages[0].ContentKey, 6, 1);
+                shelf.Show(messages[0].Message, messages[0].ContentKey, 6, 2);
                 messages.Remove(messages[0]);
                 waitingForFinish = true;
             }

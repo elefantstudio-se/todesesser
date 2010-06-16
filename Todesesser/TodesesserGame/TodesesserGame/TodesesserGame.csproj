@@ -128,6 +128,7 @@
     <Compile Include="ObjectPooling\ObjectTypes\ObjectBullet.cs" />
     <Compile Include="ObjectPooling\ObjectTypes\ObjectButton.cs" />
     <Compile Include="ObjectPooling\ObjectTypes\ObjectCursor.cs" />
+    <Compile Include="ObjectPooling\ObjectTypes\ObjectGround.cs" />
     <Compile Include="ObjectPooling\ObjectTypes\ObjectPlayer.cs" />
     <Compile Include="ObjectPooling\ObjectTypes\ObjectEnemy.cs" />
     <Compile Include="ObjectPooling\ObjectTypes\ObjectWeapon.cs" />

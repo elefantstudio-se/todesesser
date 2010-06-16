@@ -59,7 +59,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             {
                 if (this.Position.Y != GameData.ScreenSize.Height - Texture.Height)
                 {
-                    this.Position = new Vector2(this.Position.X, this.Position.Y - 1);
+                    this.Position = new Vector2(this.Position.X, this.Position.Y - speed);
                 }
                 else
                 {
@@ -71,7 +71,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             {
                 if (this.Position.Y != GameData.ScreenSize.Height)
                 {
-                    this.Position = new Vector2(this.Position.X, this.Position.Y + 1);
+                    this.Position = new Vector2(this.Position.X, this.Position.Y + speed);
                 }
                 else
                 {
