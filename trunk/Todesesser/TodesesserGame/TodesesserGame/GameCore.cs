@@ -10,6 +10,7 @@ using Todesesser.ObjectPooling;
 using Microsoft.Xna.Framework.Input;
 using Todesesser.Core;
 using Todesesser.Screens;
+using Microsoft.Xna.Framework.GamerServices;
 
 namespace Todesesser
 {
@@ -46,6 +47,14 @@ namespace Todesesser
 
         public void Initialize()
         {
+            //Load Settings
+            GameData.Settings = new ConPlug.ConPlug(Environment.CurrentDirectory + "\\settings.db");
+            GameData.Settings.StartParse();
+            System.Diagnostics.Debug.WriteLine("Settings->CurrentProfile = " + GameData.Settings.GetValue("CurrentPlayer"));
+            GameData.Profile = new ConPlug.ConPlug(Environment.CurrentDirectory + "\\" + GameData.Settings.GetValue("CurrentPlayer"));
+            GameData.Profile.StartParse();
+            System.Diagnostics.Debug.WriteLine("Profile->Name = " + GameData.Profile.GetValue("Name"));
+            //Initialize Screens
             screenGame.Initialize();
             screenMenu.Initialize();
             screenPause.Initialize();
@@ -55,6 +64,7 @@ namespace Todesesser
         public void LoadContent()
         {
             //GameData.GameState = GameData.GameStates.Menu;
+            GameData.ScreenSize = Graphics.GraphicsDevice.Viewport;
             GameData.GameState = GameData.GameStates.Splash;
 
             //Create Screens:
