@@ -20,12 +20,14 @@ namespace Todesesser.Map
         private List<ObjectBullet> playerBullets;
         private int width;
         private int height;
+        private string groundContentKey;
 
         public MapBase()
         {
             this.objects = new Hashtable();
             this.Offset = new Vector2(0, 0);
             this.playerBullets = new List<ObjectBullet>();
+            this.groundContentKey = "ground";
         }
 
         public virtual void LoadContent()
@@ -48,6 +50,7 @@ namespace Todesesser.Map
 
         public virtual void Draw(GameTime gameTime)
         {
+            //Draw Objects
             foreach (string Key in this.objects.Keys)
             {
                 ObjectBase objbase = (ObjectBase)this.objects[Key];
@@ -65,6 +68,8 @@ namespace Todesesser.Map
                     objbase.Draw(gameTime, batch, Offset, b.Rotation);
                 }
             }
+            //Draw Ground
+            Rectangle groundDrawArea = new Rectangle(0, 0, 0, 0);
         }
 
         public virtual void RemoveObject(string Key)
