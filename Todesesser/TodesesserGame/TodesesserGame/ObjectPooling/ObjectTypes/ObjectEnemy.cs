@@ -53,6 +53,8 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             {
                 //TODO: Probably shouldn't just hide the wall if its dead ;)
                 colour = Color.White;
+                //Update Stats
+                GameStats.AppendStat<Int32>("KilledEnemies", 1);
             }
             else if (health < H_CRIT)
             {
