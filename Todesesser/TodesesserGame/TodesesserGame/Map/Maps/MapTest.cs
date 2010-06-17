@@ -12,7 +12,6 @@ namespace Todesesser.Map.Maps
 {
     public class MapTest : MapBase
     {
-        private ContentPool Content;
         public MapTest(SpriteBatch batch, ContentPool Content, ObjectPool Objects)
         {
             this.ObjectPool = Objects;
