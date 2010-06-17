@@ -39,7 +39,6 @@ namespace Todesesser.Map
             //Load Ground
             Content.AddTexture2D("Enviroment\\Ground", groundContentKey);
             //Create Enviroment Ground Objects to cover the screen
-            //TODO: Finish Ground Updating!
             //==============================
             //Y = -256
             //==============================
