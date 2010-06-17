@@ -58,7 +58,7 @@ namespace Todesesser.Screens
             testmap = new MapTest(Batch, Content, Objects);
             weaponEngine = new WeaponEngine.WeaponEngine(Content, Objects);
             this.gameCore = gameCore;
-            GameStats.CreateStat<Int32>("KilledEnemies", 0);
+            GameStats.CreateStat("KilledEnemies", 0);
         }
 
         public override void Initialize()

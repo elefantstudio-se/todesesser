@@ -81,7 +81,7 @@ namespace Todesesser.ObjectPooling
             set { this.type = value; }
         }
 
-        public Vector2 Position
+        public virtual Vector2 Position
         {
             get { return this.position; }
             set { this.position = new Vector2(value.X + fixedOffset.X, value.Y + fixedOffset.Y); }

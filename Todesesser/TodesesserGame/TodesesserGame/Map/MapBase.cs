@@ -15,6 +15,7 @@ namespace Todesesser.Map
     public class MapBase
     {
         private Hashtable objects;
+        private Hashtable groundObjects;
         private SpriteBatch batch;
         private ObjectPool objectPool;
         public Vector2 Offset;
@@ -32,10 +33,28 @@ namespace Todesesser.Map
             this.groundContentKey = "ground";
         }
 
+        public void Initializer()
+        {
+            this.groundObjects = new Hashtable();
+            //Load Ground
+            Content.AddTexture2D("Enviroment\\Ground", groundContentKey);
+            //Create Enviroment Ground Objects to cover the screen
+            //TODO: Finish Ground Updating!
+            //groundObjects.Add("eg-0", ObjectPool.AddObject(ObjectPooling.ObjectPool.ObjectTypes.Ground, "eg-0", groundContentKey));
+            //((ObjectGround)groundObjects["eg-0"]).Position = new Vector2(0, -512);
+            //groundObjects.Add("eg-1", ObjectPool.AddObject(ObjectPooling.ObjectPool.ObjectTypes.Ground, "eg-1", groundContentKey));
+            //((ObjectGround)groundObjects["eg-1"]).Position = new Vector2(0, -256);
+            //groundObjects.Add("eg-2", ObjectPool.AddObject(ObjectPooling.ObjectPool.ObjectTypes.Ground, "eg-2", groundContentKey));
+            //((ObjectGround)groundObjects["eg-2"]).Position = new Vector2(0, 0);
+            //groundObjects.Add("eg-3", ObjectPool.AddObject(ObjectPooling.ObjectPool.ObjectTypes.Ground, "eg-3", groundContentKey));
+            //((ObjectGround)groundObjects["eg-3"]).Position = new Vector2(0, 256);
+            //groundObjects.Add("eg-4", ObjectPool.AddObject(ObjectPooling.ObjectPool.ObjectTypes.Ground, "eg-4", groundContentKey));
+            //((ObjectGround)groundObjects["eg-4"]).Position = new Vector2(0, 512);
+        }
+
         public virtual void LoadContent()
         {
-            //Load Ground
-            Content.AddTexture2D("Enviroment\\Ground", "ground");
+
         }
 
         public virtual void Initialize()
@@ -45,6 +64,14 @@ namespace Todesesser.Map
 
         public virtual void Update(GameTime gameTime, MapBase map, ObjectPlayer player)
         {
+            //Update Enviroment Ground Objects
+            foreach (string Key in this.groundObjects.Keys)
+            {
+                ObjectBase objbase = (ObjectBase)this.groundObjects[Key];
+                objbase.Update(gameTime, player, map);
+
+            }
+            //Update Bullets
             foreach (ObjectBullet bullet in this.playerBullets)
             {
                 bullet.Update(gameTime);
@@ -54,13 +81,11 @@ namespace Todesesser.Map
         public virtual void Draw(GameTime gameTime)
         {
             //Draw Ground
-            Rectangle groundDrawArea = new Rectangle(Convert.ToInt32(Offset.X), Convert.ToInt32(Offset.Y), GameData.ScreenSize.Width, GameData.ScreenSize.Height);
-            for (int x = 0; x < groundDrawArea.Width; x += Content.GetTexture2D("ground").Texture.Width)
+            foreach (string Key in this.groundObjects.Keys)
             {
-                for (int y = 0; y < groundDrawArea.Height; y += Content.GetTexture2D("ground").Texture.Height)
-                {
-                    batch.Draw(Content.GetTexture2D("ground").Texture, new Rectangle(x - Convert.ToInt32(Offset.X), y - Convert.ToInt32(Offset.Y), Content.GetTexture2D("ground").Texture.Width, Content.GetTexture2D("ground").Texture.Height), Color.White);
-                }
+                ObjectBase objbase = (ObjectBase)this.groundObjects[Key];
+                objbase.Draw(gameTime, batch, Offset);
+
             }
             //Draw Objects
             foreach (string Key in this.objects.Keys)

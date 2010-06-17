@@ -17,6 +17,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         private ContentPool Content;
         private Color colour = Color.White;
         private int health = 500;
+        private double scale = 0.5;
 
         public ObjectEnemy(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
         {
@@ -30,16 +31,20 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         public override void Update(GameTime gameTime, ObjectPlayer player, MapBase map)
         {
-            Vector2 releventPlayerPosition = new Vector2(player.Position.X + Convert.ToInt32(map.Offset.X), player.Position.Y + Convert.ToInt32(map.Offset.Y));
+            //TODO: Instead of Pausing, Maybe Texture should switch to a dead body?
+            if (health > 0)
+            {
+                Vector2 releventPlayerPosition = new Vector2(player.Position.X + Convert.ToInt32(map.Offset.X), player.Position.Y + Convert.ToInt32(map.Offset.Y));
 
-            this.Rotation = double.Parse(GameFunctions.GetAngle(this.Position, releventPlayerPosition).ToString());
+                this.Rotation = double.Parse(GameFunctions.GetAngle(this.Position, releventPlayerPosition).ToString());
 
-            int rot = Convert.ToInt32(MathHelper.ToDegrees(float.Parse(this.Rotation.ToString()))) - 90;
-            double xs = Math.Cos((rot * Math.PI) / 180);
-            double xy = Math.Sin((rot * Math.PI) / 180);
+                int rot = Convert.ToInt32(MathHelper.ToDegrees(float.Parse(this.Rotation.ToString()))) - 90;
+                double xs = Math.Cos((rot * Math.PI) / 180);
+                double xy = Math.Sin((rot * Math.PI) / 180);
 
-            this.Position = new Vector2(this.Position.X - float.Parse(xs.ToString()), this.Position.Y - float.Parse(xy.ToString()));
-            this.BoundingRectangle = new Rectangle(Convert.ToInt32(this.Position.X), Convert.ToInt32(this.Position.Y), Texture.Width, Texture.Height);
+                this.Position = new Vector2(this.Position.X - float.Parse(xs.ToString()), this.Position.Y - float.Parse(xy.ToString()));
+                this.BoundingRectangle = new Rectangle(Convert.ToInt32(this.Position.X), Convert.ToInt32(this.Position.Y), Texture.Width, Texture.Height);
+            }
             base.Update(gameTime);
         }
 
@@ -48,10 +53,8 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             health -= weapon.Damage;
             if (health <= 0)
             {
-                //TODO: Probably shouldn't just hide the wall if its dead ;)
-                colour = Color.Purple;
                 //Update Stats
-                GameStats.AppendStat<Int32>("KilledEnemies", 1);
+                GameStats.AppendStat("KilledEnemies", 1);
             }
             base.OnHit(weapon, from);
         }
@@ -64,7 +67,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         public override void Draw(GameTime gameTime, SpriteBatch sb, Vector2 offset)
         {
-            sb.Draw(Texture, new Rectangle(Convert.ToInt32(this.Position.X) - Convert.ToInt32(offset.X), Convert.ToInt32(this.Position.Y) - Convert.ToInt32(offset.Y), Texture.Width, Texture.Height), null, colour, float.Parse(this.Rotation.ToString()), new Vector2(0,0), SpriteEffects.None, 1);
+            sb.Draw(Texture, new Rectangle(Convert.ToInt32(this.Position.X) - Convert.ToInt32(offset.X), Convert.ToInt32(this.Position.Y) - Convert.ToInt32(offset.Y), Convert.ToInt32(Texture.Width * scale), Convert.ToInt32(Texture.Height * scale)), null, colour, float.Parse(this.Rotation.ToString()) - MathHelper.ToRadians(180), new Vector2(Texture.Width / 2, Texture.Height / 2), SpriteEffects.None, 1);
             base.Draw(gameTime, sb, offset);
         }
 
