@@ -200,7 +200,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Environment\Ground.png">
+    <Compile Include="Enviroment\Ground.png">
       <Name>Ground</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
