@@ -27,6 +27,9 @@ namespace TodesesserGame
         {
             gamerServices = new GamerServicesComponent(this);
             graphics = new GraphicsDeviceManager(this);
+            //graphics.IsFullScreen = true;
+            //graphics.PreferredBackBufferWidth = 1440;
+            //graphics.PreferredBackBufferHeight = 900;
             Content.RootDirectory = "Content";
             contentPool = new ContentPool(Content);
             objectPool = new ObjectPool(contentPool);
