@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Todesesser.ObjectPooling.ObjectTypes;
 using Todesesser.Core;
+using ContentPooling;
 
 namespace Todesesser.Map
 {
@@ -21,6 +22,7 @@ namespace Todesesser.Map
         private int width;
         private int height;
         private string groundContentKey;
+        private ContentPool content;
 
         public MapBase()
         {
@@ -32,7 +34,8 @@ namespace Todesesser.Map
 
         public virtual void LoadContent()
         {
-
+            //Load Ground
+            Content.AddTexture2D("Enviroment\\Ground", "ground");
         }
 
         public virtual void Initialize()
@@ -50,6 +53,15 @@ namespace Todesesser.Map
 
         public virtual void Draw(GameTime gameTime)
         {
+            //Draw Ground
+            Rectangle groundDrawArea = new Rectangle(Convert.ToInt32(Offset.X), Convert.ToInt32(Offset.Y), GameData.ScreenSize.Width, GameData.ScreenSize.Height);
+            for (int x = 0; x < groundDrawArea.Width; x += Content.GetTexture2D("ground").Texture.Width)
+            {
+                for (int y = 0; y < groundDrawArea.Height; y += Content.GetTexture2D("ground").Texture.Height)
+                {
+                    batch.Draw(Content.GetTexture2D("ground").Texture, new Rectangle(x - Convert.ToInt32(Offset.X), y - Convert.ToInt32(Offset.Y), Content.GetTexture2D("ground").Texture.Width, Content.GetTexture2D("ground").Texture.Height), Color.White);
+                }
+            }
             //Draw Objects
             foreach (string Key in this.objects.Keys)
             {
@@ -68,8 +80,6 @@ namespace Todesesser.Map
                     objbase.Draw(gameTime, batch, Offset, b.Rotation);
                 }
             }
-            //Draw Ground
-            Rectangle groundDrawArea = new Rectangle(0, 0, 0, 0);
         }
 
         public virtual void RemoveObject(string Key)
@@ -148,6 +158,11 @@ namespace Todesesser.Map
             set { this.height = value; }
         }
 
+        public ContentPool Content
+        {
+            get { return this.content; }
+            set { this.content = value; }
+        }
         #endregion
     }
 }
