@@ -39,7 +39,7 @@ namespace Todesesser.Screens
         private double xe;
         private double ye;
 
-        private List<Point> aimPoints;
+        //private List<Point> aimPoints;
 
         private Vector2 rMouse;
 
@@ -124,13 +124,13 @@ namespace Todesesser.Screens
             //Calculate Ray Vectors (length 100)
             xe = Convert.ToInt32(player.Position.X) + Convert.ToInt32(testmap.Offset.X);
             ye = Convert.ToInt32(player.Position.Y) + Convert.ToInt32(testmap.Offset.Y);
-            while (Vector2.Distance(new Vector2(player.Position.X + Convert.ToInt32(testmap.Offset.X), player.Position.Y + Convert.ToInt32(testmap.Offset.Y)), new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString()))) <= 100)
+            while (Vector2.Distance(new Vector2(player.Position.X + Convert.ToInt32(testmap.Offset.X), player.Position.Y + Convert.ToInt32(testmap.Offset.Y)), new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString()))) <= 1000)
             {
                 xe += xs;
                 ye += xy;
             }
 
-            aimPoints = GameFunctions.BresenhamLine(Convert.ToInt32(player.Position.X) + Convert.ToInt32(testmap.Offset.X), Convert.ToInt32(player.Position.Y) + Convert.ToInt32(testmap.Offset.Y), Convert.ToInt32(xe), Convert.ToInt32(ye));
+            //aimPoints = GameFunctions.BresenhamLine(Convert.ToInt32(player.Position.X) + Convert.ToInt32(testmap.Offset.X), Convert.ToInt32(player.Position.Y) + Convert.ToInt32(testmap.Offset.Y), Convert.ToInt32(xe), Convert.ToInt32(ye));
 
             //Weapons:
             weaponEngine.Update(gameTime, int.Parse(player.Position.X.ToString()), int.Parse(player.Position.Y.ToString()), testmap, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position), xe, ye);
@@ -263,7 +263,7 @@ namespace Todesesser.Screens
 
             #endregion
 
-            if (aimPoints != null)
+            /*if (aimPoints != null)
             {
                 testmap.RemoveObjectsStartingWith("ap");
                 for (int i = 0; i < aimPoints.Count; i++)
@@ -275,7 +275,7 @@ namespace Todesesser.Screens
                     b.Position = new Vector2(p.X, p.Y);
                     testmap.UpdateObject("ap" + i, b);
                 }
-            }
+            }*/
 
             Achivement.Draw(gameTime, Batch);
 
