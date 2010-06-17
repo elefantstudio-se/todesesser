@@ -19,7 +19,6 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         public ObjectGround(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
         {
-            //this.Position = new Vector2(0, 0);
             this.contentKey = ContentKey;
             this.Key = Key;
             this.Type = Type;
@@ -29,11 +28,11 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         public override void Update(GameTime gameTime, ObjectPlayer player, MapBase map)
         {
-            if (Math.Abs(Convert.ToInt32(Position.Y - map.Offset.Y)) > originalOffset.X + Texture.Width)
+            if (Math.Abs(Convert.ToInt32(Position.Y - map.Offset.Y - originalOffset.Y)) > Texture.Width)
             {
                 Position = new Vector2(Position.X, Convert.ToInt32(map.Offset.Y) + originalOffset.Y);
             }
-            if (Math.Abs(Convert.ToInt32(Position.X - map.Offset.X)) > originalOffset.Y + Texture.Height)
+            if (Math.Abs(Convert.ToInt32(Position.X - map.Offset.X - originalOffset.X)) > Texture.Height)
             {
                 Position = new Vector2(Convert.ToInt32(map.Offset.X) + originalOffset.X, Position.Y);
             }
