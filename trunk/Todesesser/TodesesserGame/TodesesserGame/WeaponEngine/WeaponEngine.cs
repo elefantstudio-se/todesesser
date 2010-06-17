@@ -30,7 +30,7 @@ namespace Todesesser.WeaponEngine
             this.Objects = Objects;
             this.availableWeapons = new List<WeaponBase>();
             this.currentWeapon = null;
-            GameStats.CreateStat<int>("FiredBullets", 0);
+            GameStats.CreateStat("FiredBullets", 0);
         }
 
         public void LoadContent()
@@ -73,7 +73,7 @@ namespace Todesesser.WeaponEngine
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 currentWeapon.Shoot(rotation, playerX + int.Parse(map.Offset.X.ToString()), playerY + int.Parse(map.Offset.Y.ToString()), map, aimX, aimY);
-                GameStats.AppendStat<Int32>("FiredBullets", 1);
+                GameStats.AppendStat("FiredBullets", 1);
             }
             if (kybd.IsKeyDown(Keys.R))
             {

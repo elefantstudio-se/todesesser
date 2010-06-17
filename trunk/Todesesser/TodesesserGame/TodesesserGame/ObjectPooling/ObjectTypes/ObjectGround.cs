@@ -14,10 +14,12 @@ namespace Todesesser.ObjectPooling.ObjectTypes
     {
         private string contentKey;
         private ContentPool Content;
+        private bool originalOffsetSet = false;
+        private Vector2 originalOffset;
 
         public ObjectGround(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
         {
-            this.Position = new Vector2(0, 0);
+            //this.Position = new Vector2(0, 0);
             this.contentKey = ContentKey;
             this.Key = Key;
             this.Type = Type;
@@ -27,6 +29,14 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         public override void Update(GameTime gameTime, ObjectPlayer player, MapBase map)
         {
+            if (Math.Abs(Convert.ToInt32(Position.Y - map.Offset.Y)) > originalOffset.X + Texture.Width)
+            {
+                Position = new Vector2(Position.X, Convert.ToInt32(map.Offset.Y) + originalOffset.Y);
+            }
+            if (Math.Abs(Convert.ToInt32(Position.X - map.Offset.X)) > originalOffset.Y + Texture.Height)
+            {
+                Position = new Vector2(Convert.ToInt32(map.Offset.X) + originalOffset.X, Position.Y);
+            }
             base.Update(gameTime);
         }
 
@@ -45,6 +55,23 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         public Texture2D Texture
         {
             get { return this.Content.GetTexture2D(contentKey).Texture; }
+        }
+
+        public override Vector2 Position
+        {
+            get
+            {
+                return base.Position;
+            }
+            set
+            {
+                if (originalOffsetSet == false)
+                {
+                    originalOffset = value;
+                    originalOffsetSet = true;
+                }
+                base.Position = value;
+            }
         }
     }
 }

@@ -13,11 +13,29 @@ namespace Todesesser.Core
     {
         private static Hashtable statTable = new Hashtable(2); //Set to Amount of Statistic Types.
 
+        public static void UpdateStat(string key, int value)
+        {
+            if (statTable.ContainsKey(key) == true)
+            {
+                statTable[key] = value;
+            }
+        }
+
         public static void UpdateStat<T>(string key, T value)
         {
             if (statTable.ContainsKey(key) == true)
             {
                 statTable[key] = value;
+            }
+        }
+
+        public static void AppendStat(string key, int value)
+        {
+            if (statTable.ContainsKey(key) == true)
+            {
+                //Int Appending
+                Int32 prev = (Int32)statTable[key];
+                statTable[key] = prev + Convert.ToInt32(value);
             }
         }
 
@@ -34,12 +52,25 @@ namespace Todesesser.Core
             }
         }
 
+        public static void CreateStat(string key, int value)
+        {
+            if (statTable.ContainsKey(key) == false)
+            {
+                statTable.Add(key, value);
+            }
+        }
+
         public static void CreateStat<T>(string key, T value)
         {
             if (statTable.ContainsKey(key) == false)
             {
                 statTable.Add(key, value);
             }
+        }
+
+        public static int GetStat(string key)
+        {
+            return (int)statTable[key];
         }
 
         public static T GetStat<T>(string key)
