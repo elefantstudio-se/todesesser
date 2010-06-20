@@ -93,5 +93,28 @@ namespace Todesesser.Core
 
             return result;
         }
+
+        /// <summary>
+        /// Hit Test's to Objects if they intersect
+        /// </summary>
+        /// <param name="o1">Object 1</param>
+        /// <param name="o2">Object 2</param>
+        /// <returns>Returns true if they intersect</returns>
+        public static bool HitTestRectangle(Rectangle o1, Rectangle o2)
+        {
+            //Test Left and Right
+            if (o1.X >= o2.X &&
+                o1.X + o1.Width <= o2.X + o2.Width)
+            {
+                return true;
+            }
+            //Test Top and Bottom
+            if (o1.Y >= o2.Y &&
+                o1.Y + o1.Height <= o2.Y + o2.Height)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
