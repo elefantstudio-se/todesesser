@@ -63,7 +63,7 @@ namespace Todesesser.Achivements
             //Display Next Message in Queue
             if (messages.Count >= 1 && waitingForFinish == false)
             {
-                shelf.Show(messages[0].Message, messages[0].ContentKey, 6, 2);
+                shelf.Show(messages[0].Message, messages[0].ContentKey, 2, 2);
                 messages.Remove(messages[0]);
                 waitingForFinish = true;
             }

@@ -38,6 +38,8 @@ namespace Todesesser.WeaponEngine
             
         }
 
+        private DateTime timeSinceReload;
+        private bool reloading;
         public void Update(GameTime gameTime, int playerX, int playerY, MapBase map, double rotation, double aimX, double aimY)
         {
             KeyboardState kybd = Keyboard.GetState();
@@ -78,10 +80,19 @@ namespace Todesesser.WeaponEngine
             if (kybd.IsKeyDown(Keys.R))
             {
                 if (currentWeapon.Ammo == currentWeapon.MaxClip) { }
-                int ammoToAdd = currentWeapon.MaxClip - currentWeapon.Ammo;
-                currentWeapon.Ammo += ammoToAdd;
-                ammo9MM.Remaining -= ammoToAdd;
+                reloading = true;
                 
+            }
+            if (reloading)
+            {
+                TimeSpan reloadCheck = DateTime.Now - timeSinceReload;
+                if((reloadCheck.TotalMilliseconds / 1000) >= currentWeapon.ReloadTime)
+                {
+                    int ammoToAdd = currentWeapon.MaxClip - currentWeapon.Ammo;
+                    currentWeapon.Ammo += ammoToAdd;
+                    ammo9MM.Remaining -= ammoToAdd;
+                    reloading = false;
+                }
             }
             currentWeapon.Update(gameTime, playerX, playerY, rotation);
         }

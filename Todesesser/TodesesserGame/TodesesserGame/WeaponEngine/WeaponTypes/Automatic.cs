@@ -35,7 +35,7 @@ namespace Todesesser.WeaponEngine.WeaponTypes
         public override void Update(GameTime gameTime, int attachX, int attachY, double rotation)
         {
             TimeSpan shotCheck = DateTime.Now - elapsedSinceShot;
-            if ((shotCheck.Milliseconds / 100) >= FireRate)
+            if ((shotCheck.TotalMilliseconds / 1000) >= FireRate)
                 canFire = true;
             base.Update(gameTime, attachX, attachY, rotation);
         }
