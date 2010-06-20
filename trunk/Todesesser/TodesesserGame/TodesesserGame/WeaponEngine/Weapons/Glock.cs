@@ -22,7 +22,7 @@ namespace Todesesser.WeaponEngine.Weapons
             this.MaxClip = 20;
             this.Damage = 40;
             this.DefaultDamage = 40;
-            this.ReloadTime = 1.6;
+            this.ReloadTime = 5;
             this.ShootType = GunShootTypes.Automatic;
             this.Type = GunTypes.Pistol;
             this.Name = "Glock";
