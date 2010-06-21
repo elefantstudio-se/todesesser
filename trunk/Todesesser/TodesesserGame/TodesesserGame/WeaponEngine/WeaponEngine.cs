@@ -80,6 +80,7 @@ namespace Todesesser.WeaponEngine
             if (kybd.IsKeyDown(Keys.R))
             {
                 if (currentWeapon.Ammo == currentWeapon.MaxClip) { }
+                timeSinceReload = DateTime.Now;
                 reloading = true;
                 
             }
@@ -118,6 +119,11 @@ namespace Todesesser.WeaponEngine
         {
             get { return this.currentWeapon; }
             set { this.currentWeapon = value; }
+        }
+
+        public int Clip
+        {
+            get { return this.currentWeapon.Ammo; }
         }
 
         #endregion
