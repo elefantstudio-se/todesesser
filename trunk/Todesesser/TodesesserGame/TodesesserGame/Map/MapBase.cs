@@ -157,9 +157,13 @@ namespace Todesesser.Map
                 ObjectBase objbase = (ObjectBase)this.objects[Key];
                 if (objbase.Type == ObjectPooling.ObjectPool.ObjectTypes.Enemy)
                 {
-                    System.Diagnostics.Debug.WriteLine("Drawing " + objbase.Type.ToString());
+                    ObjectEnemy b = (ObjectEnemy)objbase;
+                    if (b.Health > 0)
+                    {
+                        objbase.Draw(gameTime, batch, Offset);
+                    }
                 }
-                if (objbase.Type != ObjectPooling.ObjectPool.ObjectTypes.Bullet)
+                else if(objbase.Type != ObjectPooling.ObjectPool.ObjectTypes.Bullet)
                 {
                     objbase.Draw(gameTime, batch, Offset);
                 }

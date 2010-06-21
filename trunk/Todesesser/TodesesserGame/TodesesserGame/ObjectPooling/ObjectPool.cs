@@ -12,7 +12,7 @@ namespace Todesesser.ObjectPooling
     {
         private ContentPool Content;
         private Hashtable objectTable;
-        public enum ObjectTypes { Player, Wall, Cursor, Button, Weapon, Bullet, DebugPoint, Enemy, AchivementShelf, Ground };
+        public enum ObjectTypes { Player, Cursor, Button, Weapon, Bullet, DebugPoint, Enemy, AchivementShelf, Ground };
 
         public ObjectPool(ContentPool content)
         {
@@ -39,7 +39,7 @@ namespace Todesesser.ObjectPooling
                     case ObjectTypes.Player:
                         objectTable.Add(Key, new ObjectPlayer(Key, Type, ContentKey, Content));
                         break;
-                    case ObjectTypes.Wall:
+                    case ObjectTypes.Enemy:
                         objectTable.Add(Key, new ObjectEnemy(Key, Type, ContentKey, Content));
                         break;
                     case ObjectTypes.Cursor:

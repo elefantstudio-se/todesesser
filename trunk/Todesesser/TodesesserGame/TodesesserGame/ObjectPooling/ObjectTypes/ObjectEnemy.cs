@@ -83,5 +83,10 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         {
             get { return this.Content.GetTexture2D(contentKey).Texture; }
         }
+
+        public int Health
+        {
+            get { return this.health; } 
+        }
     }
 }
