@@ -48,7 +48,6 @@ namespace Todesesser.WeaponEngine
                 this.ObjWeapon.Update(gameTime);
                 this.ObjWeapon.Position = new Vector2(attachX, attachY);
             }
-            System.Diagnostics.Debug.WriteLine(ammo);
         }
 
         public virtual void Draw(GameTime gameTime, SpriteBatch sb, double rotation)

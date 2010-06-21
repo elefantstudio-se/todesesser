@@ -44,6 +44,14 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
                 this.Position = new Vector2(this.Position.X - float.Parse(xs.ToString()), this.Position.Y - float.Parse(xy.ToString()));
                 this.BoundingRectangle = new Rectangle(Convert.ToInt32(this.Position.X), Convert.ToInt32(this.Position.Y), Texture.Width, Texture.Height);
+
+                //Hit Test!
+                Rectangle playerPos = new Rectangle(Convert.ToInt32(releventPlayerPosition.X), Convert.ToInt32(releventPlayerPosition.Y), player.Texture.Width, player.Texture.Height);
+                Rectangle enemyPos = new Rectangle(Convert.ToInt32(Position.X), Convert.ToInt32(Position.Y), Texture.Width, Texture.Height);
+                if (GameFunctions.HitTestRectangle(playerPos, enemyPos) == true)
+                {
+                    player.Health -= 1;
+                }
             }
             base.Update(gameTime);
         }

@@ -111,6 +111,7 @@
     <Compile Include="Achivements\AchivementData\Achivement_StartGame.cs" />
     <Compile Include="Achivements\AchivementData\Achivement_KillZombie.cs" />
     <Compile Include="Achivements\AchivementData\Achivement_ShootGun.cs" />
+    <Compile Include="Achivements\AchivementData\Achivement_Die.cs" />
     <Compile Include="Achivements\AchivementEngine.cs" />
     <Compile Include="Achivements\AchivementQueuedMessage.cs" />
     <Compile Include="Core\GameData.cs" />

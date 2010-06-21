@@ -27,6 +27,8 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         private bool prevReleased = false;
         private int level = 1;
         private int xp = 0;
+        private int health = 100;
+        private bool alive = true;
 
         public ObjectPlayer(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
         {
@@ -35,15 +37,23 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             this.Key = Key;
             this.Type = Type;
             this.Content = contentPool;
+            GameStats.CreateStat("DeadCount", 0);
         }
 
         public override void Update(GameTime gameTime, MapBase map)
         {
-            movement(map);
+            if (health <= 0 && alive == true)
+            {
+                System.Diagnostics.Debug.WriteLine("DEAD!");
+                GameStats.AppendStat("DeadCount", 1);
+                alive = false;
+            }
+            if (alive == true)
+            {
+                movement(map);
 
-            this.Rotation = double.Parse(GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), Position).ToString());
-            //Rotation = (float)Math.Atan2(Mouse.GetState().X, Mouse.GetState().Y)+MathHelper.Pi;
-
+                this.Rotation = double.Parse(GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), Position).ToString());
+            }
             base.Update(gameTime);
         }
 
@@ -147,6 +157,12 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         public double Scale
         {
             get { return this.scale; }
+        }
+
+        public int Health
+        {
+            get { return this.health; }
+            set { this.health = value; }
         }
     }
 }

@@ -28,6 +28,7 @@ namespace Todesesser.Achivements
             AddAchivement(new Achivement_StartGame());
             AddAchivement(new Achivement_ShootGun());
             AddAchivement(new Achivement_KillZombie());
+            AddAchivement(new Achivement_Die());
         }
 
         public void AddAchivement(AchivementBase Achivement)
@@ -38,7 +39,7 @@ namespace Todesesser.Achivements
 
         void AchivementEngine_OnAchivementCompleted(AchivementBase Achivement)
         {
-            messages.Add(new AchivementQueuedMessage("Unlocked Achivement\n\n" + Achivement.Name, Achivement.ContentKey));
+            messages.Add(new AchivementQueuedMessage("Achivement Unlocked!!!\n\n" + Achivement.Name, Achivement.ContentKey));
         }
 
         public void LoadContent(ObjectPool Objects, ContentPool Content)
