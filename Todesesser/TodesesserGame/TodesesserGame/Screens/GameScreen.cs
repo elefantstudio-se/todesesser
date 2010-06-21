@@ -107,7 +107,7 @@ namespace Todesesser.Screens
             dbvar.Add("", "Map Offset");
             dbvar.Add("", "Map Mouse X");
             dbvar.Add("", "Map Mouse Y");
-
+            dbvar.Add("", "Clip");
             Achivement = new AchivementEngine();
             Achivement.LoadContent(Objects, Content);
 
@@ -157,7 +157,7 @@ namespace Todesesser.Screens
             dbvar.Update(testmap.Offset.ToString(), "Map Offset");
             dbvar.Update(rMouse.X, "Map Mouse X");
             dbvar.Update(rMouse.Y, "Map Mouse Y");
-
+            dbvar.Update(weaponEngine.Clip, "Clip");
             Achivement.Update(gameTime);
             testmap.Update(gameTime, testmap, player);
             

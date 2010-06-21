@@ -18,11 +18,11 @@ namespace Todesesser.WeaponEngine.Weapons
         public Glock()
         {
             this.Ammo = 20;
-            this.FireRate = 0.9;
+            this.FireRate = 0.3;
             this.MaxClip = 20;
             this.Damage = 40;
             this.DefaultDamage = 40;
-            this.ReloadTime = 5;
+            this.ReloadTime = 1.2;
             this.ShootType = GunShootTypes.Automatic;
             this.Type = GunTypes.Pistol;
             this.Name = "Glock";
