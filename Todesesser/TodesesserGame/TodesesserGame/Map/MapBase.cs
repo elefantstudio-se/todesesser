@@ -161,6 +161,33 @@ namespace Todesesser.Map
                     if (b.Health > 0)
                     {
                         objbase.Draw(gameTime, batch, Offset);
+                        Random rand = new Random();
+
+                        if(rand.Next(2)<1f)
+                        {
+                            foreach (string obj in this.objects.Keys)
+                            {
+                                ObjectBase bob = this.objects[obj] as ObjectBase;
+                                if (objbase.Type == ObjectPooling.ObjectPool.ObjectTypes.Enemy &&
+                                    bob.Type == ObjectPooling.ObjectPool.ObjectTypes.Enemy)
+                                {
+                                    float dis = Vector2.Distance(bob.Position,objbase.Position);
+                                    if (dis < 45) 
+                                    {
+                                        Vector2 MV = (bob.Position - objbase.Position) * .04f;
+                                        bob.Position = bob.Position + MV;
+                                        objbase.Position = objbase.Position - MV;
+                                        if (dis < 20)
+                                        {
+                                            MV *= 4;
+                                            bob.Position = bob.Position + MV;
+                                            objbase.Position = objbase.Position - MV;
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                        }
                     }
                 }
                 else if(objbase.Type != ObjectPooling.ObjectPool.ObjectTypes.Bullet)
