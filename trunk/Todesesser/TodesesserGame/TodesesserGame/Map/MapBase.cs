@@ -157,35 +157,31 @@ namespace Todesesser.Map
                 ObjectBase objbase = (ObjectBase)this.objects[Key];
                 if (objbase.Type == ObjectPooling.ObjectPool.ObjectTypes.Enemy)
                 {
-                    ObjectEnemy b = (ObjectEnemy)objbase;
-                    if (b.Health > 0)
-                    {
-                        objbase.Draw(gameTime, batch, Offset);
-                        Random rand = new Random();
+                    objbase.Draw(gameTime, batch, Offset);
+                    Random rand = new Random();
 
-                        if(rand.Next(2)<1f)
+                    if(rand.Next(2)<1f)
+                    {
+                        foreach (string obj in this.objects.Keys)
                         {
-                            foreach (string obj in this.objects.Keys)
+                            ObjectBase bob = this.objects[obj] as ObjectBase;
+                            if (objbase.Type == ObjectPooling.ObjectPool.ObjectTypes.Enemy &&
+                                bob.Type == ObjectPooling.ObjectPool.ObjectTypes.Enemy)
                             {
-                                ObjectBase bob = this.objects[obj] as ObjectBase;
-                                if (objbase.Type == ObjectPooling.ObjectPool.ObjectTypes.Enemy &&
-                                    bob.Type == ObjectPooling.ObjectPool.ObjectTypes.Enemy)
+                                float dis = Vector2.Distance(bob.Position,objbase.Position);
+                                if (dis < 45) 
                                 {
-                                    float dis = Vector2.Distance(bob.Position,objbase.Position);
-                                    if (dis < 45) 
+                                    Vector2 MV = (bob.Position - objbase.Position) * .04f;
+                                    bob.Position = bob.Position + MV;
+                                    objbase.Position = objbase.Position - MV;
+                                    if (dis < 20)
                                     {
-                                        Vector2 MV = (bob.Position - objbase.Position) * .04f;
+                                        MV *= 4;
                                         bob.Position = bob.Position + MV;
                                         objbase.Position = objbase.Position - MV;
-                                        if (dis < 20)
-                                        {
-                                            MV *= 4;
-                                            bob.Position = bob.Position + MV;
-                                            objbase.Position = objbase.Position - MV;
-                                        }
                                     }
-                                    
                                 }
+                                    
                             }
                         }
                     }

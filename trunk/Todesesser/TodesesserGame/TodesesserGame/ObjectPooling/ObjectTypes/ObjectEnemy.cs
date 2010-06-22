@@ -54,7 +54,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
                     this.Position = OldPos;
                     this.Position = this.Position + MV;
                     //player.Position = player.Position - MV;
-                    //player.Health -= 1;
+                    player.Health -= 1;
                 }
             }
             base.Update(gameTime);
@@ -73,14 +73,20 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         public override void Draw(GameTime gameTime, SpriteBatch sb)
         {
-            sb.Draw(Texture, new Rectangle(int.Parse(this.Position.X.ToString()), int.Parse(this.Position.Y.ToString()), Texture.Width, Texture.Height), colour);
-            base.Draw(gameTime, sb);
+            if (health > 0)
+            {
+                sb.Draw(Texture, new Rectangle(int.Parse(this.Position.X.ToString()), int.Parse(this.Position.Y.ToString()), Texture.Width, Texture.Height), colour);
+                base.Draw(gameTime, sb);
+            }
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch sb, Vector2 offset)
         {
-            sb.Draw(Texture, new Rectangle(Convert.ToInt32(this.Position.X) - Convert.ToInt32(offset.X), Convert.ToInt32(this.Position.Y) - Convert.ToInt32(offset.Y), Convert.ToInt32(Texture.Width * scale), Convert.ToInt32(Texture.Height * scale)), null, colour, float.Parse(this.Rotation.ToString()) - MathHelper.ToRadians(180), new Vector2(Texture.Width / 2, Texture.Height / 2), SpriteEffects.None, 1);
-            base.Draw(gameTime, sb, offset);
+            if (health > 0)
+            {
+                sb.Draw(Texture, new Rectangle(Convert.ToInt32(this.Position.X) - Convert.ToInt32(offset.X), Convert.ToInt32(this.Position.Y) - Convert.ToInt32(offset.Y), Convert.ToInt32(Texture.Width * scale), Convert.ToInt32(Texture.Height * scale)), null, colour, float.Parse(this.Rotation.ToString()) - MathHelper.ToRadians(180), new Vector2(Texture.Width / 2, Texture.Height / 2), SpriteEffects.None, 1);
+                base.Draw(gameTime, sb, offset);
+            }
         }
 
         public Texture2D Texture
