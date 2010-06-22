@@ -24,11 +24,10 @@ namespace Todesesser.Map.Maps
 
         public override void Update(GameTime gameTime, MapBase map, ObjectPlayer player)
         {
-            GetObject("w1").Update(gameTime, player, map);
-            GetObject("w2").Update(gameTime, player, map);
-            GetObject("w3").Update(gameTime, player, map);
-            GetObject("w4").Update(gameTime, player, map);
-            GetObject("w5").Update(gameTime, player, map);
+            for (int i = 0; i < 100; i++)
+            {
+                GetObject("w" + i).Update(gameTime, player, map);
+            }
             base.Update(gameTime, map, player);
         }
 
@@ -44,16 +43,11 @@ namespace Todesesser.Map.Maps
         public override void Initialize()
         {
             //Add Objects to Map
-            AddObject("w1", ObjectPool.AddObject(ObjectPool.ObjectTypes.Enemy, "w1", "Enemies-Zombie"));
-            GetObject("w1").Position = new Vector2(0, 0);
-            AddObject("w2", ObjectPool.AddObject(ObjectPool.ObjectTypes.Enemy, "w2", "Enemies-Zombie"));
-            GetObject("w2").Position = new Vector2(100, 0);
-            AddObject("w3", ObjectPool.AddObject(ObjectPool.ObjectTypes.Enemy, "w3", "Enemies-Zombie"));
-            GetObject("w3").Position = new Vector2(200, 0);
-            AddObject("w4", ObjectPool.AddObject(ObjectPool.ObjectTypes.Enemy, "w4", "Enemies-Zombie"));
-            GetObject("w4").Position = new Vector2(300, 0);
-            AddObject("w5", ObjectPool.AddObject(ObjectPool.ObjectTypes.Enemy, "w5", "Enemies-Zombie"));
-            GetObject("w5").Position = new Vector2(400, 0);
+            for (int i = 0; i < 100; i++)
+            {
+                AddObject("w" + i, ObjectPool.AddObject(ObjectPool.ObjectTypes.Enemy, "w" + i, "Enemies-Zombie"));
+                GetObject("w" + i).Position = new Vector2(2 * i, 0);
+            }
 
             base.Initialize();
         }
