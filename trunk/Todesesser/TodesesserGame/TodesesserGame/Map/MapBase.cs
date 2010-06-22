@@ -181,7 +181,6 @@ namespace Todesesser.Map
                                         objbase.Position = objbase.Position - MV;
                                     }
                                 }
-                                    
                             }
                         }
                     }
