@@ -31,7 +31,6 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
         public override void Update(GameTime gameTime, ObjectPlayer player, MapBase map)
         {
-            //TODO: Instead of Pausing, Maybe Texture should switch to a dead body?
             if (health > 0)
             {
                 Vector2 releventPlayerPosition = new Vector2(player.Position.X + Convert.ToInt32(map.Offset.X), player.Position.Y + Convert.ToInt32(map.Offset.Y));
