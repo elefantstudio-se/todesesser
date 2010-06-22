@@ -16,7 +16,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         private string contentKey;
         private ContentPool Content;
         private Color colour = Color.White;
-        private int health = 500;
+        private int health = 1;
         private double scale = 0.5;
 
         public ObjectEnemy(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)

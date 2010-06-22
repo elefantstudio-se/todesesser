@@ -21,6 +21,7 @@ namespace Todesesser.WeaponEngine
         private List<WeaponBase> availableWeapons;
         private WeaponBase currentWeapon;
         public bool canFire = true;
+        public bool canReload = true;
         private bool tabActivated = false;
         private _9MM ammo9MM = new _9MM(200);
 
@@ -72,16 +73,18 @@ namespace Todesesser.WeaponEngine
             {
                 tabActivated = false;
             }
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && canFire)
             {
                 currentWeapon.Shoot(rotation, playerX + int.Parse(map.Offset.X.ToString()), playerY + int.Parse(map.Offset.Y.ToString()), map, aimX, aimY);
                 GameStats.AppendStat("FiredBullets", 1);
             }
-            if (kybd.IsKeyDown(Keys.R))
+            if (kybd.IsKeyDown(Keys.R) && canReload)
             {
                 if (currentWeapon.Ammo == currentWeapon.MaxClip) { }
                 timeSinceReload = DateTime.Now;
                 reloading = true;
+                canFire = false;
+                canReload = false;
                 
             }
             if (reloading)
@@ -93,6 +96,8 @@ namespace Todesesser.WeaponEngine
                     currentWeapon.Ammo += ammoToAdd;
                     ammo9MM.Remaining -= ammoToAdd;
                     reloading = false;
+                    canReload = true;
+                    canFire = true;
                 }
             }
             currentWeapon.Update(gameTime, playerX, playerY, rotation);
