@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingTriangles", "Testing
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingTrianglesContent", "TestingTriangles\TestingTrianglesContent\TestingTrianglesContent.contentproj", "{87BE1BD2-44D7-466F-9126-25BFA221F258}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3d2d", "3d2d\3d2d.csproj", "{B055A42D-E1B2-450C-8751-AF7BE4F22B9D}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -27,6 +29,12 @@ Global
 		{87BE1BD2-44D7-466F-9126-25BFA221F258}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{87BE1BD2-44D7-466F-9126-25BFA221F258}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{87BE1BD2-44D7-466F-9126-25BFA221F258}.Release|x86.ActiveCfg = Debug|Any CPU
+		{B055A42D-E1B2-450C-8751-AF7BE4F22B9D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B055A42D-E1B2-450C-8751-AF7BE4F22B9D}.Debug|x86.ActiveCfg = Debug|x86
+		{B055A42D-E1B2-450C-8751-AF7BE4F22B9D}.Debug|x86.Build.0 = Debug|x86
+		{B055A42D-E1B2-450C-8751-AF7BE4F22B9D}.Release|Any CPU.ActiveCfg = Release|x86
+		{B055A42D-E1B2-450C-8751-AF7BE4F22B9D}.Release|x86.ActiveCfg = Release|x86
+		{B055A42D-E1B2-450C-8751-AF7BE4F22B9D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
