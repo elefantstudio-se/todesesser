@@ -43,10 +43,11 @@ namespace Todesesser.Map.Maps
         public override void Initialize()
         {
             //Add Objects to Map
+            Random random = new Random();
             for (int i = 0; i < 100; i++)
             {
                 AddObject("w" + i, ObjectPool.AddObject(ObjectPool.ObjectTypes.Enemy, "w" + i, "Enemies-Zombie"));
-                GetObject("w" + i).Position = new Vector2(2 * i, 0);
+                GetObject("w" + i).Position = new Vector2(random.Next(1, 2000), random.Next(1, 2000));
             }
 
             base.Initialize();
