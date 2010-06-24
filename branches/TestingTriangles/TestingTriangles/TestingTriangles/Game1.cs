@@ -20,14 +20,11 @@ namespace TestingTriangles
 
         Effect shader;
 
-        Texture2D spriteScaleTest;
-
         VertexPositionColor[] vertices;
+        short[] indices;
 
         Matrix View;
         Matrix Projection;
-
-        short[] indices;
 
         public Game1()
         {
@@ -37,30 +34,30 @@ namespace TestingTriangles
 
         void SetUpCamera()
         {
-            View = new Matrix(1.0f, 0, 0, 0, 0, 0.019996f, 0.9998f, 0, 0, -0.9998f, 0.019996f, 0, 0, 0.00000000186234717f, -5.001f, 1.0f);
-            Projection = new Matrix(1.83048773f, 0, 0, 0, 0, 1.83048773f, 0, 0, 0, 0, -1.010101f, -1.0f, 0, 0, -1.010101f, 0);
+            //TODO: Fix Camera for true Projection Scaling.
+            View = Matrix.CreateLookAt(new Vector3(0, 5, 0), new Vector3(0, -5, 0), Vector3.UnitZ);
+            Projection = Matrix.CreatePerspectiveFieldOfView(1, 16 / 10, 1, 100);
         }
+
         void InitializeVertices()
         {
             vertices = new VertexPositionColor[4];
-
             vertices[0] = new VertexPositionColor(new Vector3(0, 0.5f, 0), Color.Red);
-            vertices[1] = new VertexPositionColor(new Vector3(25, 0.5f, 0), Color.Red);
-
-            vertices[2] = new VertexPositionColor(new Vector3(0, 0.5f, 25), Color.Red);
-            vertices[3] = new VertexPositionColor(new Vector3(25, 0.5f, 25), Color.Red);
+            vertices[1] = new VertexPositionColor(new Vector3(1, 0.5f, 0), Color.Red);
+            vertices[2] = new VertexPositionColor(new Vector3(0, 0.5f, 1), Color.Red);
+            vertices[3] = new VertexPositionColor(new Vector3(1, 0.5f, 1), Color.Blue);
         }
+
         void SetUpIndices()
         {
             indices = new short[6];
-
             indices[0] = 0;
             indices[1] = 1;
             indices[2] = 2;
 
-            indices[3] = 2;
-            indices[4] = 1;
-            indices[5] = 3;
+            indices[3] = 3;
+            indices[4] = 2;
+            indices[5] = 1;
         }
 
         protected override void Initialize()
@@ -76,7 +73,6 @@ namespace TestingTriangles
             SetUpIndices();
             SetUpCamera();
             shader = Content.Load<Effect>("Basic");
-            spriteScaleTest = Content.Load<Texture2D>("scaletest");
         }
 
         protected override void UnloadContent()
@@ -93,11 +89,7 @@ namespace TestingTriangles
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
-
-            spriteBatch.Begin();
-            spriteBatch.Draw(spriteScaleTest, new Rectangle(300, 300, 25, 25), Color.White);
-            spriteBatch.End();
+            GraphicsDevice.Clear(Color.Black);
 
             shader.Parameters["ViewProjection"].SetValue(View * Projection);
 
