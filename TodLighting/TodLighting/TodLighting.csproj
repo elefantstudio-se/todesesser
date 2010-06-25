@@ -103,6 +103,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\TestingTriangles\GPU2D\GPU2D.csproj">
+      <Project>{8447D9E3-CF9B-48DC-B2DC-640B2B897959}</Project>
+      <Name>GPU2D</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Lighting\Lighting.csproj">
       <Project>{D23FE748-724B-450F-B374-14B92D19014A}</Project>
       <Name>Lighting</Name>
