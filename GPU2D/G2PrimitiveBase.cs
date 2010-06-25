@@ -1,4 +1,4 @@
-//Todesesser, XNA 4.0 C# Game.
+﻿//Todesesser, XNA 4.0 C# Game.
 //Copyright (C) 2010  Dean Gardiner and Taylor Lodge.
 //
 //This program is free software: you can redistribute it and/or modify
@@ -19,23 +19,18 @@
 //Full Licence can be found at http://www.gnu.org/licenses/gpl-3.0.txt.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
 
-namespace TestingTriangles
+namespace GPU2D
 {
-#if WINDOWS || XBOX
-    static class Program
+    public class G2PrimitiveBase
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        static void Main(string[] args)
+        public virtual void Draw(GraphicsDeviceManager graphics)
         {
-            using (Game1 game = new Game1())
-            {
-                game.Run();
-            }
+
         }
     }
-#endif
 }
-
