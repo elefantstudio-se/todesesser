@@ -98,6 +98,12 @@
     <Compile Include="ObjectTypes\RectangleHull.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TestingTriangles\GPU2D\GPU2D.csproj">
+      <Project>{8447D9E3-CF9B-48DC-B2DC-640B2B897959}</Project>
+      <Name>GPU2D</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
