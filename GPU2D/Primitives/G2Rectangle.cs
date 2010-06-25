@@ -63,6 +63,30 @@ namespace GPU2D.Primitives
             this.indices[5] = 1;
         }
 
+        public G2Rectangle(Rectangle rectangle, Color Colour, float height)
+        {
+            this.topLeft = new Vector2(rectangle.X, rectangle.Y);
+            this.topRight = new Vector2(rectangle.X + rectangle.Width, rectangle.Y);
+            this.bottomLeft = new Vector2(rectangle.X, rectangle.Y + rectangle.Height);
+            this.bottomRight = new Vector2(rectangle.X + rectangle.Width, rectangle.Y + rectangle.Height);
+
+            this.colour = Colour;
+
+            this.vertices = new VertexPositionColor[4];
+            this.vertices[0] = new VertexPositionColor(new Vector3(TopLeft.X, height, TopLeft.Y), Colour);
+            this.vertices[1] = new VertexPositionColor(new Vector3(TopRight.X, height, TopRight.Y), Colour);
+            this.vertices[2] = new VertexPositionColor(new Vector3(BottomLeft.X, height, BottomLeft.Y), Colour);
+            this.vertices[3] = new VertexPositionColor(new Vector3(BottomRight.X, height, BottomRight.Y), Colour);
+
+            this.indices = new short[6];
+            this.indices[0] = 0;
+            this.indices[1] = 1;
+            this.indices[2] = 2;
+            this.indices[3] = 3;
+            this.indices[4] = 2;
+            this.indices[5] = 1;
+        }
+
         public override void Draw(GraphicsDeviceManager graphics)
         {
             graphics.GraphicsDevice.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3);

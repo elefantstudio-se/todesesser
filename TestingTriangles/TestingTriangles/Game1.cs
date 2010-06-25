@@ -64,7 +64,10 @@ namespace TestingTriangles
 
             //TEST:
             gpu2dEngine = new GPU2DEngine(Content.Load<Effect>("Basic"), graphics);
+            
             gpu2dEngine.DrawPrimitive(new G2Rectangle(new Vector2(325, 300), new Vector2(350, 300), new Vector2(325, 325), new Vector2(350, 325), Color.Blue, 0.5f));
+            gpu2dEngine.DrawPrimitive(new G2Rectangle(new Vector2(175, 175), new Vector2(200, 175), new Vector2(200, 225), new Vector2(225, 225), Color.Red, 0.5f));
+            gpu2dEngine.DrawPrimitive(new G2Rectangle(new Rectangle(25, 25, 100, 100), Color.Green, 0.5f));
         }
 
         protected override void UnloadContent()
