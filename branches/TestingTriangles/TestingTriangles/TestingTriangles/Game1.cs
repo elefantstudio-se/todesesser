@@ -1,3 +1,23 @@
+//Todesesser, XNA 4.0 C# Game.
+//Copyright (C) 2010  Dean Gardiner and Taylor Lodge.
+//
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
+//You should have received a copy of the GNU General Public License
+//along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+//Email: gardiner91@gmail.com.
+//
+//Full Licence can be found at http://www.gnu.org/licenses/gpl-3.0.txt.
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +29,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
+using GPU2D.Primitives;
+using GPU2D;
 
 namespace TestingTriangles
 {
@@ -18,49 +40,15 @@ namespace TestingTriangles
         SpriteBatch spriteBatch;
         GraphicsDevice device;
 
-        Effect shader;
         Texture2D scaletest;
 
-        VertexPositionColor[] vertices;
-        short[] indices;
-
-        Matrix View;
-        Matrix Projection;
-        int cameraHeight = 5;
-        int planeHeight = -5;
+        //TEST: 
+        GPU2DEngine gpu2dEngine;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-        }
-
-        void SetUpCamera()
-        {
-            //TODO: Fix Camera for true Projection Scaling.
-            View = Matrix.CreateLookAt(new Vector3(graphics.PreferredBackBufferWidth / 2, cameraHeight, graphics.PreferredBackBufferHeight / 2), new Vector3(graphics.PreferredBackBufferWidth / 2, planeHeight, graphics.PreferredBackBufferHeight / 2), Vector3.UnitZ);
-            Projection = Matrix.CreateOrthographic(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 1, 100) * Matrix.CreateScale(1) * Matrix.CreateRotationZ(MathHelper.Pi);
-        }
-
-        void InitializeVertices()
-        {
-            vertices = new VertexPositionColor[4];
-            vertices[0] = new VertexPositionColor(new Vector3(325, 0.5f, 300), Color.Red);
-            vertices[1] = new VertexPositionColor(new Vector3(350, 0.5f, 300), Color.Red);
-            vertices[2] = new VertexPositionColor(new Vector3(325, 0.5f, 325), Color.Red);
-            vertices[3] = new VertexPositionColor(new Vector3(350, 0.5f, 325), Color.Red);
-        }
-
-        void SetUpIndices()
-        {
-            indices = new short[6];
-            indices[0] = 0;
-            indices[1] = 1;
-            indices[2] = 2;
-
-            indices[3] = 3;
-            indices[4] = 2;
-            indices[5] = 1;
         }
 
         protected override void Initialize()
@@ -72,11 +60,11 @@ namespace TestingTriangles
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             device = graphics.GraphicsDevice;
-            InitializeVertices();
-            SetUpIndices();
-            SetUpCamera();
-            shader = Content.Load<Effect>("Basic");
             scaletest = Content.Load<Texture2D>("scaletest");
+
+            //TEST:
+            gpu2dEngine = new GPU2DEngine(Content.Load<Effect>("Basic"), graphics);
+            gpu2dEngine.DrawPrimitive(new G2Rectangle(new Vector2(325, 300), new Vector2(350, 300), new Vector2(325, 325), new Vector2(350, 325), Color.Blue, 0.5f));
         }
 
         protected override void UnloadContent()
@@ -86,7 +74,7 @@ namespace TestingTriangles
 
         protected override void Update(GameTime gameTime)
         {
-            SetUpCamera();
+            gpu2dEngine.Update();
 
             base.Update(gameTime);
         }
@@ -95,11 +83,7 @@ namespace TestingTriangles
         {
             GraphicsDevice.Clear(Color.Black);
 
-            shader.Parameters["ViewProjection"].SetValue(View * Projection);
-
-            shader.CurrentTechnique.Passes[0].Apply();
-
-            device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3);
+            gpu2dEngine.Draw(graphics);
 
             spriteBatch.Begin();
             spriteBatch.Draw(scaletest, new Rectangle(300,300,25,25), Color.White);
