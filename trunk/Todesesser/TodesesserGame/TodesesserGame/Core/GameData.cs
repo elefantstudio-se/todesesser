@@ -12,8 +12,10 @@ namespace Todesesser.Core
         public enum GameStates { Invalid, Menu, Playing, Paused, Exiting, Splash };
         private static GameStates gameState = GameStates.Invalid;
         private static Rectangle mouseRect = new Rectangle();
+#if WINDOWS
         private static ConPlug.ConPlug settings;
         private static ConPlug.ConPlug profile;
+#endif
         private static Viewport screenSize;
 
         public static GameStates GameState
@@ -28,6 +30,8 @@ namespace Todesesser.Core
             set { mouseRect = value; }
         }
 
+#if WINDOWS
+
         public static ConPlug.ConPlug Settings
         {
             get { return settings; }
@@ -39,6 +43,7 @@ namespace Todesesser.Core
             get { return profile; }
             set { profile = value; }
         }
+#endif
 
         public static Viewport ScreenSize
         {

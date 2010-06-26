@@ -48,12 +48,14 @@ namespace Todesesser
         public void Initialize()
         {
             //Load Settings
+#if WINDOWS
             GameData.Settings = new ConPlug.ConPlug(Environment.CurrentDirectory + "\\settings.db");
             GameData.Settings.StartParse();
             System.Diagnostics.Debug.WriteLine("Settings->CurrentProfile = " + GameData.Settings.GetValue("CurrentPlayer"));
             GameData.Profile = new ConPlug.ConPlug(Environment.CurrentDirectory + "\\" + GameData.Settings.GetValue("CurrentPlayer"));
             GameData.Profile.StartParse();
             System.Diagnostics.Debug.WriteLine("Profile->Name = " + GameData.Profile.GetValue("Name"));
+#endif
             //Initialize Screens
             screenGame.Initialize();
             screenMenu.Initialize();
