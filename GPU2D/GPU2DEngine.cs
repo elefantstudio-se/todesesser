@@ -29,6 +29,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
+using GPU2D.Primitives;
 
 namespace GPU2D
 {
@@ -73,9 +74,17 @@ namespace GPU2D
 
             shader.CurrentTechnique.Passes[0].Apply();
 
+            List<G2PrimitiveBase> removePrimitives = new List<G2PrimitiveBase>();
+
             foreach (G2PrimitiveBase primitive in primitives)
             {
                 primitive.Draw(graphics);
+                removePrimitives.Add(primitive);
+            }
+
+            foreach (G2PrimitiveBase primitive in removePrimitives)
+            {
+                primitives.Remove(primitive);
             }
         }
     }
