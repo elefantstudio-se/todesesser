@@ -33,6 +33,8 @@ using Lighting;
 using Lighting.LightingTypes;
 using System.Diagnostics;
 using Lighting.ObjectTypes;
+using GPU2D;
+using GPU2D.Primitives;
 
 namespace TodLighting
 {
@@ -45,6 +47,7 @@ namespace TodLighting
         AmbientLight[] ambientLights;
         BaseHull[] objectHulls;
         Texture2D alphaClearTexture;
+        GPU2DEngine gpu2dEngine;
 
         Texture2D clearWhite;
         Effect basicEffect;
@@ -64,17 +67,19 @@ namespace TodLighting
 
         protected override void LoadContent()
         {
+            gpu2dEngine = new GPU2DEngine(Content.Load<Effect>("Basic"), graphics);
             clearWhite = Content.Load<Texture2D>("1x1white");
             basicEffect = Content.Load<Effect>("Basic");
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //Lighting:
-            ambientLights = new AmbientLight[3];
-            ambientLights[0] = new AmbientLight(GraphicsDevice, Content.Load<Texture2D>("light"), basicEffect, Color.Red, 100, new Vector2(100, 600), clearWhite);
-            ambientLights[1] = new AmbientLight(GraphicsDevice, Content.Load<Texture2D>("light"), basicEffect, Color.Red, 100, new Vector2(300, 600), clearWhite);
-            ambientLights[2] = new AmbientLight(GraphicsDevice, Content.Load<Texture2D>("light"), basicEffect, Color.Red, 100, new Vector2(500, 600), clearWhite);
-            objectHulls = new BaseHull[2];
+            ambientLights = new AmbientLight[1];
+            //ambientLights[0] = new AmbientLight(graphics, Content.Load<Texture2D>("light"), basicEffect, Color.Red, 100, new Vector2(100, 600), clearWhite, gpu2dEngine);
+            //ambientLights[1] = new AmbientLight(graphics, Content.Load<Texture2D>("light"), basicEffect, Color.Red, 100, new Vector2(300, 600), clearWhite, gpu2dEngine);
+            ambientLights[0] = new AmbientLight(graphics, Content.Load<Texture2D>("light"), basicEffect, Color.Red, 100, new Vector2(500, 600), clearWhite, gpu2dEngine);
+            objectHulls = new BaseHull[3];
             objectHulls[0] = new RectangleHull(new Vector2(0, 300), 50, 50);
-            objectHulls[1] = new RectangleHull(new Vector2(100, 300), 50, 50);
+            objectHulls[1] = new RectangleHull(new Vector2(200, 350), 50, 50);
+            objectHulls[2] = new RectangleHull(new Vector2(0, 450), 50, 50);
 
             alphaClearTexture = Content.Load<Texture2D>("AlphaOne");
         }
@@ -91,13 +96,21 @@ namespace TodLighting
                 if (objectHulls[0].Position.X <= 800)
                 {
                     int x = 200 + Convert.ToInt32(60 * Math.Sin(t / 5));
-                    int y = 300 + Convert.ToInt32(15 * Math.Cos(t / 5));
+                    int y = 200 + Convert.ToInt32(15 * Math.Cos(t / 5));
                     objectHulls[0].Position = new Vector2(x, y);
                     t += 1;
                 }
                 else
                 {
                     objectHulls[0].Position = new Vector2(0, 0);
+                }
+                if (objectHulls[2].Position.X <= 800)
+                {
+                    objectHulls[2].Position = new Vector2(objectHulls[2].Position.X + 1, objectHulls[2].Position.Y);
+                }
+                else
+                {
+                    objectHulls[2].Position = new Vector2(0, objectHulls[2].Position.Y);
                 }
             }
             foreach (AmbientLight light in ambientLights)
@@ -108,12 +121,16 @@ namespace TodLighting
             {
                 hull.Update(gameTime, ambientLights);
             }
+
+            gpu2dEngine.Update();
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.White);
+
+            gpu2dEngine.Draw(graphics);
 
             spriteBatch.Begin();
 
@@ -124,7 +141,7 @@ namespace TodLighting
 
             foreach (AmbientLight light in ambientLights)
             {
-                light.Draw(GraphicsDevice, spriteBatch, objectHulls);
+                light.Draw(graphics, spriteBatch, objectHulls);
             }
 
             spriteBatch.End();
