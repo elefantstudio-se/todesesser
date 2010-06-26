@@ -6,7 +6,6 @@ using Todesesser.ObjectPooling;
 using ContentPooling;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using System.Timers;
 using Todesesser.Core;
 
 namespace Todesesser.Screens
