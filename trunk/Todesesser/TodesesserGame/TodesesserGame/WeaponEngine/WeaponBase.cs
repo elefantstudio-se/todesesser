@@ -27,7 +27,8 @@ namespace Todesesser.WeaponEngine
         private GunTypes gunType;
         private string name;
         private int bulletSpeed;
-        
+        private int penetration;
+        private float penetrationScale;
 
         private ObjectWeapon objWeapon;
         private List<ObjectBullet> bullets;
@@ -60,17 +61,23 @@ namespace Todesesser.WeaponEngine
             if (Content != null && this.Bullets != null && ammo > 0)
             {
                 //TODO: Ray Trace & Muzzle Flash Goes Here
+                int hitEnemies = 0;
                 Ray2D ray = new Ray2D(new Vector2(fromX, fromY), new Vector2(float.Parse(aimX.ToString()), float.Parse(aimY.ToString())));
                 foreach(string okey in map.Objects.Keys)
                 {
                     ObjectBase o = (ObjectBase)map.Objects[okey];
                     Vector2 intersect = ray.Intersects(o.BoundingRectangle);
-                    if (o.BoundingRectangle != null && intersect != Vector2.Zero)
+                    if (o.BoundingRectangle != null && intersect != Vector2.Zero && hitEnemies < this.Penetration)
                     {
                         o.OnHit(this, new Vector2(fromX, fromY));
+                        hitEnemies++;
+                    }
+                    else if (hitEnemies >= this.Penetration)
+                    {
                         break;
                     }
                 }
+                System.Diagnostics.Debug.WriteLine("Bullet killed " + hitEnemies + " enemies!");
                 ammo--;
             }
         }
@@ -153,6 +160,18 @@ namespace Todesesser.WeaponEngine
         {
             get { return this.contentPool; }
             set { this.contentPool = value; }
+        }
+
+        public int Penetration
+        {
+            get { return this.penetration; }
+            set { this.penetration = value; }
+        }
+
+        public float PenetrationScale
+        {
+            get { return this.penetrationScale; }
+            set { this.penetrationScale = value; }
         }
 
         #endregion

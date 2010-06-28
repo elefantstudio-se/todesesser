@@ -151,6 +151,13 @@ namespace Todesesser.Map
                 objbase.Draw(gameTime, batch, Offset);
 
             }
+
+            /*foreach (string objkey in this.objects.Keys)
+            {
+                ObjectBase obj = (ObjectBase)this.objects[objkey];
+
+                Batch.Draw(Content.GetTexture2D("1x1white").Texture, new Rectangle(obj.BoundingRectangle.X - Convert.ToInt32(this.Offset.X), obj.BoundingRectangle.Y - Convert.ToInt32(this.Offset.Y), obj.BoundingRectangle.Width, obj.BoundingRectangle.Height), Color.Black);
+            }*/
             //Draw Objects
             foreach (string Key in this.objects.Keys)
             {

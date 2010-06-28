@@ -16,7 +16,7 @@
     <XnaProfile>Reach</XnaProfile>
     <XnaCrossPlatformGroupID>fd291565-3b62-46f8-9e56-f71c14a53633</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
-    <ApplicationIcon>Game.ico</ApplicationIcon>
+    <ApplicationIcon>todesesser_icon.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -156,6 +156,7 @@
     <Content Include="GameThumbnail.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="todesesser_icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ConPlug\ConPlug.csproj">

@@ -28,6 +28,8 @@ namespace Todesesser.WeaponEngine.Weapons
             this.Name = "Glock";
             this.BulletSpeed = 15;
             this.Bullets = new List<ObjectBullet>();
+            this.Penetration = 2;
+            this.PenetrationScale = 0.5f;
         }
     }
 }
