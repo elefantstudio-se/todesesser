@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Todesesser.ObjectPooling;
+using System.Collections;
 
 namespace Todesesser.Core
 {
@@ -15,6 +17,42 @@ namespace Todesesser.Core
         {
             this.startPos = startPos;
             this.endPos = endPos;
+        }
+
+        /// <summary>
+        /// Determine the first object to intersect with the Ray2D.
+        /// </summary>
+        /// <param name="objects"></param>
+        /// <returns></returns>
+        public ObjectBase FirstIntersect(Hashtable objects)
+        {
+            ObjectBase closestObject = null;
+            float closestObjectVector = -1f;
+
+            Point p0 = new Point((int)startPos.X, (int)startPos.Y);
+            Point p1 = new Point((int)endPos.X, (int)endPos.Y);
+
+            foreach (Point testPoint in BresenhamLine(p0, p1))
+            {
+                foreach (string objkey in objects.Keys)
+                {
+                    ObjectBase obj = (ObjectBase)objects[objkey];
+                    if (obj.BoundingRectangle.Contains(testPoint))
+                    {
+                        Vector2 intersectPos = new Vector2((float)testPoint.X, (float)testPoint.Y);
+                        if ((Vector2.Distance(new Vector2(p0.X, p0.Y), intersectPos) < closestObjectVector) || closestObjectVector == -1f)
+                        {
+                            closestObject = obj;
+                            closestObjectVector = Vector2.Distance(new Vector2(p0.X, p0.Y), intersectPos);
+                        }
+                    }
+                }
+            }
+            if (closestObject != null)
+            {
+                return closestObject;
+            }
+            return null;
         }
 
         /// <summary> 
