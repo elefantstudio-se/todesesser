@@ -26,7 +26,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             this.Key = Key;
             this.Type = Type;
             this.Content = contentPool;
-            this.BoundingRectangle = new Rectangle(Convert.ToInt32(this.Position.X), Convert.ToInt32(this.Position.Y), Texture.Width, Texture.Height);
+            this.BoundingRectangle = new Rectangle(Convert.ToInt32(this.Position.X - ((Texture.Width * scale) / 2)), Convert.ToInt32(this.Position.Y - ((Texture.Height * scale) / 2)), Convert.ToInt32((Texture.Width * scale) - ((Texture.Width * scale) / 2)), Convert.ToInt32((Texture.Height * scale) - ((Texture.Height * scale) / 2)));
         }
 
         public override void Update(GameTime gameTime, ObjectPlayer player, MapBase map)
@@ -43,7 +43,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
 
                 Vector2 OldPos = this.Position;
                 this.Position = new Vector2(this.Position.X - float.Parse(xs.ToString()), this.Position.Y - float.Parse(xy.ToString()));
-                this.BoundingRectangle = new Rectangle(Convert.ToInt32(this.Position.X), Convert.ToInt32(this.Position.Y), Texture.Width, Texture.Height);
+                this.BoundingRectangle = new Rectangle(Convert.ToInt32(this.Position.X - ((Texture.Width * scale) / 2)), Convert.ToInt32(this.Position.Y - ((Texture.Height * scale) / 2)), Convert.ToInt32(Texture.Width * scale), Convert.ToInt32(Texture.Height * scale));
 
                 //Hit Test!
                 float dis = Vector2.Distance(this.Position, releventPlayerPosition);
