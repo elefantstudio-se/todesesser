@@ -68,6 +68,7 @@ namespace Todesesser.WeaponEngine
                     if (o.BoundingRectangle != null && intersect != Vector2.Zero)
                     {
                         o.OnHit(this, new Vector2(fromX, fromY));
+                        break;
                     }
                 }
                 ammo--;
