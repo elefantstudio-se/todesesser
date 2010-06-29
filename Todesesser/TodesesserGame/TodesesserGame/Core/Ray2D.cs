@@ -24,6 +24,70 @@ namespace Todesesser.Core
         /// </summary>
         /// <param name="objects"></param>
         /// <returns></returns>
+        public ObjectBase IndexIntersect(Hashtable objects, int index)
+        {
+            ObjectBase closestObject = null;
+            float closestObjectVector = -1f;
+
+            Dictionary<float, ObjectBase> intersectingObjects = new Dictionary<float, ObjectBase>();   
+
+            Point p0 = new Point((int)startPos.X, (int)startPos.Y);
+            Point p1 = new Point((int)endPos.X, (int)endPos.Y);
+
+            foreach (Point testPoint in BresenhamLine(p0, p1))
+            {
+                foreach (string objkey in objects.Keys)
+                {
+                    ObjectBase obj = (ObjectBase)objects[objkey];
+                    if (obj.BoundingRectangle.Contains(testPoint))
+                    {
+                        Vector2 intersectPos = new Vector2((float)testPoint.X, (float)testPoint.Y);
+                        if ((Vector2.Distance(new Vector2(p0.X, p0.Y), intersectPos) < closestObjectVector) || closestObjectVector == -1f)
+                        {
+                            //closestObject = obj;
+                            //closestObjectVector = Vector2.Distance(new Vector2(p0.X, p0.Y), intersectPos);
+                            if (intersectingObjects.ContainsKey(Vector2.Distance(new Vector2(p0.X, p0.Y), intersectPos)) == false)
+                            {
+                                intersectingObjects.Add(Vector2.Distance(new Vector2(p0.X, p0.Y), intersectPos), obj);
+                            }
+                        }
+                    }
+                }
+            }
+            //Remove Duplicates
+            for (int i = 0; i < intersectingObjects.Count; i++)
+            {
+                ObjectBase obj = intersectingObjects.ElementAt(i).Value;
+
+                for (int j = 0; j < intersectingObjects.Count; j++)
+                {
+                    ObjectBase obj2 = intersectingObjects.ElementAt(i).Value;
+
+                    if (obj.Key == obj2.Key)
+                    {
+                        intersectingObjects.Remove(intersectingObjects.ElementAt(i));
+                    }
+                }
+            }
+            //Sort Distances
+            var items = from k in intersectingObjects.Keys
+                        orderby k ascending
+                        select intersectingObjects[k];
+
+            closestObject = intersectingObjects.ElementAt(index).Value;
+
+            if (closestObject != null)
+            {
+                return closestObject;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Determine the first object to intersect with the Ray2D.
+        /// </summary>
+        /// <param name="objects"></param>
+        /// <returns></returns>
         public ObjectBase FirstIntersect(Hashtable objects)
         {
             ObjectBase closestObject = null;
