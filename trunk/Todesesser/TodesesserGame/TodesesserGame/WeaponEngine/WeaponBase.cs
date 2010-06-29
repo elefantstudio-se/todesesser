@@ -63,20 +63,18 @@ namespace Todesesser.WeaponEngine
                 //TODO: Ray Trace & Muzzle Flash Goes Here
                 int hitEnemies = 0;
                 Ray2D ray = new Ray2D(new Vector2(fromX, fromY), new Vector2(float.Parse(aimX.ToString()), float.Parse(aimY.ToString())));
-                //foreach(string okey in map.Objects.Keys)
-                //{
                 ObjectBase o = ray.FirstIntersect(map.Objects);
-                    //Vector2 intersect = ray.Intersects(o.BoundingRectangle);
-                    //if (o.BoundingRectangle != null && intersect != Vector2.Zero && hitEnemies < this.Penetration)
-                    //{
-                        o.OnHit(this, new Vector2(fromX, fromY));
-                        hitEnemies++;
-                    //}
-                    //else if (hitEnemies >= this.Penetration)
-                    //{
-                        //break;
-                    //}
-                //}
+                if (o != null)
+                {
+                    o.OnHit(this, new Vector2(fromX, fromY));
+                    hitEnemies++;
+                    ObjectBase o2 = ray.IndexIntersect(map.Objects, 2);
+                    o2.OnHit(this, new Vector2(fromX, fromY));
+
+                    float oDist = Vector2.Distance(new Vector2(fromX, fromY), o.Position);
+                    float o2Dist = Vector2.Distance(new Vector2(fromX, fromY), o2.Position);
+                    oDist = oDist;
+                }
                 ammo--;
             }
         }
