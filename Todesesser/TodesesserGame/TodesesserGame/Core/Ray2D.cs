@@ -61,11 +61,14 @@ namespace Todesesser.Core
 
                 for (int j = 0; j < intersectingObjects.Count; j++)
                 {
-                    ObjectBase obj2 = intersectingObjects.ElementAt(i).Value;
-
-                    if (obj.Key == obj2.Key)
+                    if (i < intersectingObjects.Count && j < intersectingObjects.Count)
                     {
-                        intersectingObjects.Remove(intersectingObjects.ElementAt(i));
+                        ObjectBase obj2 = intersectingObjects.ElementAt(i).Value;
+
+                        if (obj.Key == obj2.Key)
+                        {
+                            intersectingObjects.Remove(intersectingObjects.ElementAt(i).Key);
+                        }
                     }
                 }
             }
@@ -73,9 +76,10 @@ namespace Todesesser.Core
             var items = from k in intersectingObjects.Keys
                         orderby k ascending
                         select intersectingObjects[k];
-
-            closestObject = intersectingObjects.ElementAt(index).Value;
-
+            if (index < intersectingObjects.Count)
+            {
+                closestObject = intersectingObjects.ElementAt(index).Value;
+            }
             if (closestObject != null)
             {
                 return closestObject;

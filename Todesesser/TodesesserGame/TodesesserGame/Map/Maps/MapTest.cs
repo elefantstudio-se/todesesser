@@ -47,7 +47,7 @@ namespace Todesesser.Map.Maps
             for (int i = 0; i < 100; i++)
             {
                 AddObject("w" + i, ObjectPool.AddObject(ObjectPool.ObjectTypes.Enemy, "w" + i, "Enemies-Zombie"));
-                GetObject("w" + i).Position = new Vector2(random.Next(1, 2000), random.Next(1, 2000));
+                GetObject("w" + i).Position = new Vector2(random.Next(-1000, 2000), random.Next(-1000, 2000));
             }
 
             base.Initialize();

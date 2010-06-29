@@ -69,8 +69,10 @@ namespace Todesesser.WeaponEngine
                     o.OnHit(this, new Vector2(fromX, fromY));
                     hitEnemies++;
                     ObjectBase o2 = ray.IndexIntersect(map.Objects, 2);
-                    o2.OnHit(this, new Vector2(fromX, fromY));
-
+                    if (o2 != null)
+                    {
+                        o2.OnHit(this, new Vector2(fromX, fromY));
+                    }
                     float oDist = Vector2.Distance(new Vector2(fromX, fromY), o.Position);
                     float o2Dist = Vector2.Distance(new Vector2(fromX, fromY), o2.Position);
                     oDist = oDist;

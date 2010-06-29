@@ -78,7 +78,7 @@ namespace Todesesser.WeaponEngine
                 currentWeapon.Shoot(rotation, playerX + int.Parse(map.Offset.X.ToString()), playerY + int.Parse(map.Offset.Y.ToString()), map, aimX, aimY);
                 GameStats.AppendStat("FiredBullets", 1);
             }
-            if (kybd.IsKeyDown(Keys.R) && canReload)
+            if ((kybd.IsKeyDown(Keys.R) && canReload) || (currentWeapon.Ammo == 0 && canReload))
             {
                 if (currentWeapon.Ammo == currentWeapon.MaxClip) { }
                 timeSinceReload = DateTime.Now;
