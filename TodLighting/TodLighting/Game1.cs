@@ -35,6 +35,7 @@ using System.Diagnostics;
 using Lighting.ObjectTypes;
 using GPU2D;
 using GPU2D.Primitives;
+using GPU2D.Particles;
 
 namespace TodLighting
 {
@@ -51,6 +52,8 @@ namespace TodLighting
 
         Texture2D clearWhite;
         Effect basicEffect;
+
+        G2ParticleBase smokePlume;
 
         int t = 0;
 
@@ -82,6 +85,9 @@ namespace TodLighting
             objectHulls[2] = new RectangleHull(new Vector2(0, 450), 50, 50);
 
             alphaClearTexture = Content.Load<Texture2D>("AlphaOne");
+            smokePlume = new G2SmokePlume(this, Content, GraphicsDevice, Content.Load<Effect>("ParticleEffect"));
+            smokePlume.Initialize();
+            smokePlume.LoadContent();
         }
 
         protected override void UnloadContent()
@@ -123,6 +129,7 @@ namespace TodLighting
             }
 
             gpu2dEngine.Update();
+            smokePlume.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -145,6 +152,8 @@ namespace TodLighting
             }
 
             spriteBatch.End();
+
+            smokePlume.Draw(gameTime);
 
             base.Draw(gameTime);
         }
