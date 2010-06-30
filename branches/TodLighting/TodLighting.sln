@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighting", "Lighting\Lighti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPU2D", "..\TestingTriangles\GPU2D\GPU2D.csproj", "{8447D9E3-CF9B-48DC-B2DC-640B2B897959}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodParticles", "TodParticles\TodParticles\TodParticles.csproj", "{98246D3C-B720-445A-867B-12B21FBAEB05}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TodParticlesContent", "TodParticles\TodParticlesContent\TodParticlesContent.contentproj", "{F86E44F4-9323-4335-A855-07DF792EC49E}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -46,6 +50,17 @@ Global
 		{8447D9E3-CF9B-48DC-B2DC-640B2B897959}.Release|Any CPU.ActiveCfg = Release|x86
 		{8447D9E3-CF9B-48DC-B2DC-640B2B897959}.Release|x86.ActiveCfg = Release|x86
 		{8447D9E3-CF9B-48DC-B2DC-640B2B897959}.Release|x86.Build.0 = Release|x86
+		{98246D3C-B720-445A-867B-12B21FBAEB05}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{98246D3C-B720-445A-867B-12B21FBAEB05}.Debug|Any CPU.Build.0 = Debug|x86
+		{98246D3C-B720-445A-867B-12B21FBAEB05}.Debug|x86.ActiveCfg = Debug|x86
+		{98246D3C-B720-445A-867B-12B21FBAEB05}.Debug|x86.Build.0 = Debug|x86
+		{98246D3C-B720-445A-867B-12B21FBAEB05}.Release|Any CPU.ActiveCfg = Release|x86
+		{98246D3C-B720-445A-867B-12B21FBAEB05}.Release|x86.ActiveCfg = Release|x86
+		{98246D3C-B720-445A-867B-12B21FBAEB05}.Release|x86.Build.0 = Release|x86
+		{F86E44F4-9323-4335-A855-07DF792EC49E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F86E44F4-9323-4335-A855-07DF792EC49E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F86E44F4-9323-4335-A855-07DF792EC49E}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{F86E44F4-9323-4335-A855-07DF792EC49E}.Release|x86.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
