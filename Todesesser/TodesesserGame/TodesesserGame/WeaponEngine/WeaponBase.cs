@@ -72,10 +72,9 @@ namespace Todesesser.WeaponEngine
                     if (o2 != null)
                     {
                         o2.OnHit(this, new Vector2(fromX, fromY));
+                        float oDist = Vector2.Distance(new Vector2(fromX, fromY), o.Position);
+                        float o2Dist = Vector2.Distance(new Vector2(fromX, fromY), o2.Position);
                     }
-                    float oDist = Vector2.Distance(new Vector2(fromX, fromY), o.Position);
-                    float o2Dist = Vector2.Distance(new Vector2(fromX, fromY), o2.Position);
-                    //oDist = oDist;
                 }
                 ammo--;
             }
