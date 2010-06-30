@@ -1,6 +1,6 @@
 #region File Description
 //-----------------------------------------------------------------------------
-// SmokePlumeParticleSystem.cs
+// ExplosionSmokeParticleSystem.cs
 //
 // Microsoft XNA Community Game Platform
 // Copyright (C) Microsoft Corporation. All rights reserved.
@@ -17,11 +17,11 @@ using Microsoft.Xna.Framework.Graphics;
 namespace GPU2D.Particles
 {
     /// <summary>
-    /// Custom particle system for creating a giant plume of long lasting smoke.
+    /// Custom particle system for creating the smokey part of the explosions.
     /// </summary>
-    public class SmokePlumeParticleSystem : ParticleSystem
+    public class G2ParticleExplosionSmoke : ParticleSystem
     {
-        public SmokePlumeParticleSystem(Game game, ContentManager content)
+        public G2ParticleExplosionSmoke(Game game, ContentManager content)
             : base(game, content)
         { }
 
@@ -30,28 +30,30 @@ namespace GPU2D.Particles
         {
             settings.TextureName = "smoke";
 
-            settings.MaxParticles = 600;
+            settings.MaxParticles = 200;
 
-            settings.Duration = TimeSpan.FromSeconds(10);
+            settings.Duration = TimeSpan.FromSeconds(4);
 
             settings.MinHorizontalVelocity = 0;
-            settings.MaxHorizontalVelocity = 15;
+            settings.MaxHorizontalVelocity = 50;
 
-            settings.MinVerticalVelocity = 10;
-            settings.MaxVerticalVelocity = 20;
+            settings.MinVerticalVelocity = -10;
+            settings.MaxVerticalVelocity = 50;
 
-            // Create a wind effect by tilting the gravity vector sideways.
-            settings.Gravity = new Vector3(-20, -5, 0);
+            settings.Gravity = new Vector3(0, -20, 0);
 
-            settings.EndVelocity = 0.75f;
+            settings.EndVelocity = 0;
 
-            settings.MinRotateSpeed = -1;
-            settings.MaxRotateSpeed = 1;
+            settings.MinColor = Color.LightGray;
+            settings.MaxColor = Color.White;
 
-            settings.MinStartSize = 5;
+            settings.MinRotateSpeed = -2;
+            settings.MaxRotateSpeed = 2;
+
+            settings.MinStartSize = 10;
             settings.MaxStartSize = 10;
 
-            settings.MinEndSize = 50;
+            settings.MinEndSize = 100;
             settings.MaxEndSize = 200;
 
             settings.Blend = BlendState.AlphaBlend;

@@ -19,9 +19,9 @@ namespace GPU2D.Particles
     /// <summary>
     /// Custom particle system for leaving smoke trails behind the rocket projectiles.
     /// </summary>
-    public class ProjectileTrailParticleSystem : ParticleSystem
+    public class G2ProjectileTrail : ParticleSystem
     {
-        public ProjectileTrailParticleSystem(Game game, ContentManager content)
+        public G2ProjectileTrail(Game game, ContentManager content)
             : base(game, content)
         { }
 

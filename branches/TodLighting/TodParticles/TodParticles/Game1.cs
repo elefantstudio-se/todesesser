@@ -87,11 +87,11 @@ namespace TodParticles
             graphics.PreferredBackBufferHeight = 480;
 
             // Construct our particle system components.
-            explosionParticles = new ExplosionParticleSystem(this, Content);
-            explosionSmokeParticles = new ExplosionSmokeParticleSystem(this, Content);
-            projectileTrailParticles = new ProjectileTrailParticleSystem(this, Content);
-            smokePlumeParticles = new SmokePlumeParticleSystem(this, Content);
-            fireParticles = new FireParticleSystem(this, Content);
+            explosionParticles = new G2ParticleExplosion(this, Content);
+            explosionSmokeParticles = new G2ParticleExplosionSmoke(this, Content);
+            projectileTrailParticles = new G2ProjectileTrail(this, Content);
+            smokePlumeParticles = new G2SmokePlume(this, Content);
+            fireParticles = new G2ParticleFire(this, Content);
 
             // Set the draw order so the explosions and fire
             // will appear over the top of the smoke.
