@@ -92,8 +92,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="G2ParticleBase.cs" />
+    <Compile Include="G2ParticleSettings.cs" />
     <Compile Include="G2PrimitiveBase.cs" />
     <Compile Include="GPU2DEngine.cs" />
+    <Compile Include="Particles\G2Explosion.cs" />
+    <Compile Include="Particles\G2ExplosionSmoke.cs" />
+    <Compile Include="Particles\G2Fire.cs" />
+    <Compile Include="Particles\G2ProjectileTrail.cs" />
+    <Compile Include="Particles\G2SmokePlume.cs" />
+    <Compile Include="ParticleVertex.cs" />
     <Compile Include="Primitives\G2Rectangle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
