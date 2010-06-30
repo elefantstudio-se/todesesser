@@ -61,9 +61,10 @@ namespace Todesesser.Map.Maps
             {
                 AddObject("w" + i, ObjectPool.AddObject(ObjectPool.ObjectTypes.EnemySpawner, "w" + i, "1x1white"));
                 GetObject("w" + i).Position = new Vector2(random.Next(-1000, 2000), random.Next(-1000, 2000));
-                ((ObjectEnemySpawner)GetObject("w" + i)).SpawnTime = 1;
-                ((ObjectEnemySpawner)GetObject("w" + i)).EType = "basic";
-                ((ObjectEnemySpawner)GetObject("w" + i)).MaxSpawned = 4;
+                ObjectEnemySpawner spawner = GetObject<ObjectEnemySpawner>("w" + i);
+                spawner.SpawnTime = 1;
+                spawner.EType = "basic";
+                spawner.MaxSpawned = 4;
             }
 
             base.Initialize();

@@ -237,6 +237,11 @@ namespace Todesesser.Map
             return (ObjectBase)this.objects[Key];
         }
 
+        public virtual T GetObject<T>(string Key)
+        {
+            return (T)this.objects[Key];
+        }
+
         public virtual void UpdateObject(string Key, ObjectBase Object)
         {
             this.objects[Key] = Object;
