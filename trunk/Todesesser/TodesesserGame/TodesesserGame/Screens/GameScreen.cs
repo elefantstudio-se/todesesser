@@ -47,6 +47,7 @@ namespace Todesesser.Screens
 
         private GameCore gameCore;
         private AchivementEngine Achivement;
+        private bool firstInit = false;
 
         public GameScreen(GraphicsDevice graphicsDevice, ObjectPool Objects, ContentPool Content, GameCore gameCore)
         {
@@ -83,8 +84,6 @@ namespace Todesesser.Screens
 
             //Map:
             testmap.LoadContent();
-            testmap.Initialize();
-
             //Weapons:
             weaponEngine.LoadContent();
             weaponEngine.AddAvailableWeapon(new Glock());
@@ -97,16 +96,6 @@ namespace Todesesser.Screens
             dbvar.Add((Objects.Count + testmap.Objects.Count), "Total Objects");
             dbvar.Add(Mouse.GetState().X, "Mouse X");
             dbvar.Add(Mouse.GetState().Y, "Mouse Y");
-            dbvar.Add(player.Rotation, "Player Rotation");
-            dbvar.Add("", "XS");
-            dbvar.Add("", "XY");
-            dbvar.Add(player.Position.ToString(), "Player Position");
-            dbvar.Add("", "Aim Position");
-            dbvar.Add("", "Aim Distance");
-            dbvar.Add("", "Map Objects");
-            dbvar.Add("", "Map Offset");
-            dbvar.Add("", "Map Mouse X");
-            dbvar.Add("", "Map Mouse Y");
             dbvar.Add("", "Clip");
             Achivement = new AchivementEngine();
             Achivement.LoadContent(Objects, Content);
@@ -116,6 +105,11 @@ namespace Todesesser.Screens
 
         public override void Update(GameTime gameTime)
         {
+            if (GameData.GameState == GameData.GameStates.Playing && firstInit == false)
+            {
+                testmap.Initialize();
+                firstInit = true;
+            }
             //Calculate XS, XY
             int rot = Convert.ToInt32(MathHelper.ToDegrees(float.Parse(player.Rotation.ToString()))) - 90;
             double xs = Math.Cos((rot * Math.PI) / 180);
@@ -145,18 +139,6 @@ namespace Todesesser.Screens
             dbvar.Update(weaponEngine.CurrentWeapon.Name, "Current Weapon");
             dbvar.Update(Content.Count, "Loaded Content");
             dbvar.Update((Objects.Count + testmap.Objects.Count), "Loaded Objects");
-            dbvar.Update(Mouse.GetState().X, "Mouse X");
-            dbvar.Update(Mouse.GetState().Y, "Mouse Y");
-            dbvar.Update(player.Rotation, "Player Rotation");
-            dbvar.Update(xs.ToString(), "XS");
-            dbvar.Update(xy.ToString(), "XY");
-            dbvar.Update(new Vector2(player.Position.X + Convert.ToInt32(testmap.Offset.X), player.Position.Y + Convert.ToInt32(testmap.Offset.Y)).ToString(), "Player Position");
-            dbvar.Update(new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString())).ToString(), "Aim Position");
-            dbvar.Update(Vector2.Distance(player.Position, new Vector2(float.Parse(xe.ToString()), float.Parse(ye.ToString()))).ToString(), "Aim Distance");
-            dbvar.Update(testmap.Objects.Count, "Map Objects");
-            dbvar.Update(testmap.Offset.ToString(), "Map Offset");
-            dbvar.Update(rMouse.X, "Map Mouse X");
-            dbvar.Update(rMouse.Y, "Map Mouse Y");
             dbvar.Update(weaponEngine.Clip, "Clip");
             Achivement.Update(gameTime);
             testmap.Update(gameTime, testmap, player);

@@ -44,7 +44,6 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         {
             if (health <= 0 && alive == true)
             {
-                System.Diagnostics.Debug.WriteLine("DEAD!");
                 GameStats.AppendStat("DeadCount", 1);
                 alive = false;
             }

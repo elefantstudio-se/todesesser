@@ -39,6 +39,11 @@ namespace Todesesser.ObjectPooling
 
         }
 
+        public virtual void Update(GameTime gameTime, Map.MapBase map, ObjectPool objectPool)
+        {
+
+        }
+
         public virtual void Draw(GameTime gameTime, SpriteBatch sb)
         {
 
