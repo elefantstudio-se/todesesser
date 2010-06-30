@@ -24,9 +24,22 @@ namespace Todesesser.Map.Maps
 
         public override void Update(GameTime gameTime, MapBase map, ObjectPlayer player)
         {
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < Objects.Keys.Count;i++)
             {
-                GetObject("w" + i).Update(gameTime, player, map);
+                string[] arrayShit = new string[Objects.Keys.Count];
+                Objects.Keys.CopyTo(arrayShit,0);
+                string ObjectKey = arrayShit[i];
+                ObjectBase Object = (ObjectBase)Objects[ObjectKey];
+                switch (Object.Type)
+                {
+                    case ObjectPooling.ObjectPool.ObjectTypes.Enemy:
+                        Object.Update(gameTime, player, map);
+                        break;
+
+                    case ObjectPooling.ObjectPool.ObjectTypes.EnemySpawner:
+                        Object.Update(gameTime, map, ObjectPool);
+                        break;
+                }
             }
             base.Update(gameTime, map, player);
         }
@@ -44,10 +57,13 @@ namespace Todesesser.Map.Maps
         {
             //Add Objects to Map
             Random random = new Random();
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 25; i++)
             {
-                AddObject("w" + i, ObjectPool.AddObject(ObjectPool.ObjectTypes.Enemy, "w" + i, "Enemies-Zombie"));
+                AddObject("w" + i, ObjectPool.AddObject(ObjectPool.ObjectTypes.EnemySpawner, "w" + i, "1x1white"));
                 GetObject("w" + i).Position = new Vector2(random.Next(-1000, 2000), random.Next(-1000, 2000));
+                ((ObjectEnemySpawner)GetObject("w" + i)).SpawnTime = 1;
+                ((ObjectEnemySpawner)GetObject("w" + i)).EType = "basic";
+                ((ObjectEnemySpawner)GetObject("w" + i)).MaxSpawned = 4;
             }
 
             base.Initialize();
