@@ -92,6 +92,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="G2ParticleBase.cs" />
     <Compile Include="G2PrimitiveBase.cs" />
     <Compile Include="GPU2DEngine.cs" />
     <Compile Include="ParticleEmitter.cs" />

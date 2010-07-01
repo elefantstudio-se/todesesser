@@ -36,6 +36,7 @@ namespace GPU2D
     public class GPU2DEngine
     {
         private List<G2PrimitiveBase> primitives;
+        private List<G2ParticleBase> particles;
         private Effect shader;
 
         Matrix View;
@@ -48,6 +49,7 @@ namespace GPU2D
         public GPU2DEngine(Effect shader, GraphicsDeviceManager graphics)
         {
             primitives = new List<G2PrimitiveBase>();
+            particles = new List<G2ParticleBase>();
             this.shader = shader;
             this.graphics = graphics;
         }
@@ -66,6 +68,11 @@ namespace GPU2D
         public void DrawPrimitive(G2PrimitiveBase primitive)
         {
             primitives.Add(primitive);
+        }
+
+        public void DrawParticle(G2ParticleBase particle)
+        {
+
         }
 
         public void Draw(GraphicsDeviceManager graphics)

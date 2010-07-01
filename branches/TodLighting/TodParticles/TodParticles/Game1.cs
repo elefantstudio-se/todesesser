@@ -55,6 +55,8 @@ namespace TodParticles
         // Random number generator for the fire effect.
         Random random = new Random();
 
+        float cameraHeight = 5f;
+
 
         // Input state.
         KeyboardState currentKeyboardState;
@@ -63,17 +65,9 @@ namespace TodParticles
         KeyboardState lastKeyboardState;
         GamePadState lastGamePadState;
 
-
-        // Camera state.
-        float cameraArc = -5;
-        float cameraRotation = 0;
-        float cameraDistance = 200;
-
-
         #endregion
 
         #region Initialization
-
 
         /// <summary>
         /// Constructor.
@@ -121,7 +115,6 @@ namespace TodParticles
             grid = Content.Load<Model>("grid");
         }
 
-
         #endregion
 
         #region Update and Draw
@@ -133,8 +126,6 @@ namespace TodParticles
         protected override void Update(GameTime gameTime)
         {
             HandleInput();
-
-            UpdateCamera(gameTime);
 
             switch (currentState)
             {
@@ -255,19 +246,18 @@ namespace TodParticles
 
             device.Clear(Color.CornflowerBlue);
 
-            // Compute camera matrices.
-            float aspectRatio = (float)device.Viewport.Width /
-                                (float)device.Viewport.Height;
-
-            Matrix view = Matrix.CreateTranslation(0, -25, 0) *
-                          Matrix.CreateRotationY(MathHelper.ToRadians(cameraRotation)) *
-                          Matrix.CreateRotationX(MathHelper.ToRadians(cameraArc)) *
-                          Matrix.CreateLookAt(new Vector3(0, 0, -cameraDistance),
-                                              new Vector3(0, 0, 0), Vector3.Up);
-
-            Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4,
-                                                                    aspectRatio,
-                                                                    1, 10000);
+            Matrix view = Matrix.CreateLookAt(new Vector3(0,
+                                                          -cameraHeight,
+                                                          0),
+                                              new Vector3(0,
+                                                          0,
+                                                          0),
+                                              Vector3.UnitZ);
+            Matrix projection = Matrix.CreateOrthographic(graphics.PreferredBackBufferWidth, 
+                                                          graphics.PreferredBackBufferHeight, 
+                                                          1, 
+                                                          10000) * 
+                                Matrix.CreateScale(1);
 
             // Pass camera matrices through to the particle system components.
             explosionParticles.SetCamera(view, projection);
@@ -276,62 +266,8 @@ namespace TodParticles
             smokePlumeParticles.SetCamera(view, projection);
             fireParticles.SetCamera(view, projection);
 
-            // Draw our background grid and message text.
-            DrawGrid(view, projection);
-
-            DrawMessage();
-
-            // This will draw the particle system components.
             base.Draw(gameTime);
         }
-
-
-        /// <summary>
-        /// Helper for drawing the background grid model.
-        /// </summary>
-        void DrawGrid(Matrix view, Matrix projection)
-        {
-            GraphicsDevice device = graphics.GraphicsDevice;
-
-            // convert4.0 - Replace RenderState properties with Device.BlendState and Device.DepthStencilState.
-            device.BlendState = BlendState.Opaque;
-            device.DepthStencilState = DepthStencilState.Default;
-
-            // convert4.0 - And SamplerStates[n].Prop with SamplerState objects.
-            device.SamplerStates[0] = SamplerState.LinearWrap;
-
-            foreach (ModelMesh mesh in grid.Meshes)
-            {
-                foreach (BasicEffect effect in mesh.Effects)
-                {
-                    effect.View = view;
-                    effect.Projection = projection;
-
-                    effect.Alpha = 1;
-                    effect.PreferPerPixelLighting = true;
-                    effect.LightingEnabled = true;
-                    effect.EnableDefaultLighting();
-                }
-
-                mesh.Draw();
-            }
-        }
-
-
-        /// <summary>
-        /// Helper for drawing our message text.
-        /// </summary>
-        void DrawMessage()
-        {
-            string message = string.Format("Current effect: {0}!!!\n" +
-                                           "Hit the A button or space bar to switch.",
-                                           currentState);
-
-            spriteBatch.Begin();
-            spriteBatch.DrawString(font, message, new Vector2(50, 50), Color.White);
-            spriteBatch.End();
-        }
-
 
         #endregion
 
@@ -350,18 +286,8 @@ namespace TodParticles
             currentKeyboardState = Keyboard.GetState();
             currentGamePadState = GamePad.GetState(PlayerIndex.One);
 
-            // Check for exit.
-            if (currentKeyboardState.IsKeyDown(Keys.Escape) ||
-                currentGamePadState.Buttons.Back == ButtonState.Pressed)
-            {
-                Exit();
-            }
-
             // Check for changing the active particle effect.
-            if (((currentKeyboardState.IsKeyDown(Keys.Space) &&
-                 (lastKeyboardState.IsKeyUp(Keys.Space))) ||
-                ((currentGamePadState.Buttons.A == ButtonState.Pressed)) &&
-                 (lastGamePadState.Buttons.A == ButtonState.Released)))
+            if (currentKeyboardState.IsKeyDown(Keys.Space) && lastKeyboardState.IsKeyUp(Keys.Space))
             {
                 currentState++;
 
@@ -369,76 +295,6 @@ namespace TodParticles
                     currentState = 0;
             }
         }
-
-
-        /// <summary>
-        /// Handles input for moving the camera.
-        /// </summary>
-        void UpdateCamera(GameTime gameTime)
-        {
-            float time = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
-            // Check for input to rotate the camera up and down around the model.
-            if (currentKeyboardState.IsKeyDown(Keys.Up) ||
-                currentKeyboardState.IsKeyDown(Keys.W))
-            {
-                cameraArc += time * 0.025f;
-            }
-
-            if (currentKeyboardState.IsKeyDown(Keys.Down) ||
-                currentKeyboardState.IsKeyDown(Keys.S))
-            {
-                cameraArc -= time * 0.025f;
-            }
-
-            cameraArc += currentGamePadState.ThumbSticks.Right.Y * time * 0.05f;
-
-            // Limit the arc movement.
-            if (cameraArc > 90.0f)
-                cameraArc = 90.0f;
-            else if (cameraArc < -90.0f)
-                cameraArc = -90.0f;
-
-            // Check for input to rotate the camera around the model.
-            if (currentKeyboardState.IsKeyDown(Keys.Right) ||
-                currentKeyboardState.IsKeyDown(Keys.D))
-            {
-                cameraRotation += time * 0.05f;
-            }
-
-            if (currentKeyboardState.IsKeyDown(Keys.Left) ||
-                currentKeyboardState.IsKeyDown(Keys.A))
-            {
-                cameraRotation -= time * 0.05f;
-            }
-
-            cameraRotation += currentGamePadState.ThumbSticks.Right.X * time * 0.1f;
-
-            // Check for input to zoom camera in and out.
-            if (currentKeyboardState.IsKeyDown(Keys.Z))
-                cameraDistance += time * 0.25f;
-
-            if (currentKeyboardState.IsKeyDown(Keys.X))
-                cameraDistance -= time * 0.25f;
-
-            cameraDistance += currentGamePadState.Triggers.Left * time * 0.5f;
-            cameraDistance -= currentGamePadState.Triggers.Right * time * 0.5f;
-
-            // Limit the camera distance.
-            if (cameraDistance > 500)
-                cameraDistance = 500;
-            else if (cameraDistance < 10)
-                cameraDistance = 10;
-
-            if (currentGamePadState.Buttons.RightStick == ButtonState.Pressed ||
-                currentKeyboardState.IsKeyDown(Keys.R))
-            {
-                cameraArc = -5;
-                cameraRotation = 0;
-                cameraDistance = 200;
-            }
-        }
-
 
         #endregion
     }
