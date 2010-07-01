@@ -122,7 +122,7 @@ namespace TodLighting
                 hull.Update(gameTime, ambientLights);
             }
 
-            gpu2dEngine.Update();
+            gpu2dEngine.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -130,7 +130,7 @@ namespace TodLighting
         {
             GraphicsDevice.Clear(Color.White);
 
-            gpu2dEngine.Draw(graphics);
+            gpu2dEngine.Draw(gameTime, graphics);
 
             spriteBatch.Begin();
 

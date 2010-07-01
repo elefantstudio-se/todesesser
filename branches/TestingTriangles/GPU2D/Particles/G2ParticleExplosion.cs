@@ -19,11 +19,13 @@ namespace GPU2D.Particles
     /// <summary>
     /// Custom particle system for creating the fiery part of the explosions.
     /// </summary>
-    public class G2ParticleExplosion : ParticleSystem
+    public class G2ParticleExplosion : G2ParticleBase
     {
         public G2ParticleExplosion(Game game, ContentManager content)
             : base(game, content)
-        { }
+        {
+            this.type = ParticleTypes.Explosion;
+        }
 
 
         protected override void InitializeSettings(ParticleSettings settings)

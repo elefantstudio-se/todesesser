@@ -19,11 +19,13 @@ namespace GPU2D.Particles
     /// <summary>
     /// Custom particle system for creating a giant plume of long lasting smoke.
     /// </summary>
-    public class G2SmokePlume : ParticleSystem
+    public class G2SmokePlume : G2ParticleBase
     {
         public G2SmokePlume(Game game, ContentManager content)
             : base(game, content)
-        { }
+        {
+            this.type = ParticleTypes.SmokePlume;
+        }
 
 
         protected override void InitializeSettings(ParticleSettings settings)

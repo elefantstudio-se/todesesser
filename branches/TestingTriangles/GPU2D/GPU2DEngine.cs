@@ -36,7 +36,7 @@ namespace GPU2D
     public class GPU2DEngine
     {
         private List<G2PrimitiveBase> primitives;
-        private List<G2ParticleBase> particles;
+        private List<G2VBase> particles;
         private Effect shader;
 
         Matrix View;
@@ -49,7 +49,7 @@ namespace GPU2D
         public GPU2DEngine(Effect shader, GraphicsDeviceManager graphics)
         {
             primitives = new List<G2PrimitiveBase>();
-            particles = new List<G2ParticleBase>();
+            particles = new List<G2VBase>();
             this.shader = shader;
             this.graphics = graphics;
         }
@@ -60,9 +60,15 @@ namespace GPU2D
             Projection = Matrix.CreateOrthographic(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, 1, 100) * Matrix.CreateScale(1) * Matrix.CreateRotationZ(MathHelper.Pi);
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             InitializeShader();
+
+            //Update Particles
+            foreach (G2VBase particle in particles)
+            {
+                particle.Update(gameTime);
+            }
         }
 
         public void DrawPrimitive(G2PrimitiveBase primitive)
@@ -70,12 +76,19 @@ namespace GPU2D
             primitives.Add(primitive);
         }
 
-        public void DrawParticle(G2ParticleBase particle)
+        public int AddParticle(G2VBase particle)
         {
-
+            particle.Initialize();
+            particles.Add(particle);
+            return particles.IndexOf(particle);
         }
 
-        public void Draw(GraphicsDeviceManager graphics)
+        public void RemoveParticle(int index)
+        {
+            particles.RemoveAt(index);
+        }
+
+        public void Draw(GameTime gameTime, GraphicsDeviceManager graphics)
         {
             shader.Parameters["ViewProjection"].SetValue(View * Projection);
 
@@ -92,6 +105,11 @@ namespace GPU2D
             foreach (G2PrimitiveBase primitive in removePrimitives)
             {
                 primitives.Remove(primitive);
+            }
+
+            foreach (G2VBase particle in particles)
+            {
+                particle.Draw(gameTime, View, Projection);
             }
         }
     }

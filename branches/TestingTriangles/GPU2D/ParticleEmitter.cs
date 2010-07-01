@@ -39,7 +39,7 @@ namespace GPU2D
     {
         #region Fields
 
-        ParticleSystem particleSystem;
+        G2ParticleBase particleSystem;
         float timeBetweenParticles;
         Vector3 previousPosition;
         float timeLeftOver;
@@ -50,7 +50,7 @@ namespace GPU2D
         /// <summary>
         /// Constructs a new particle emitter object.
         /// </summary>
-        public ParticleEmitter(ParticleSystem particleSystem,
+        public ParticleEmitter(G2ParticleBase particleSystem,
                                float particlesPerSecond, Vector3 initialPosition)
         {
             this.particleSystem = particleSystem;

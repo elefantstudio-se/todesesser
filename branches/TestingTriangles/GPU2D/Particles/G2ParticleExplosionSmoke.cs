@@ -19,11 +19,13 @@ namespace GPU2D.Particles
     /// <summary>
     /// Custom particle system for creating the smokey part of the explosions.
     /// </summary>
-    public class G2ParticleExplosionSmoke : ParticleSystem
+    public class G2ParticleExplosionSmoke : G2ParticleBase
     {
         public G2ParticleExplosionSmoke(Game game, ContentManager content)
             : base(game, content)
-        { }
+        {
+            this.type = ParticleTypes.ExplosionSmoke;
+        }
 
 
         protected override void InitializeSettings(ParticleSettings settings)
