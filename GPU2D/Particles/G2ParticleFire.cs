@@ -19,12 +19,12 @@ namespace GPU2D.Particles
     /// <summary>
     /// Custom particle system for creating a flame effect.
     /// </summary>
-    public class G2ParticleFire : ParticleSystem
+    public class G2ParticleFire : G2ParticleBase
     {
-        public G2ParticleFire(Game game, ContentManager content)
-            : base(game, content)
-        { }
-
+        public G2ParticleFire(Game game, ContentManager content) : base(game, content)
+        {
+            this.type = ParticleTypes.Fire;
+        }
 
         protected override void InitializeSettings(ParticleSettings settings)
         {

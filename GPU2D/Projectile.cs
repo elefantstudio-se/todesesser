@@ -37,8 +37,8 @@ namespace GPU2D
 
         #region Fields
 
-        ParticleSystem explosionParticles;
-        ParticleSystem explosionSmokeParticles;
+        G2ParticleBase explosionParticles;
+        G2ParticleBase explosionSmokeParticles;
         ParticleEmitter trailEmitter;
 
         Vector3 position;
@@ -53,9 +53,9 @@ namespace GPU2D
         /// <summary>
         /// Constructs a new projectile.
         /// </summary>
-        public Projectile(ParticleSystem explosionParticles,
-                          ParticleSystem explosionSmokeParticles,
-                          ParticleSystem projectileTrailParticles)
+        public Projectile(G2ParticleBase explosionParticles,
+                          G2ParticleBase explosionSmokeParticles,
+                          G2ParticleBase projectileTrailParticles)
         {
             this.explosionParticles = explosionParticles;
             this.explosionSmokeParticles = explosionSmokeParticles;
