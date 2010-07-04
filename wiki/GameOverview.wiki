@@ -1,0 +1,18 @@
+#summary Section I - Game Overview
+
+= Details =
+
+Add your content here.  Format your content with:
+   4.1. Game Concept
+   4.2. Feature Set
+   4.3. Genre
+   4.4. Target Audience
+   4.5. Game Flow Summary ­ How does the player move through the game. Both
+        through framing interface and the game itself.
+   4.6. Look and Feel ­ What is the basic look and feel of the game? What is the visual
+        style?
+   4.7. Project Scope ­ A summary of the scope of the game.
+       4.7.1. Number of locations
+       4.7.2. Number of levels
+       4.7.3. Number of NPC's
+       4.7.4. Number of weapons
