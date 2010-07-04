@@ -5,7 +5,7 @@
    4.1. Game Concept<br>
    4.2. Feature Set<br>
    4.3. Genre<br>
-   4.4. Target Audience</br>
+   4.4. Target Audience<br>
    4.5. Game Flow Summary<br>
    4.6. Look and Feel<br>
    4.7. Project Scope<br>
