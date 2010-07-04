@@ -6,9 +6,9 @@
    4.2. Feature Set<br>
    4.3. Genre<br>
    4.4. Target Audience</br>
-   4.5. Game Flow Summary ­ How does the player move through the game. Both through framing interface and the game itself.<br>
-   4.6. Look and Feel ­ What is the basic look and feel of the game? What is the visual style?<br>
-   4.7. Project Scope ­ A summary of the scope of the game.<br>
+   4.5. Game Flow Summary<br>
+   4.6. Look and Feel<br>
+   4.7. Project Scope<br>
        4.7.1. Number of locations<br>
        4.7.2. Number of levels<br>
        4.7.3. Number of NPC's<br>
