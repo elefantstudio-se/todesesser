@@ -1,4 +1,4 @@
-#summary Section I - Game Overview
+#summary 4. Section I - Game Overview
 
 = Details =
       # [GameOverview#1._Game_Concept Game Concept]<br>
