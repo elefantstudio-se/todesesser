@@ -1,0 +1,25 @@
+#summary 9. Section VI - Artificial Intelligence
+
+= Details =
+
+   # Opponent AI
+   # Enemy AI
+   # Non-combat Characters
+   # Friendly Characters
+   # Support AI
+      # Player and Collision Detection
+      # Pathfinding
+
+= 1. Opponent AI =
+
+= 2. Enemy AI =
+
+= 3. Non-combat Characters =
+
+= 4. Friendly Characters =
+
+= 5. Support AI =
+
+== 5.1. Player and Collision Detection ==
+
+== 5.2. Pathfinding ==
