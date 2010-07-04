@@ -10,7 +10,7 @@
       # [GameOverview#7._Project_Scope Project Scope]<br>
          # [GameOverview#7.1._Number_of_locations Number of locations]<br>
          # [GameOverview#7.2._Number_of_levels Number of levels]<br>
-         # [GameOverview#7.3._Number_of_NPC's Number of NPC's]<br>
+         # [GameOverview#7.3._Number_of_NPC'S Number of NPC's]<br>
          # [GameOverview#7.4._Number_of_weapons Number of weapons]<br>
 
 = 1. Game Concept =
