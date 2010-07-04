@@ -1,0 +1,22 @@
+#summary 10. Section VII - Technical
+
+= Details =
+
+   # Target Hardware
+   # Development hardware and software
+   # Development procedures and standards
+   # Game Engine
+   # Network
+   # Scripting Language
+
+= 1. Target Hardware =
+
+= 2. Development hardware and software =
+
+= 3. Development procedures and standards =
+
+= 4. Game Engine =
+
+= 5. Network =
+
+= 6. Scripting Language =
