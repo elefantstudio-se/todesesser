@@ -1,14 +1,36 @@
 #summary Section I - Game Overview
 
 = Details =
-      # Game Concept<br>
-      # Feature Set<br>
-      # Genre<br>
-      # Target Audience<br>
-      # Game Flow Summary<br>
-      # Look and Feel<br>
-      # Project Scope<br>
-         # Number of locations<br>
-         # Number of levels<br>
-         # Number of NPC's<br>
-         # Number of weapons<br>
+      # [GameOverview#1._Game_Concept Game Overview]<br>
+      # [GameOverview#2._Feature_Set Feature Set]<br>
+      # [GameOverview#3._Genre Genre]<br>
+      # [GameOverview#4._Target_Audience Target Audience]<br>
+      # [GameOverview#5._Game_Flow_Summary Game Flow Summary]<br>
+      # [GameOverview#6._Look_and_Feel Look and Feel]<br>
+      # [GameOverview#7._Project_Scope Project Scope]<br>
+         # [GameOverview#7.1._Number_of_locations Number of locations]<br>
+         # [GameOverview#7.2._Number_of_levels Number of levels]<br>
+         # [GameOverview#7.3._Number_of_NPC's Number of NPC's]<br>
+         # [GameOverview#7.4._Number_of_weapons Number of weapons]<br>
+
+= 1. Game Concept =
+
+= 2. Feature Set =
+
+= 3. Genre =
+
+= 4. Target Audience =
+
+= 5. Game Flow Summary =
+
+= 6. Look and Feel =
+
+= 7. Project Scope =
+
+== 7.1. Number of locations =
+
+== 7.2. Number of levels =
+
+== 7.3. Number of NPC'S =
+
+== 7.4. Number of weapons =
