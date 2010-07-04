@@ -8,8 +8,8 @@ Page for the current revision of the game design document
 = Details =
 
 1. Title Page<br>
-   1.1. Game Name ­ Perhaps also add a subtitle or high concept sentence.<br>
+   1.1. Game Name<br>
    1.2. Copyright Information<br>
    1.3. Version Number, author, date<br>
-2. Table of Contents ­ Make sure this includes all the subsections to make finding material. If practical, hyper linking the document will help here.<br>
-3. Design History ­ This is a change listing quickly describing each major version and changes.<br>
+2. Table of Contents<br>
+3. Design History<br>
