@@ -1,0 +1,19 @@
+#summary Work In Progress Game Design Document
+
+= Introduction =
+
+Page for the current revision of the game design document
+
+
+= Details =
+
+
+
+1. Title Page
+   1.1. Game Name ­ Perhaps also add a subtitle or high concept sentence.
+   1.2. Copyright Information
+   1.3. Version Number, author, date
+2. Table of Contents ­ Make sure this includes all the subsections to make finding
+   material. If practical, hyper linking the document will help here.
+3. Design History ­ This is a change listing quickly describing each major version and
+   changes.
