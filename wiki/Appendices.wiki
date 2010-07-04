@@ -1,0 +1,61 @@
+#summary Appendices
+
+= Details =
+
+   # Asset List
+      # Art
+         # Model and Texture List
+         # Animation List
+         # Effects List
+         # Interface Art List
+         # Cut scene List
+      # Sound
+         # Environmental Sounds
+         # Weapon Sounds
+         # Interface Sounds
+      # Music
+         # Ambient
+         # "Action"
+         # Victory
+         # Defeat
+      # Voice
+         # Actor #1 lines
+         # Actor #2 lines
+
+= 1. Asset List =
+
+== 1.1. Art ==
+
+=== 1.1.1. Model and Texture List ===
+
+=== 1.1.2. Animation List ===
+
+=== 1.1.3. Effects List ===
+
+=== 1.1.4. Interface Art List ===
+
+=== 1.1.5. Cut scene List ===
+
+== 1.2. Sound ==
+
+=== 1.2.1. Environmental Sounds ===
+
+=== 1.2.2. Weapon Sounds ===
+
+=== 1.2.3. Interface Sounds ===
+
+== 1.3. Music ==
+
+=== 1.3.1. Ambient ===
+
+=== 1.3.2. "Action" ===
+
+=== 1.3.3. Victory ===
+
+=== 1.3.4. Defeat ===
+
+== 1.4. Voice ==
+
+=== 1.4.1. Actor #1 lines ===
+
+=== 1.4.2. Actor #2 lines ===
