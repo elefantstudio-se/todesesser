@@ -2,7 +2,6 @@
 
 = Details =
 
-Add your content here.  Format your content with:
    4.1. Game Concept
    4.2. Feature Set
    4.3. Genre
