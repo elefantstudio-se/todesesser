@@ -1,0 +1,25 @@
+#summary 11. Section VIII - Game Art
+
+= Details =
+
+   # Concept Art
+   # Style Guides
+   # Characters
+   # Environments
+   # Equipment
+   # Cut scenes
+   # Miscellaneous
+
+= 1. Concept Art =
+
+= 2. Style Guides =
+
+= 3. Characters =
+
+= 4. Environments =
+
+= 5. Equipment =
+
+= 6. Cut scenes =
+
+= 7. Miscellaneous =
