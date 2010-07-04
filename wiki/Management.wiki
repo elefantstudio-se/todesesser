@@ -1,0 +1,19 @@
+#summary 13. Section X - Management
+
+= Details =
+
+   # Detailed Schedule
+   # Budget
+   # Risk Analysis
+   # Localization Plan
+   # Test Plan
+
+= 1. Detailed Schedule =
+
+= 2. Budget =
+
+= 3. Risk Analysis =
+
+= 4. Localization Plan =
+
+= 5. Test Plan =
