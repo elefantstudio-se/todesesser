@@ -31,3 +31,61 @@
    # Game Options
    # Replaying and Saving
    # Cheats and Easter Eggs
+
+= 1. Gameplay =
+
+== 1.1. Game Progression ==
+
+== 1.2. Mission/challenge Structure ==
+
+== 1.3. Puzzle Structure ==
+
+== 1.4. Objectives ==
+
+== 1.5. Play Flow ==
+
+= 2. Mechanics =
+
+== 2.1. Physics ==
+
+== 2.2. Movement ==
+
+=== 2.2.1. General Movement ===
+
+=== 2.2.2. Other Movement ===
+
+== 2.3. Objects ==
+
+=== 2.3.1. Picking Up Objects ===
+
+=== 2.3.2. Moving Objects ===
+
+== 2.4. Actions ==
+
+=== 2.4.1. Switches and Buttons ===
+
+=== 2.4.2. Picking Up, Carrying and Dropping ===
+
+=== 2.4.3. Talking ===
+
+=== 2.4.4. Reading ===
+
+== 2.5. Combat ==
+
+== 2.6. Economy ==
+
+= 3. Screen Flow =
+
+== 3.1. Screen Flow Chart ==
+
+== 3.2. Screen Descriptions ==
+
+=== 3.2.1. Main Menu Screen ===
+
+=== 3.2.2. Options Screen ===
+
+= 4. Game Options =
+
+= 5. Replaying and Saving =
+
+= 6. Cheats and Easter Eggs =
