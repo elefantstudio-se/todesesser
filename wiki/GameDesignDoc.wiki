@@ -7,9 +7,9 @@ Page for the current revision of the game design document
 
 = Details =
 
-   1. Title Page<br>
-       1.1. Game Name<br>
-       1.2. Copyright Information<br>
-       1.3. Version Number, author, date<br>
-   2. Table of Contents<br>
-   3. Design History<br>
+   # Title Page<br>
+      # Game Name<br>
+      # Copyright Information<br>
+      # Version Number, author, date<br>
+   # Table of Contents<br>
+   # Design History<br>
