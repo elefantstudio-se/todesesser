@@ -1,0 +1,100 @@
+#summary 6. Section III – Story, Setting and Character
+
+= Details =
+
+   # Story and Narrative
+      # Back story
+      # Plot Elements
+      # Game Progression
+      # License Considerations
+      # Cut Scenes
+         # Cut scene #1
+            # Actors
+            # Description
+            # Storyboard
+            # Script
+         # Cut scene #2
+   # Game World
+      # General look and feel of world
+      # Area #1
+         # General Description
+         # Physical Characteristics
+         # Levels that use area
+         # Connections to other areas
+      # Area #2
+   # Characters
+      # Character #1
+         # Back story
+         # Personality
+         # Look
+            # Physical characteristics
+            # Animations
+            # Special Abilities
+            # Relevance to game story
+            # Relationship to other characters
+            # Statistics
+      # Character #2
+
+= 1. Story and Narrative =
+
+== 1.1. Back story ==
+
+== 1.2. Plot Elements ==
+
+== 1.3. Game Progression ==
+
+== 1.4. Licence Considerations ==
+
+== 1.5. Cut Scenes ==
+
+=== 1.5.1. Cut scene #1 ===
+
+==== 1.5.1.1. Actors ====
+
+==== 1.5.1.2. Description ====
+
+==== 1.5.1.3. Storyboard ====
+
+==== 1.5.1.4. Script ====
+
+=== 1.5.2. Cut scene #2 ===
+
+= 2. Game World =
+
+== 2.1. General look and feel of world ==
+
+== 2.2. Area #1 ==
+
+=== 2.2.1. General Description ===
+
+=== 2.2.2. Physical Characteristics ===
+
+=== 2.2.3. Levels that use area ===
+
+=== 2.2.4. Connections to other areas ===
+
+== 2.3. Area #2 ==
+
+= 3. Characters =
+
+== 3.1. Character #1 ==
+
+=== 3.1.1. Back story ===
+
+=== 3.1.2. Personality ===
+
+=== 3.1.3. Look ===
+
+==== 3.1.3.1. Physical characteristics ====
+
+==== 3.1.3.2. Animations ====
+
+=== 3.1.4. Special Abilities ===
+
+=== 3.1.5. Relevance to game story ===
+
+=== 3.1.6. Relationship to other characters ===
+
+=== 3.1.7. Statistics ===
+
+== 3.2. Character #2 ==
