@@ -1,0 +1,13 @@
+#summary 12. Section IX - Secondary Software
+
+= Details =
+
+   # Editor
+   # Installer
+   # Update software
+
+= 1. Editor =
+
+= 2. Installer =
+
+= 3. Update software =
