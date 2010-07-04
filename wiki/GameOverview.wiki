@@ -1,15 +1,14 @@
 #summary Section I - Game Overview
 
 = Details =
-
-   4.1. Game Concept<br>
-   4.2. Feature Set<br>
-   4.3. Genre<br>
-   4.4. Target Audience<br>
-   4.5. Game Flow Summary<br>
-   4.6. Look and Feel<br>
-   4.7. Project Scope<br>
-       4.7.1. Number of locations<br>
-       4.7.2. Number of levels<br>
-       4.7.3. Number of NPC's<br>
-       4.7.4. Number of weapons<br>
+      # Game Concept<br>
+      # Feature Set<br>
+      # Genre<br>
+      # Target Audience<br>
+      # Game Flow Summary<br>
+      # Look and Feel<br>
+      # Project Scope<br>
+         # Number of locations<br>
+         # Number of levels<br>
+         # Number of NPC's<br>
+         # Number of weapons<br>
