@@ -1,7 +1,7 @@
 #summary Section I - Game Overview
 
 = Details =
-      # [GameOverview#1._Game_Concept Game Overview]<br>
+      # [GameOverview#1._Game_Concept Game Concept]<br>
       # [GameOverview#2._Feature_Set Feature Set]<br>
       # [GameOverview#3._Genre Genre]<br>
       # [GameOverview#4._Target_Audience Target Audience]<br>
