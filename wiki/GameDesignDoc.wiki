@@ -2,14 +2,11 @@
 
 = Introduction =
 
-Page for the current revision of the game design document
-
+<h2>Todesesser</h2>
+Copyright: GPL v3<br />
+Version 0.01 r 144, Dean Gardiner and Taylor Lodge, 5-Jul-2010<br />
 
 = Details =
-   # Title Page<br>
-      # Todesesser<br>
-      # GPL v3<br>
-      # Version 0.01 r 144, Dean Gardiner and Taylor Lodge, 5-Jul-2010<br>
    # Table of Contents<br>
      # [GameDesignDoc Main]
      # [GameOverview Section I - Game Overview]
