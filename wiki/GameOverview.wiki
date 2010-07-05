@@ -13,24 +13,22 @@
          # [GameOverview#7.3._Number_of_NPC'S Number of NPC's]<br>
          # [GameOverview#7.4._Number_of_weapons Number of weapons]<br>
 
-= 1. Game Concept =
-
-= 2. Feature Set =
-
-= 3. Genre =
-
-= 4. Target Audience =
-
-= 5. Game Flow Summary =
-
-= 6. Look and Feel =
-
-= 7. Project Scope =
-
-== 7.1. Number of locations =
-
-== 7.2. Number of levels =
-
-== 7.3. Number of NPC'S =
-
-== 7.4. Number of weapons =
+  # = Game Concept =
+    Todesesser is a top down shooter in which you the player must uncover the secret of [insert town name here]. To do this you must [insert phrase better then kill zombies] to gain experience and money so you can levelup and buy new weapons.
+  # = Feature Set =
+  # = Genre =
+    Top Down Shooter
+  # = Target Audience =
+    Male gamers aged 15-30
+  # = Game Flow Summary =
+  # = Look and Feel =
+  # = Project Scope =
+    # == Number of locations ==
+    # == Number of levels ==
+    # == Number of NPC'S ==
+      # === Enemies === 
+        ToDo complete, think of better names, more enemies
+        # Normal zombie
+        # Fast Zombie
+        # Fat zombie
+    # == Number of weapons ==
