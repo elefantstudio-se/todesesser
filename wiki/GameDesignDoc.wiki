@@ -6,10 +6,21 @@ Page for the current revision of the game design document
 
 
 = Details =
-
    # Title Page<br>
-      # Game Name<br>
-      # Copyright Information<br>
-      # Version Number, author, date<br>
+      # Todesesser<br>
+      # GPL v3<br>
+      # Version 0.01 r 144, Dean Gardiner and Taylor Lodge, 5-Jul-2010<br>
    # Table of Contents<br>
+     # [GameDesignDoc Main]
+     # [GameOverview Section I - Game Overview]
+     # [GameplayAndMechanics Section II - Gameplay and Mechanics]
+     # [StorySettingAndCharacter Section III - Story, Setting and Character]
+     # [Levels Section IV - Levels]
+     # [Interface Section V - Interface]
+     # [ArtificialIntelligence Section VI - Artificial Intelligence]
+     # [Technical Section VII - Technical]
+     # [GameArt Section VIII - Game Art]
+     # [SecondarySoftware Section IX - Secondary Software]
+     # [Management Section X - Management]
+     # [Appendices Appendices]
    # Design History<br>
