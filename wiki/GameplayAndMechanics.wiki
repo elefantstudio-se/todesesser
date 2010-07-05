@@ -2,35 +2,35 @@
 
 = Details =
 
-   # Gameplay
-      # Game Progression
-      # Mission/challenge Structure
-      # Puzzle Structure
-      # Objectives
-      # Play Flow
-   # Mechanics
-      # Physics
-      # Movement
-         # General Movement
-         # Other Movement
-      # Objects
-         # Picking Up Objects
-         # Moving Objects
-      # Actions
-         # Switches and Buttons
-         # Picking Up, Carrying and Dropping
-         # Talking
-         # Reading
-      # Combat
-      # Economy
-   # Screen Flow
-      # Screen Flow Chart
-      # Screen Descriptions
-         # Main Menu Screen
-         # Options Screen
-   # Game Options
-   # Replaying and Saving
-   # Cheats and Easter Eggs
+   # [GameplayAndMechanics#1._Gameplay Gameplay]
+      # [GameplayAndMechanics#1.1._Game_Progression Game Progression]
+      # [GameplayAndMechanics#1.2._Mission/challenge_Structure Mission/challenge Structure]
+      # [GameplayAndMechanics#1.3._Puzzle_Structure Puzzle Structure]
+      # [GameplayAndMechanics#1.4._Objectives Objectives]
+      # [GameplayAndMechanics#1.5._Play_Flow Play Flow]
+   # [GameplayAndMechanics#2._Mechanics Mechanics]
+      # [GameplayAndMechanics#2.1._Physics Physics]
+      # [GameplayAndMechanics#2.2._Movement Movement]
+         # [GameplayAndMechanics#2.2.1._General_Movement General Movement]
+         # [GameplayAndMechanics#2.2.2._Other_Movement Other Movement]
+      # [GameplayAndMechanics#2.3._Objects Objects]
+         # [GameplayAndMechanics#2.3.1._Picking_Up_Objects Picking Up Objects]
+         # [GameplayAndMechanics#2.3.2._Moving_Objects Moving Objects]
+      # [GameplayAndMechanics#2.4._Actions Actions]
+         # [GameplayAndMechanics#2.4.1._Switches_and_Buttons Switches and Buttons]
+         # [GameplayAndMechanics#2.4.2._Picking_Up,_Carrying_and_Dropping Picking Up, Carrying and Dropping]
+         # [GameplayAndMechanics#2.4.3._Talking Talking]
+         # [GameplayAndMechanics#2.4.4._Reading Reading]
+      # [GameplayAndMechanics#2.5._Combat Combat]
+      # [GameplayAndMechanics#2.6._Economy Economy]
+   # [GameplayAndMechanics#3._Screen_Flow Screen Flow]
+      # [GameplayAndMechanics#3.1._Screen_Flow_Chart Screen Flow Chart]
+      # [GameplayAndMechanics#3.2._Screen_Descriptions Screen Descriptions]
+         # [GameplayAndMechanics#3.2.1._Main_Menu_Screen Main Menu Screen]
+         # [GameplayAndMechanics#3.2.2._Options_Screen Options Screen]
+   # [GameplayAndMechanics#4._Game_Options Game Options]
+   # [GameplayAndMechanics#5._Replaying_and_Saving Replaying and Saving]
+   # [GameplayAndMechanics#6._Cheats_and_Easter_Eggs Cheats and Easter Eggs]
 
 = 1. Gameplay =
 
