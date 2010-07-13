@@ -155,6 +155,8 @@ namespace Todesesser.Screens
             //Setup RenderTarget for Player
             RenderTarget2D ptarget = new RenderTarget2D(GraphicsDevice, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, false, SurfaceFormat.Color, DepthFormat.None);
             GraphicsDevice.SetRenderTarget(ptarget);
+
+            GraphicsDevice.Clear(Color.Transparent);
             
             //Draw Player:
             player.Draw(gameTime, Batch, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position));
