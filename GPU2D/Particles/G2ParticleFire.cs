@@ -32,7 +32,7 @@ namespace GPU2D.Particles
 
             settings.MaxParticles = 2400;
 
-            settings.Duration = TimeSpan.FromSeconds(2);
+            settings.Duration = TimeSpan.FromSeconds(1.8);
 
             settings.DurationRandomness = 1;
 
@@ -50,11 +50,11 @@ namespace GPU2D.Particles
             settings.MinColor = new Color(255, 255, 255, 255);
             settings.MaxColor = new Color(255, 255, 255, 255);
 
-            settings.MinStartSize = 5;
-            settings.MaxStartSize = 10;
+            settings.MinStartSize = 10;
+            settings.MaxStartSize = 20;
 
             settings.MinEndSize = 10;
-            settings.MaxEndSize = 40;
+            settings.MaxEndSize = 60;
 
             // Use additive blending.
             // Convert4.0 - Blend state set as an object rather than individual properties.
