@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Todesesser.WeaponEngine;
 using Todesesser.Map;
 using Todesesser.Core;
+using FarseerGames.FarseerPhysics.Dynamics;
 
 namespace Todesesser.ObjectPooling.ObjectTypes
 {
@@ -18,6 +19,7 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         private Color colour = Color.White;
         private int health = 1;
         private double scale = 0.5;
+        private Body physicsBody;
 
         public ObjectEnemy(string Key, ObjectPool.ObjectTypes Type, string ContentKey, ContentPool contentPool)
         {
@@ -74,7 +76,14 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         {
             if (health > 0)
             {
-                sb.Draw(Texture, new Rectangle(int.Parse(this.Position.X.ToString()), int.Parse(this.Position.Y.ToString()), Texture.Width, Texture.Height), colour);
+                if (physicsBody == null)
+                {
+                    sb.Draw(Texture, new Rectangle(Convert.ToInt32(this.Position.X), Convert.ToInt32(this.Position.Y), Texture.Width, Texture.Height), colour);
+                }
+                else
+                {
+                    sb.Draw(Texture, new Rectangle(Convert.ToInt32(physicsBody.Position.X), Convert.ToInt32(physicsBody.Position.Y), Texture.Width, Texture.Height), colour);
+                }
                 base.Draw(gameTime, sb);
             }
         }
@@ -83,7 +92,14 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         {
             if (health > 0)
             {
-                sb.Draw(Texture, new Rectangle(Convert.ToInt32(this.Position.X) - Convert.ToInt32(offset.X), Convert.ToInt32(this.Position.Y) - Convert.ToInt32(offset.Y), Convert.ToInt32(Texture.Width * scale), Convert.ToInt32(Texture.Height * scale)), null, colour, float.Parse(this.Rotation.ToString()) - MathHelper.ToRadians(180), new Vector2(Texture.Width / 2, Texture.Height / 2), SpriteEffects.None, 1);
+                if (physicsBody == null)
+                {
+                    sb.Draw(Texture, new Rectangle(Convert.ToInt32(this.Position.X) - Convert.ToInt32(offset.X), Convert.ToInt32(this.Position.Y) - Convert.ToInt32(offset.Y), Convert.ToInt32(Texture.Width * scale), Convert.ToInt32(Texture.Height * scale)), null, colour, float.Parse(this.Rotation.ToString()) - MathHelper.ToRadians(180), new Vector2(Texture.Width / 2, Texture.Height / 2), SpriteEffects.None, 1);
+                }
+                else
+                {
+                    sb.Draw(Texture, new Rectangle(Convert.ToInt32(physicsBody.Position.X) - Convert.ToInt32(offset.X), Convert.ToInt32(physicsBody.Position.Y) - Convert.ToInt32(offset.Y), Convert.ToInt32(Texture.Width * scale), Convert.ToInt32(Texture.Height * scale)), null, colour, physicsBody.Rotation - MathHelper.ToRadians(180), new Vector2(Texture.Width / 2, Texture.Height / 2), SpriteEffects.None, 1);
+                }
                 base.Draw(gameTime, sb, offset);
             }
         }
@@ -96,6 +112,18 @@ namespace Todesesser.ObjectPooling.ObjectTypes
         public int Health
         {
             get { return this.health; } 
+        }
+
+        public Body PhysicsBody
+        {
+            get
+            {
+                return this.physicsBody;
+            }
+            set
+            {
+                this.physicsBody = value;
+            }
         }
     }
 }
