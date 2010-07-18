@@ -50,10 +50,11 @@ namespace TodParticles
         {
             spriteBatch = new SpriteBatch(graphics.GraphicsDevice);
             gpu2d = new GPU2DEngine(Content.Load<Effect>("Basic"), graphics);
-            gpu2d.AddParticle(new G2VSmokePlume(this, Content, new Vector2(200, 200)));
-            gpu2d.AddParticle(new G2VFire(this, Content, new Vector2(100,100)));
-            gpu2d.AddParticle(new G2VExplosion(this, Content, new Vector2(300, 300)));
-            gpu2d.AddParticle(new G2VFireRing(this, Content, new Vector2(400, 400), 40, 30));
+            //gpu2d.AddParticle(new G2VSmokePlume(this, Content, new Vector2(200, 200)));
+            //gpu2d.AddParticle(new G2VFire(this, Content, new Vector2(100,100)));
+            //gpu2d.AddParticle(new G2VExplosion(this, Content, new Vector2(300, 300)));
+            //gpu2d.AddParticle(new G2VFireRing(this, Content, new Vector2(400, 400), 40, 30));
+            gpu2d.AddParticle(new G2VFireDirectional(this, Content, new Vector2(100, 100), new Vector2(200, 200), 5));
         }
 
         #endregion
