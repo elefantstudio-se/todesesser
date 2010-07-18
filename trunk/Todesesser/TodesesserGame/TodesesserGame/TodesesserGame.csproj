@@ -168,6 +168,10 @@
       <Project>{68D043AF-EDD7-4D8C-992B-DDEECF54EAD3}</Project>
       <Name>ContentPooling</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\FarseerPhysics\FarseerPhysics.csproj">
+      <Project>{95B40504-C1C2-4FCD-98B3-B63AD35D6336}</Project>
+      <Name>FarseerPhysics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Lighting\Lighting.csproj">
       <Project>{1C6F1225-16E3-4418-9708-74DE502F83EB}</Project>
       <Name>Lighting</Name>

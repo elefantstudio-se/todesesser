@@ -7,11 +7,18 @@ using ContentPooling;
 using Todesesser.ObjectPooling;
 using Microsoft.Xna.Framework;
 using Todesesser.ObjectPooling.ObjectTypes;
+using FarseerGames.FarseerPhysics;
+using FarseerGames.FarseerPhysics.Dynamics;
+using FarseerGames.FarseerPhysics.Factories;
 
 namespace Todesesser.Map.Maps
 {
     public class MapTest : MapBase
     {
+        private PhysicsSimulator simulator;
+        private Body testPhysicsBody;
+        private ObjectEnemy testPhysicsObject;
+
         public MapTest(SpriteBatch batch, ContentPool Content, ObjectPool Objects)
         {
             this.ObjectPool = Objects;
@@ -66,6 +73,13 @@ namespace Todesesser.Map.Maps
                 spawner.EType = "basic";
                 spawner.MaxSpawned = 4;
             }
+
+            simulator = new PhysicsSimulator(new FarseerGames.FarseerPhysics.Mathematics.Vector2(0, -5));
+            testPhysicsBody = BodyFactory.Instance.CreateRectangleBody(5, 5, 10);
+            testPhysicsBody.Position = new FarseerGames.FarseerPhysics.Mathematics.Vector2(250, 0);
+            AddObject("phy1", ObjectPool.AddObject(ObjectPooling.ObjectPool.ObjectTypes.Enemy, "phy1", "1x1white"));
+            testPhysicsObject = GetObject<ObjectEnemy>("phy1");
+            testPhysicsObject.PhysicsBody = testPhysicsBody;
 
             base.Initialize();
         }
