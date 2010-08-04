@@ -159,7 +159,7 @@ namespace Todesesser.Screens
             GraphicsDevice.Clear(Color.Transparent);
             
             //Draw Player:
-            player.Draw(gameTime, Batch, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position));
+            player.Draw(gameTime, Batch, player.Rotation);
 
             //Weapons:
             weaponEngine.Draw(gameTime, Batch, GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position));
@@ -176,9 +176,10 @@ namespace Todesesser.Screens
             testmap.Draw(gameTime);
 
             Rectangle dest = new Rectangle(int.Parse(player.Position.X.ToString()), int.Parse(player.Position.Y.ToString()), ptarget.Width, ptarget.Height);
-            Batch.Draw(ptarget, dest, new Rectangle(0, 0, ptarget.Width, ptarget.Height), Color.White, float.Parse(GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), player.Position).ToString()), player.Position, SpriteEffects.None, 1);
+            Batch.Draw(ptarget, dest, new Rectangle(0, 0, ptarget.Width, ptarget.Height), Color.White, (float)player.Rotation, player.Position, SpriteEffects.None, 1);
 
-            cursor.Draw(gameTime, Batch);
+            if(GameData.GameState == GameData.GameStates.Playing)
+                cursor.Draw(gameTime, Batch);
 
             //FPS:
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;

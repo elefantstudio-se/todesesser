@@ -42,9 +42,9 @@ namespace TodesesserGame
             {
                 gamerServices.Initialize();
             }
-            catch (GamerServicesNotAvailableException ex)
+            catch
             {
-                System.Diagnostics.Debug.WriteLine("GamerServices not Available!");
+                System.Diagnostics.Debug.WriteLine("GamerServices not Available, and your mum is a slut.");
             }
             base.Initialize();
             gameCore.Initialize();
@@ -68,7 +68,7 @@ namespace TodesesserGame
                 {
                     gamerServices.Update(gameTime);
                 }
-                catch (NullReferenceException ex)
+                catch
                 {
                     gamerServices = null;
                 }

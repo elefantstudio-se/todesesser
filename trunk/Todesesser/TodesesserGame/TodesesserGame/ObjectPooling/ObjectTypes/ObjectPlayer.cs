@@ -47,11 +47,10 @@ namespace Todesesser.ObjectPooling.ObjectTypes
                 GameStats.AppendStat("DeadCount", 1);
                 alive = false;
             }
-            if (alive == true)
+            if (alive == true && GameData.GameState == GameData.GameStates.Playing)
             {
                 movement(map);
-
-                this.Rotation = double.Parse(GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), Position).ToString());
+                this.Rotation = float.Parse(GameFunctions.GetAngle(new Vector2(Mouse.GetState().X, Mouse.GetState().Y), Position).ToString());
             }
             base.Update(gameTime);
         }
