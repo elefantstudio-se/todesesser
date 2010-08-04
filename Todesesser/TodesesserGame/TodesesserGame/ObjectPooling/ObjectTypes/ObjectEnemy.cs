@@ -37,12 +37,11 @@ namespace Todesesser.ObjectPooling.ObjectTypes
             {
                 Vector2 releventPlayerPosition = new Vector2(player.Position.X + Convert.ToInt32(map.Offset.X), player.Position.Y + Convert.ToInt32(map.Offset.Y));
 
-                this.Rotation = double.Parse(GameFunctions.GetAngle(this.Position, releventPlayerPosition).ToString());
+                this.Rotation = float.Parse(GameFunctions.GetAngle(this.Position, releventPlayerPosition).ToString());
 
                 int rot = Convert.ToInt32(MathHelper.ToDegrees(float.Parse(this.Rotation.ToString()))) - 90;
                 double xs = Math.Cos((rot * Math.PI) / 180);
                 double xy = Math.Sin((rot * Math.PI) / 180);
-
                 Vector2 OldPos = this.Position;
                 this.Position = new Vector2(this.Position.X - float.Parse(xs.ToString()), this.Position.Y - float.Parse(xy.ToString()));
                 this.BoundingRectangle = new Rectangle(Convert.ToInt32(this.Position.X - ((Texture.Width * scale) / 2)), Convert.ToInt32(this.Position.Y - ((Texture.Height * scale) / 2)), Convert.ToInt32(Texture.Width * scale), Convert.ToInt32(Texture.Height * scale));

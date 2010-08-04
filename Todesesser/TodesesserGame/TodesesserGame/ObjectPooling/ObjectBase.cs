@@ -16,7 +16,7 @@ namespace Todesesser.ObjectPooling
         private ObjectPool.ObjectTypes type;
         private Vector2 position;
         private Vector2 fixedOffset;
-        private double rotation;
+        private float rotation;
         private Rectangle boundingRectangle;
 
         public virtual void Update(GameTime gameTime, ObjectPlayer player)
@@ -98,7 +98,7 @@ namespace Todesesser.ObjectPooling
             set { this.fixedOffset = value; }
         }
 
-        public double Rotation
+        public float Rotation
         {
             get { return this.rotation; }
             set { this.rotation = value; }
